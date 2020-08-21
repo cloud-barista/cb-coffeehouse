@@ -1,3 +1,5 @@
+https://img.shields.io/badge/go-v1.12.7-blue
+
 # Go setup script
 
 Linux에서 Go 설치 및 환경 설정을 한방에 해주는 스크립트 입니다. VM 생성할때마다 수동으로 설정하기 번거로워서 만들었습니다.
