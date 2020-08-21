@@ -26,6 +26,11 @@ Cloud-Barista’s coffeehouse는 설명/정보 공유의 장 입니다. 미래 �
 2. 내용 작성 후 저장
 3. Wiki Home에 링크 생성
 
+또는 
+
+1. 개인 Repository에 내용을 작성후 저장한다.
+2. Wiki Home에 링크를 생성한다.
+
 공유된 내용에 따라 컨텐츠를 정리/재배치 하겠습니다.
 
 비고: 본 Repository의 자료는 추후 Cloud-Barista Contributor’s Guide에 활용될 수 있습니다.
