@@ -11,14 +11,21 @@ Cloud-Barista’s coffeehouse는 설명/정보 공유의 장 입니다. 미래 �
 - 클라우드 또는 멀티 클라우드 개념
 - 위 내용은 예시 입니다. 많은 설명/정보를 기대합니다. :blush:
 
-입문자 시각에서 쉬운 설명은 미래 Cloud-Barista Contributor에게 큰 도움이 될 것 입니다.
+입문자 시각에서 쉬운 설명은 미래 Cloud-Barista Contributor에게 큰 도움이 될 것 입니다. :thumbsup:
 
 ## 설명/정보 공유 방법
+### 소스/스크립트 공유
 1. Issues 탭에서 Issue를 생성 (제목을 명확하게 적어주세요.)
 2. Branch를 생성
-3. 생성한 Branch에 설명을 정리
-4. Pull request를 생성
+3. 생성한 Branch에 소스/스크립트 생성 또는 추가
+4. 사용방법 정리 (간단히)
+5. Pull request를 생성
 
-일정 주기로 공유 내용을 정리/재배치 하겠습니다.
+### 설명/정보 공유
+1. Wiki에 페이지 생성
+2. 내용 작성 후 저장
+3. Wiki Home에 링크 생성
+
+공유된 내용에 따라 컨텐츠를 정리/재배치 하겠습니다.
 
 비고: 본 Repository의 자료는 추후 Cloud-Barista Contributor’s Guide에 활용될 수 있습니다.
