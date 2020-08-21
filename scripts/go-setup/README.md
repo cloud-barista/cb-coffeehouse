@@ -1,4 +1,4 @@
-https://img.shields.io/badge/go-v1.12.7-blue
+![go-version](https://img.shields.io/badge/go-v1.12.7-informational) ![aws-passing](https://img.shields.io/badge/aws-passing-success) ![gcp-passing](https://img.shields.io/badge/gcp-passing-success)
 
 # Go setup script
 
@@ -6,7 +6,7 @@ Linux에서 Go 설치 및 환경 설정을 한방에 해주는 스크립트 입�
 
 사용방법
 ```bash
-wget https://raw.githubusercontent.com/cb-contributhon/cb-coffeehouse/go-installation-script/scripts/go-setup/go-setup.sh
+wget https://raw.githubusercontent.com/cb-contributhon/cb-coffeehouse/master/scripts/go-setup/go-setup.sh
 source go-setup.sh
 ```
 
