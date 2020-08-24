@@ -4,7 +4,9 @@
 
 The historian Brian Cowan describes English coffeehouses as *"places where people gathered to drink coffee, learn the news of the day, and perhaps to meet with other local residents and discuss matters of mutual concern.“* (See [English coffeehouses in the 17th and 18th centuries](https://en.wikipedia.org/wiki/English_coffeehouses_in_the_17th_and_18th_centuries))
 
-Cloud-Barista’s coffeehouse는 설명/정보 공유의 장 입니다. 미래 입문자들의 진입장벽을 낮출 수 있도록 여러분의 노하우를 자유롭게 공유해주세요. :satisfied:
+English Coffeehouse (별칭 Penny House)는 1 Penny가격의 커피 한잔을 마시며 지식인들이 다양한 의견을 공유하는 사교 클럽이었습니다.
+
+Cloud-Barista’s Coffeehouse에서 다양한 의견(설명/정보) 공유 바랍니다. 여러분이 자유롭게 공유해 주신 의견은 미래 입문자들의 진입장벽을 낮출 수 있습니다. :satisfied:
 - Contributhon 미션 수행 과정
 - Contributhon 미션을 수행하면서 마주한 문제점 및 해결 방법
 - Contributhon 미션을 수행하면서 이해한 개념 또는 용어
