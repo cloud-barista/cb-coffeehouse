@@ -2,7 +2,7 @@
 
 **Explanation of different perspectives lowers the entry barriers for future contributors.** :wink:
 
-The historian Brian Cowan describes English coffeehouses as *"places where people gathered to drink coffee, learn the news of the day, and perhaps to meet with other local residents and discuss matters of mutual concern.“* (See [English coffeehouses in the 17th and 18th centuries](https://en.wikipedia.org/wiki/English_coffeehouses_in_the_17th_and_18th_centuries))
+> The historian Brian Cowan describes English coffeehouses as *"places where people gathered to drink coffee, learn the news of the day, and perhaps to meet with other local residents and discuss matters of mutual concern.“* (See [English coffeehouses in the 17th and 18th centuries](https://en.wikipedia.org/wiki/English_coffeehouses_in_the_17th_and_18th_centuries))
 
 English Coffeehouse (별칭 Penny House)는 1 Penny가격의 커피 한잔을 마시며 지식인들이 다양한 의견을 공유하는 사교 클럽이었습니다.
 
