@@ -15,6 +15,8 @@ Cloud-Barista’s Coffeehouse에서 다양한 의견(설명/정보) 공유 바�
 
 입문자 시각에서 쉬운 설명은 미래 Cloud-Barista Contributor에게 큰 도움이 될 것 입니다. :thumbsup:
 
+:gift: [미래 컨트리뷰터를 위한 메시지](https://github.com/cb-contributhon/cb-coffeehouse/wiki/Interview-with-Seokho-Son) :100: :heart_eyes: :star: :thumbsup:
+
 ## 설명/정보 공유 방법
 ### 소스/스크립트 공유
 1. Issues 탭에서 Issue를 생성 (제목을 명확하게 적어주세요.)
