@@ -20,7 +20,7 @@ sudo rm -rf /tmp/meta_db/*
 # Download CB-Spider container image
 echo 
 echo ==========================================================
-echo == Download CB-Spider container image
+echo == Download the CB-Spider container image
 echo ==========================================================
 sleep 2
 # If you want to download a certain version of the image, 
@@ -30,7 +30,7 @@ sudo docker pull cloudbaristaorg/cb-spider:latest
 # Stop and remove running cotainer
 echo 
 echo ==========================================================
-echo == Stop and remove running cotainer
+echo == Stop and remove the running CB-Spider container
 echo ==========================================================
 sleep 2
 # Because of --rm option when running cb-spider container, 
@@ -39,9 +39,9 @@ sudo docker stop cb-spider
 
 # Run the CB-Spider container
 echo 
-echo =================================================
+echo ==========================================================
 echo == Run the CB-Spider container
-echo =================================================
+echo ==========================================================
 sleep 2
 # If you want to download a certain version of the image, 
 # you can specify the version.
