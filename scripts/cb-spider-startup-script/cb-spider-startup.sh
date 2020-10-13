@@ -1,5 +1,6 @@
 #!/bin/bash
 
+
 echo 
 echo ==========================================================
 echo == NOTICE: This script will run in 5 sec.
@@ -7,7 +8,7 @@ echo ==========================================================
 echo == If you want to specify a certain version of the image, 
 echo == press control + C and modify this file.
 echo ==========================================================
-
+sleep 5
 
 # Delete metadata
 echo 
