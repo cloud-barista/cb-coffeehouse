@@ -18,14 +18,14 @@ sleep 3
 sudo apt update -y
 
 echo ""
-echo "3. Download Go1.12.7"
+echo "3. Download Go1.15.3"
 sleep 3
-wget https://dl.google.com/go/go1.12.7.linux-amd64.tar.gz
+wget https://dl.google.com/go/go1.15.3.linux-amd64.tar.gz
 
 echo ""
 echo "4. Decompress the downloaded file"
 sleep 3
-tar -xvf go1.12.7.linux-amd64.tar.gz
+tar -xvf go1.15.3.linux-amd64.tar.gz
 
 echo ""
 echo "5. Create gosrc directory"
@@ -37,8 +37,9 @@ echo $PWD
 echo ""
 echo "6. Set environment path"
 sleep 3
-echo "export GOPATH=$HOME/gosrc;" >> .bashrc
-echo "export GOROOT=$HOME/go;" >> .bashrc
+echo "" >> .bashrc
+echo "export GOPATH=\$HOME/gosrc;" >> .bashrc
+echo "export GOROOT=\$HOME/go;" >> .bashrc
 echo "export PATH=\$PATH:\$GOROOT/bin;" >> .bashrc
 
 echo ""
