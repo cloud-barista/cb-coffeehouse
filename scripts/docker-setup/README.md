@@ -9,5 +9,5 @@ Advanced Packaging Tool (APT) 업데이트 후 Docker에서 제공하는 설치 
 사용방법
 ```bash
 wget https://raw.githubusercontent.com/hermitkim1/scripts4Ubuntu/master/2.Docker-installation.sh
-sudo sh go-setup.sh
+source 2.Docker-installation.sh
 ```
