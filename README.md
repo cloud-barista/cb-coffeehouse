@@ -6,9 +6,9 @@
 
 English Coffeehouse (별칭 Penny House)는 1 Penny가격의 커피 한잔을 마시며 지식인들이 다양한 의견을 공유하는 사교 클럽이었습니다.
 
-이처럼 Cloud-Barista’s Coffeehouse에서 다양한 정보를 "편하게" 공유하셨으면 좋겠습니다. 자유롭게 정보, 설명, 의견을 공유하시면서 오픈소스 프로젝트에 참여하시고, Cloud-Barista의 여러 Repository에서 자연스럽게 기여 포인트를 찾으시며, Contributor, Reviewer, Maintainer로 거듭나십시오! :satisfied:
+이처럼 Cloud-Barista’s Coffeehouse에서 다양한 정보를 **"편하게"** 공유하셨으면 좋겠습니다.
 
-입문자 시각에서 쉬운 설명은 미래 Cloud-Barista Contributor에게 큰 도움이 될 것 입니다. :thumbsup:
+**<ins>자유롭게 정보, 설명, 의견을 공유하시면서 오픈소스 프로젝트에 참여하시고, 자연스럽게 Cloud-Barista의 여러 Repository에서 기여 포인트를 찾으시며, Contributor, Reviewer, Maintainer로 거듭나십시오!</ins>** :satisfied:
 
 아래 예시를 포함하여 많은 설명/정보를 기대합니다. :blush:
 - 클라우드 또는 멀티 클라우드 개념
@@ -20,6 +20,8 @@ English Coffeehouse (별칭 Penny House)는 1 Penny가격의 커피 한잔을 �
   - Golang CI/CD (Continuous Integration/Continuous Delivery)
 - Cloud-Barista 이슈 및 해결 방안
 - 설치/배포 자동화 Script
+
+입문자 시각에서 쉬운 설명은 미래 Cloud-Barista Contributor에게 큰 도움이 될 것 입니다. :thumbsup:
 
 :gift: [미래 컨트리뷰터를 위한 메시지](https://github.com/cb-contributhon/cb-coffeehouse/wiki/Interview-with-Seokho-Son) :100: :heart_eyes: :star: :thumbsup:
 
