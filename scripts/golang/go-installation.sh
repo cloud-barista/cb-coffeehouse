@@ -1,6 +1,6 @@
 #!/bin/bash
 
-echo "Go setup script"
+echo "Go installation script"
 sleep 3
 
 echo ""
