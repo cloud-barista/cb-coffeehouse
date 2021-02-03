@@ -1,6 +1,6 @@
 #!/bin/bash
 
-echo "Go uninstalling script"
+echo "Go uninstallation script"
 sleep 2
 
 echo ""
