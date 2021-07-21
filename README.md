@@ -48,3 +48,6 @@ English Coffeehouse (별칭 Penny House)는 1 Penny가격의 커피 한잔을 �
 공유된 내용에 따라 컨텐츠를 정리/재배치 하겠습니다.
 
 비고: 본 Repository의 자료는 추후 Cloud-Barista Contributor’s Guide에 활용될 수 있습니다.
+
+<!-- readme: collaborators,contributors -start -->
+<!-- readme: collaborators,contributors -end -->
