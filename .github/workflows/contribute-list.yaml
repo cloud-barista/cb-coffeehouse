@@ -6,11 +6,11 @@ on:
   schedule:
 #    * is a special character in YAML so you have to quote this string
 #    “At 00:00 on Monday.”
-  - cron: '0 0 * * 1'
+#  - cron: '0 0 * * 1'
 #    “At every 5th minute” for testing
 #     - cron: '0/5 * * * *'
 #    “At 00:00 Everyday.”
-#   - cron: '0 0 * * *'
+   - cron: '0 0 * * *'
 
 
 jobs:
