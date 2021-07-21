@@ -30,7 +30,7 @@ jobs:
         with:
           source: ${{ env.DOCS }}
           destination: ${{ env.WIKI }}
-          token: ${{ secrets.NEWRELIC_BOT_TOKEN }}
+          token: ${{ secrets.CR_PAT }}
 #          gitAuthorName: ${{ env.GIT_AUTHOR_NAME }}
 #          gitAuthorEmail: ${{ env.GIT_AUTHOR_EMAIL }}
           commitMessage: Auto sync ${{ env.DOCS }} to ${{ env.WIKI }} [skip actions]
@@ -43,14 +43,14 @@ jobs:
       - name: Checkout Repo
         uses: actions/checkout@v2
         with:
-          token: ${{ secrets.NEWRELIC_BOT_TOKEN }}
+          token: ${{ secrets.CR_PAT }}
           ref: ${{ env.default_branch }}
       - name: Sync Wiki to Docs
         uses: newrelic/wiki-sync-action@master
         with:
           source: ${{ env.WIKI }}
           destination: ${{ env.DOCS }}
-          token: ${{ secrets.NEWRELIC_BOT_TOKEN }}
+          token: ${{ secrets.CR_PAT }}
 #          gitAuthorName: ${{ env.GIT_AUTHOR_NAME }}
 #          gitAuthorEmail: ${{ env.GIT_AUTHOR_EMAIL }}
           branch: ${{ env.default_branch }}
