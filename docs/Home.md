@@ -38,7 +38,7 @@
 - [How to resolve “refusing to allow an OAuth App to create or update workflow” on git push](How-to-resolve-“refusing-to-allow-an-OAuth-App-to-create-or-update-workflow”-on-git-push)
 
 ### GitHub Actions
-- [GitHub Actions: Skip pull request and push workflows with [skip ci]](https://github.com/cloud-barista/cb-coffeehouse/wiki/GitHub-Actions:-Skip-pull-request-and-push-workflows-with-%5Bskip-ci%5D)
+- [(GitHub Actions) Skip pull request and push workflows with [skip ci]](https://github.com/cloud-barista/cb-coffeehouse/wiki/(GitHub-Actions)-Skip-pull-request-and-push-workflows-with-%5Bskip-ci%5D)
 - [The github context output by cases for GitHub Actions workflows](The-github-context-output-by-cases-for-GitHub-Actions-workflows)
 
 ---
