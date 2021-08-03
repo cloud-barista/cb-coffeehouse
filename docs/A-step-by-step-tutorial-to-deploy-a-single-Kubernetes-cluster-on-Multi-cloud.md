@@ -9,20 +9,20 @@ Cloud-Barista provides the integrated operation and management of resources rela
 Thus, an user could configure a single Kubernetes cluster across Multi-clouds.
 
 <p align="center">
-  <img src="https://user-images.githubusercontent.com/7975459/127124490-9c66f406-e455-4ad3-91b8-0184ad055157.png" width="80%" height="80%" >
+  <img src="https://user-images.githubusercontent.com/7975459/127124490-9c66f406-e455-4ad3-91b8-0184ad055157.png" width="90%" height="90%" >
 </p>
 
 
 The figure below depicts the associated Cloud-Barista components from the bottom to the top in order to deploy a Kubernetes cluster across Multi-clouds.
 
 <p align="center">
-  <img src="https://user-images.githubusercontent.com/7975459/127101689-333a1355-c01f-41a7-a879-4310cdc105bc.png" width="80%" height="80%" >
+  <img src="https://user-images.githubusercontent.com/7975459/127101689-333a1355-c01f-41a7-a879-4310cdc105bc.png" width="90%" height="90%" >
 </p>
 
 
 ## 1. Deploy Cloud-Barista's components
 
-At lease 2 nodes are needed.   
+At lease 2 nodes are recommended. I newly created 2 instances (nodes) on Amazon Web Services (AWS), and tried this tutorial to make sure it.   
 In Node 1, a CB-Spider server and a CB-tumblebug server are deployed.   
 In Node 2, a cb-network controller and a standalone cluster for the distributed key-value store are deployed.   
 NOTE - It is possible to deploy the cb-network controller and the standalone cluster respectively.
@@ -31,11 +31,20 @@ NOTE - It is possible to deploy the cb-network controller and the standalone clu
 
 CB-Spider is necessary to connect all the clouds with a single interface.
 A CB-Spider server can be run in [3 ways](https://github.com/cloud-barista/cb-spider#2-%EC%8B%A4%ED%96%89-%EB%B0%A9%EB%B2%95), of which <ins>**I try to run the server based on container.**</ins>
-    
-#### 1.1.1. Run a container for CB-Spider server 0.3.19
+
+#### 1.1.1. Pre-requisites
+##### 1) Login root
 ```bash
 sudo su
+cd ~
 ```
+##### 2) Install Docker
+```
+wget https://raw.githubusercontent.com/hermitkim1/scripts4Ubuntu/master/2.Docker-installation.sh
+source 2.Docker-installation.sh
+```
+
+#### 1.1.2. Run a container for CB-Spider server 0.3.19
 ```bash
 sudo docker run --rm -p 1024:1024 -p 2048:2048 -v ${HOME}/cloud-barista/cb-spider/meta_db:/root/go/src/github.com/cloud-barista/cb-spider/meta_db --name cb-spider cloudbaristaorg/cb-spider:0.3.19
 ```
@@ -46,18 +55,20 @@ CB-Tumblebug is necessary to deploy and manage multi-cloud infrastructure.
 A CB-Tumblebug server also can be run in [3 ways](https://github.com/cloud-barista/cb-tumblebug#cb-tumblebug-%EC%86%8C%EC%8A%A4-%EB%B9%8C%EB%93%9C-%EB%B0%8F-%EC%8B%A4%ED%96%89-%EB%B0%A9%EB%B2%95-%EC%83%81%EC%84%B8), of which <ins>**I try to run the server based on source code.**</ins>
 
 #### 1.2.1. Pre-requisites
-##### 1) Login root
+##### 1) Open another terminal of Node 1
+##### 2) Login root
 ```bash
 sudo su
+cd ~
 ```
 
-##### 2) Update Adavanced Packaging Tool (APT)
+##### 3) Update Adavanced Packaging Tool (APT)
 ```bash
 apt update
-apt install make gcc git
+apt install make gcc git -y
 ```
 
-##### 3) Install Go
+##### 4) Install Go
 ```bash
 wget https://raw.githubusercontent.com/cloud-barista/cb-coffeehouse/master/scripts/golang/go-installation.sh
 source go-installation.sh
@@ -76,9 +87,14 @@ cd ${HOME}/go/src/github.com/cloud-barista/cb-tumblebug/conf
 source ./setup.env
 ```
 
-#### 1.2.4. Run a CB-Tumblebug server 0.3.12
+#### 1.2.4. Build a CB-Tumblebug server 0.3.12
 ```bash
 cd ${HOME}/go/src/github.com/cloud-barista/cb-tumblebug/src
+make
+```
+
+#### 1.2.5. Run a CB-Tumblebug server 0.3.12
+```bash
 make run
 ```
 
@@ -106,12 +122,17 @@ cd etcd
 ```
 
 #### 1.3.3. Start etcd
-```bash
-./bin/etcd
-```
 
-#### 1.3.4. Test
+For remote access, `--advertise-client-urls` and `--listen-client-urls` must be setup.   
+And also, replace `[PUBLIC_IP_OF_NODE_2]` with a public IP of Node 2.
 ```bash
+./bin/etcd --advertise-client-urls http://[PUBLIC_IP_OF_NODE_2]:2379 --listen-client-urls http://0.0.0.0:2379
+```
+#### 1.3.4. Open another terminal of Node 2
+
+#### 1.3.5. Check if it is running
+```bash
+cd ~/etcd
 ./bin/etcdctl version
 ```
 
@@ -132,9 +153,9 @@ git checkout tags/v0.0.4 -b v0.0.4
 
 ##### 1) Copy templates
 ```bash
-cd ${HOME}/cb-larva/poc-cb-net/config
-cp template)config.yaml config.yaml
-cp template)log_conf.yaml log_conf.yaml
+cd ${HOME}/cb-larva/poc-cb-net/configs
+cp template\)config.yaml config.yaml
+cp template\)log_conf.yaml log_conf.yaml
 ```
 
 ##### 2) Replace "xxx" with your values on `config.yaml`
@@ -200,14 +221,22 @@ Please refer to [(2) CB-Tumblebug 스크립트를 통한 테스트](https://gith
 
 #### 2.1.1. Prepare credentials
 
+##### 1) Create credentials of each CSPs
+
 Please refer to ["A step by step guide to creating credentials of each cloud service provider"](https://github.com/cloud-barista/cb-coffeehouse/wiki/A-step-by-step-guide-to-creating-credentials-of-each-cloud-service-provider) provided by Cloud-Barista's coffeehouse (cb-coffeehouse). We hope it will be helpful for you :smile:
 
-##### 1) Copy `credentials.conf.example`
+##### 2) Open another terminal of Node 1
+##### 3) Login root
+```bash
+sudo su
+```
+
+##### 4) Copy `credentials.conf.example`
 ```bash
 cd ${HOME}/go/src/github.com/cloud-barista/cb-tumblebug/src/testclient/scripts
 cp credentials.conf.example credentials.conf
 ```
-##### 2) Replace it with your credentials
+##### 5) Replace it with your credentials
 
 ```bash
 vim credentials.conf
@@ -522,7 +551,7 @@ CloudTwinRegion01=$((++IY))               # Location: Korea Daejeon (Internal)
 </p>
 </details>  
 
-#### 2.1.3 Request instances to multiple CSPs
+#### 2.1.3 Request instances to multiple CSPs by CB-Tumblebug
 
 <ins>**PRECONDITION: In the section 2.1.1, credentials of AWS, MS Azure, and GCP have been setup.**</ins>
 
@@ -542,11 +571,18 @@ Meaning:
 ./create-all.sh all 1 kimyk01 ../testSetAMG.env
 ```
 
+##### 3) Check if the instances are created properly
+Please check the result below
+```bash
+    "status": "Running-3(3/3)",
+```
+
+
 ### 2.2 Configure an overlay network by CB-Tumblebug and CB-Larva
 
 #### 2.2.1 Prepare a script to deploy cb-network agent
 
-#### 1) Create `deploy-cb-network-agent.sh` with the content below
+#### 1) Create `deploy-cb-network-agent-in-background.sh` with the content below
 
 <details>
 <summary>Click to expand</summary>
@@ -626,7 +662,7 @@ for row in $(echo "${VMARRAY}" | jq -r '.[] | @base64'); do
     getCloudIndexGeneral $cloudType
 
 #    ChangeHostCMD="sudo hostnamectl set-hostname ${GeneralINDEX}-${connectionName}-${publicIP}; sudo hostname -f"
-    BuildAndRunCBNetworkAgentCMD="wget https://raw.githubusercontent.com/cloud-barista/cb-larva/develop/poc-cb-net/scripts/build-and-run-agent.sh -O ~/build-and-run-agent.sh; chmod +x ~/build-and-run-agent.sh; ~/build-and-run-agent.sh '${ETCD_HOSTS}' ${CLADNET_ID} ${VMID}"
+    BuildAndRunCBNetworkAgentCMD="wget https://raw.githubusercontent.com/cloud-barista/cb-larva/main/poc-cb-net/scripts/build-and-run-agent-in-the-background.sh -O ~/build-and-run-agent-in-the-background.sh; chmod +x ~/build-and-run-agent-in-the-background.sh; ~/build-and-run-agent-in-the-background.sh '${ETCD_HOSTS}' ${CLADNET_ID} ${VMID}"
     echo "CMD: ${BuildAndRunCBNetworkAgentCMD}"
     ./command-mcis-vm-custom.sh "${1}" "${2}" "${3}" "${4}" "${VMID}" "${BuildAndRunCBNetworkAgentCMD}" &
 #VAR1=$(
@@ -657,18 +693,18 @@ echo ""
 
 ```bash
 cd ${HOME}/go/src/github.com/cloud-barista/cb-tumblebug/src/testclient/scripts/sequentialFullTest
-vim deploy-cb-network-agent.sh
+vim deploy-cb-network-agent-in-background.sh
 ```
 
 ##### 2) Change mode
 ```
-chmod 775 deploy-cb-network-agent.sh
+chmod 775 deploy-cb-network-agent-in-background.sh
 ```
 
 #### 2.2.2. Create a network CIDR block 
 ##### 1) Access the AdminWeb
 ```
-
+http://[YOUR_PUBLIC_IP_ADDRESS]:[YOUR_ADMIN_WEB_PORT]
 ```
 ##### 2) Go to the section `Create you CLADNet: Cloud Adaptive Network`
 ##### 3) Create a CLADNet
@@ -682,15 +718,15 @@ Example:
 cd ${HOME}/go/src/github.com/cloud-barista/cb-tumblebug/src/testclient/scripts/sequentialFullTest
 ```
 
-Modify `xxx.xxx.xxx.xxx`(The endpoint of a distributed key-value store) and `xxxxxxxxxxxxxxxxxxxxx` (CLADNet ID) below
+Modify `xxx.xxx.xxx.xxx`(The endpoint of Node 2) and `xxxxxxxxxxxxxxxxxxxxx` (CLADNet ID) below
 ```bash
 ./deploy-cb-network-agent-in-background.sh all 1 kimyk01 ../testSetAMG.env '[\"xxx.xxx.xxx.xxx:2379\"]' xxxxxxxxxxxxxxxxxxxxx
 ```
 
-#### 2.2.4. Check if cb-network is running or not on the AdminWeb
+#### 2.2.4. Check if the overlay network is configured or not on the AdminWeb
 ##### 1) Go to the section `The CLADNet status: connectivity and latency`
-##### 2) Select the CLADNet and set the trial count
-##### 3) Click execute and get the status
+##### 2) Select the CLADNet ID and set the trial count
+##### 3) Click execute button and earn the status result
 
 ## 3. Deploy a single Kubernetnes cluster across Multi-clouds
 ### 3.1. Configure a master of Kubernetes
