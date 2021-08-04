@@ -30,7 +30,9 @@ NOTE - It is possible to deploy the cb-network controller and the standalone clu
 ### 1.1. Deploy a CB-Spider server in Node 1
 
 CB-Spider is necessary to connect all the clouds with a single interface.
-A CB-Spider server can be run in [3 ways](https://github.com/cloud-barista/cb-spider#2-%EC%8B%A4%ED%96%89-%EB%B0%A9%EB%B2%95), of which <ins>**I try to run the server based on container.**</ins>
+A CB-Spider server can be run in 3 ways, of which <ins>**I try to run the server based on container.**</ins>
+
+**<ins> See more ideas :arrow_forward: [CB-Spider README](https://github.com/cloud-barista/cb-spider)</ins>**
 
 #### 1.1.1. Pre-requisites
 ##### 1) Login root
@@ -52,7 +54,9 @@ sudo docker run --rm -p 1024:1024 -p 2048:2048 -v ${HOME}/cloud-barista/cb-spide
 ### 1.2. Deploy a CB-Tumblebug server in Node 1
 
 CB-Tumblebug is necessary to deploy and manage multi-cloud infrastructure.
-A CB-Tumblebug server also can be run in [3 ways](https://github.com/cloud-barista/cb-tumblebug#cb-tumblebug-%EC%86%8C%EC%8A%A4-%EB%B9%8C%EB%93%9C-%EB%B0%8F-%EC%8B%A4%ED%96%89-%EB%B0%A9%EB%B2%95-%EC%83%81%EC%84%B8), of which <ins>**I try to run the server based on source code.**</ins>
+A CB-Tumblebug server also can be run in 3 ways, of which <ins>**I try to run the server based on source code.**</ins>
+
+**<ins> See more ideas :arrow_forward: [CB-Tumblebug README](https://github.com/cloud-barista/cb-tumblebug)</ins>**
 
 #### 1.2.1. Pre-requisites
 ##### 1) Open another terminal of Node 1
@@ -137,9 +141,11 @@ cd ~/etcd
 ```
 
 
-### 1.4 Deploy cb-network controller in Node 2
+### 1.4. Deploy cb-network controller in Node 2
 
 CB-Larva tries to provide an overlay network for virtual machines (VMs) across Multi-clouds.
+
+**<ins> See more ideas :arrow_forward: [CB-Larva README](https://github.com/cloud-barista/cb-larva)</ins>**
 
 #### 1.4.1. Download CB-Larva source code and checkout 0.0.4
 ```bash
@@ -288,27 +294,27 @@ By the `NumRegion[$IndexAWS]`, the blow list will be sequantially accessed from 
 For example, if you want to use `AwsApSoutheast1` and `AwsUsWest1`, `AwsApSoutheast1=$((++IY))			# Location: Asia Pacific (Singapore)` and `AwsUsWest1=$((++IY))				# Location: US West (N. California)` should be located at 1st and 2nd line.
 ```bash
 IY=0
-AwsApSoutheast1=$((++IY))     # Location: Asia Pacific (Singapore)
-AwsCaCentral1=$((++IY))				# Location: Canada (Central)
-AwsUsWest1=$((++IY))				  # Location: US West (N. California)
-AwsUsEast1=$((++IY))				  # Location: US East (N. Virginia)
-AwsApNortheast1=$((++IY))			# Location: Asia Pacific (Tokyo)
-AwsApSouth1=$((++IY))				  # Location: Asia Pacific (Mumbai)
-AwsApSoutheast2=$((++IY))			# Location: Asia Pacific (Sydney)
-AwsEuWest2=$((++IY))				  # Location: Europe (London)
-AwsUsEast2=$((++IY))				  # Location: US East (Ohio)
-AwsUsWest2=$((++IY))				  # Location: US West (Oregon)
-AwsApNortheast3=$((++IY))			# Location: Asia Pacific (Osaka)
-AwsEuCentral1=$((++IY))				# Location: Europe (Frankfurt)
-AwsEuWest1=$((++IY))				  # Location: Europe (Ireland)
-AwsEuWest3=$((++IY))				  # Location: Europe (Paris)
-AwsEuNorth1=$((++IY))				  # Location: Europe (Stockholm) - No t2.xxx Specs. t3 c5 m5 r5 .. are availble
-AwsSaEast1=$((++IY))				  # Location: South America (São Paulo)
-AwsApNortheast2=$((++IY))			# Location: Asia Pacific (Seoul)
-AwsApEast1=$((++IY))			    # Location: Asia Pacific (Hong Kong)  -  Opt-In required
-AwsMeSouth1=$((++IY))			    # Location: Middle East (Bahrain)  -  Opt-In required
-AwsAfSouth1=$((++IY))			    # Location: Africa (Cape Town)  -  Opt-In required
-AwsEuSouth1=$((++IY))				  # Location: Europe (Milan)  -  Opt-In required
+AwsApSoutheast1=$((++IY))                 # Location: Asia Pacific (Singapore)
+AwsCaCentral1=$((++IY))                   # Location: Canada (Central)
+AwsUsWest1=$((++IY))                      # Location: US West (N. California)
+AwsUsEast1=$((++IY))                      # Location: US East (N. Virginia)
+AwsApNortheast1=$((++IY))                 # Location: Asia Pacific (Tokyo)
+AwsApSouth1=$((++IY))                     # Location: Asia Pacific (Mumbai)
+AwsApSoutheast2=$((++IY))                 # Location: Asia Pacific (Sydney)
+AwsEuWest2=$((++IY))                      # Location: Europe (London)
+AwsUsEast2=$((++IY))                      # Location: US East (Ohio)
+AwsUsWest2=$((++IY))                      # Location: US West (Oregon)
+AwsApNortheast3=$((++IY))                 # Location: Asia Pacific (Osaka)
+AwsEuCentral1=$((++IY))                   # Location: Europe (Frankfurt)
+AwsEuWest1=$((++IY))                      # Location: Europe (Ireland)
+AwsEuWest3=$((++IY))                      # Location: Europe (Paris)
+AwsEuNorth1=$((++IY))                     # Location: Europe (Stockholm) - No t2.xxx Specs. t3 c5 m5 r5 .. are availble
+AwsSaEast1=$((++IY))                      # Location: South America (São Paulo)
+AwsApNortheast2=$((++IY))                 # Location: Asia Pacific (Seoul)
+AwsApEast1=$((++IY))                      # Location: Asia Pacific (Hong Kong)  -  Opt-In required
+AwsMeSouth1=$((++IY))                     # Location: Middle East (Bahrain)  -  Opt-In required
+AwsAfSouth1=$((++IY))                     # Location: Africa (Cape Town)  -  Opt-In required
+AwsEuSouth1=$((++IY))                     # Location: Europe (Milan)  -  Opt-In required
 ```
 
 In the same manner, you can specify regions and the number of regions for the other CSPs. :smile:
@@ -375,27 +381,27 @@ CSPType[$IndexCloudTwin]=cloudtwin
 NumRegion[$IndexAWS]=1
 
 IY=0
-AwsApSoutheast1=$((++IY))                       # Location: Asia Pacific (Singapore)
-AwsApSoutheast2=$((++IY))                       # Location: Asia Pacific (Sydney)
-AwsEuWest2=$((++IY))                            # Location: Europe (London)
-AwsEuCentral1=$((++IY))                         # Location: Europe (Frankfurt)
-AwsApNortheast1=$((++IY))                       # Location: Asia Pacific (Tokyo)
-AwsCaCentral1=$((++IY))                         # Location: Canada (Central)
-AwsUsWest1=$((++IY))                            # Location: US West (N. California)
-AwsUsEast1=$((++IY))                            # Location: US East (N. Virginia)
-AwsApSouth1=$((++IY))                           # Location: Asia Pacific (Mumbai)
-AwsUsEast2=$((++IY))                            # Location: US East (Ohio)
-AwsUsWest2=$((++IY))                            # Location: US West (Oregon)
-AwsApNortheast3=$((++IY))                       # Location: Asia Pacific (Osaka)
-AwsEuWest1=$((++IY))                            # Location: Europe (Ireland)
-AwsEuWest3=$((++IY))                            # Location: Europe (Paris)
-AwsEuNorth1=$((++IY))                           # Location: Europe (Stockholm) - No t2.xxx Specs. t3 c5 m5 r5 .. are availble
-AwsSaEast1=$((++IY))                            # Location: South America (São Paulo)
-AwsApNortheast2=$((++IY))                       # Location: Asia Pacific (Seoul)
-AwsApEast1=$((++IY))                            # Location: Asia Pacific (Hong Kong)  -  Opt-In required
-AwsMeSouth1=$((++IY))                           # Location: Middle East (Bahrain)  -  Opt-In required
-AwsAfSouth1=$((++IY))                           # Location: Africa (Cape Town)  -  Opt-In required
-AwsEuSouth1=$((++IY))                           # Location: Europe (Milan)  -  Opt-In required
+AwsApSoutheast1=$((++IY))                 # Location: Asia Pacific (Singapore)
+AwsApSoutheast2=$((++IY))                 # Location: Asia Pacific (Sydney)
+AwsEuWest2=$((++IY))                      # Location: Europe (London)
+AwsEuCentral1=$((++IY))                   # Location: Europe (Frankfurt)
+AwsApNortheast1=$((++IY))                 # Location: Asia Pacific (Tokyo)
+AwsCaCentral1=$((++IY))                   # Location: Canada (Central)
+AwsUsWest1=$((++IY))                      # Location: US West (N. California)
+AwsUsEast1=$((++IY))                      # Location: US East (N. Virginia)
+AwsApSouth1=$((++IY))                     # Location: Asia Pacific (Mumbai)
+AwsUsEast2=$((++IY))                      # Location: US East (Ohio)
+AwsUsWest2=$((++IY))                      # Location: US West (Oregon)
+AwsApNortheast3=$((++IY))                 # Location: Asia Pacific (Osaka)
+AwsEuWest1=$((++IY))                      # Location: Europe (Ireland)
+AwsEuWest3=$((++IY))                      # Location: Europe (Paris)
+AwsEuNorth1=$((++IY))                     # Location: Europe (Stockholm) - No t2.xxx Specs. t3 c5 m5 r5 .. are availble
+AwsSaEast1=$((++IY))                      # Location: South America (São Paulo)
+AwsApNortheast2=$((++IY))                 # Location: Asia Pacific (Seoul)
+AwsApEast1=$((++IY))                      # Location: Asia Pacific (Hong Kong)  -  Opt-In required
+AwsMeSouth1=$((++IY))                     # Location: Middle East (Bahrain)  -  Opt-In required
+AwsAfSouth1=$((++IY))                     # Location: Africa (Cape Town)  -  Opt-In required
+AwsEuSouth1=$((++IY))                     # Location: Europe (Milan)  -  Opt-In required
 
 
 
@@ -578,9 +584,9 @@ Please check the result below
 ```
 
 
-### 2.2 Configure an overlay network by CB-Tumblebug and CB-Larva
+### 2.2. Configure an overlay network by CB-Tumblebug and CB-Larva
 
-#### 2.2.1 Prepare a script to deploy cb-network agent
+#### 2.2.1. Prepare a script to deploy cb-network agent
 
 #### 1) Create `deploy-cb-network-agent-in-background.sh` with the content below
 
@@ -728,9 +734,75 @@ Modify `xxx.xxx.xxx.xxx`(The endpoint of Node 2) and `xxxxxxxxxxxxxxxxxxxxx` (CL
 ##### 2) Select the CLADNet ID and set the trial count
 ##### 3) Click execute button and earn the status result
 
+
+
 ## 3. Deploy a single Kubernetnes cluster across Multi-clouds
-### 3.1. Configure a master of Kubernetes
+<ins>**As a user**</ins>, all scripts in `~/cb-larva/scripts/Kubernetes` directory can be run.
+<ins>One reboot will be required.</ins>
 
-### 3.2. Configure nodes of Kuberentes and then join to the master
+Currently, all steps below can be done manually :sweat_smile: :pray:
 
-### 3.3. Deploy pods as an example
+### 3.1. Generate SSH keys of all instances by CB-Tumblebug
+##### 1) Go to the CB-Tumblebug's script directory in Node 1
+```bash
+cd ${HOME}/go/src/github.com/cloud-barista/cb-tumblebug/src/testclient/scripts/sequentialFullTest
+```
+
+##### 2) Check the execution status to avoid mistake
+```bash
+cat executionStatus
+```
+You could see somthing like `all 1 kimyk01 ../testSetAMG.env`. It is important.
+
+##### 3) Generates SSH keys
+```
+./gen-sshKey.sh all 1 kimyk01 ../testSetAMG.env
+```
+
+### 3.2. Setup environment and tools to all nodes for Kubernetes cluster
+##### 1) Access nodes by the generated keys respectively
+##### 2) Get scripts from CB-Larva repository
+```
+cd ~
+git clone https://github.com/cloud-barista/cb-larva.git
+cd ~/cb-larva/scripts/Kubernetes
+```
+##### 3) Run a script
+```
+source 1.setup-environment-and-tools.sh
+```
+##### 4) Reboot
+```
+sudo reboot now
+```
+
+### 3.3. Configure the Kubernetes master
+##### 1) Access to the master
+##### 2) Run a script
+```
+cd ~/cb-larva/scripts/Kubernetes
+source 2.setup-K8s-master.sh
+```
+
+##### 3) Copy a join command for the next step
+For example:
+```
+kubeadm join 192.168.10.2:6443 --token 10no39.n7tziepyfbsfawgz \
+        --discovery-token-ca-cert-hash sha256:b56ed81714c7395cc374644415a428f4ac7ce73863530a4c1e61ff829c30b805
+```
+
+### 3.4. Configure Kubernetes nodes
+##### 1) Access to a Kubernetes node
+##### 2) Execute the join command
+NOTE - `sudo` is required.
+##### 3) Repeat 1) - 2) on the other nodes
+
+### 3.5. Check the cluster status on the Kubernetes master
+```
+cd ~/cb-larva/scripts/Kubernetes
+source 3.check-K8s-status.sh
+```
+
+## 4. Deploy pods as an example
+
+TBD
