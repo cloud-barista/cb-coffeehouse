@@ -898,7 +898,7 @@ redis-leader     ClusterIP   10.99.5.243      <none>        6379/TCP       150m
 #### 4.1.4. Result
 
 <p align="center">
-  <img src="https://user-images.githubusercontent.com/7975459/127101689-333a1355-c01f-41a7-a879-4310cdc105bc.png" width="90%" height="90%" >
+  <img src="https://user-images.githubusercontent.com/7975459/128309275-cfc4938d-6100-4e42-b387-794e3a6007de.png" width="90%" height="90%" >
 </p>
 
 
