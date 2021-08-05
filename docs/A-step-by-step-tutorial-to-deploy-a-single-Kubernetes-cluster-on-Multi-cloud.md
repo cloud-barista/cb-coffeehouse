@@ -695,8 +695,6 @@ echo ""
 </p>
 </details>  
 
-<br/>   
-
 ```bash
 cd ${HOME}/go/src/github.com/cloud-barista/cb-tumblebug/src/testclient/scripts/sequentialFullTest
 vim deploy-cb-network-agent-in-background.sh
@@ -805,4 +803,444 @@ source 3.check-K8s-status.sh
 
 ## 4. Deploy pods as an example
 
-TBD
+### 4.1. Example: Deploying PHP Guestbook application with Redis
+
+I would like to express all my gratitude to the author and contributors :heart:
+
+References:
+- [Example: Deploying PHP Guestbook application with Redis](https://kubernetes.io/docs/tutorials/stateless-application/guestbook/)
+- [예시: Redis를 사용한 PHP 방명록 애플리케이션 배포하기](https://kubernetes.io/ko/docs/tutorials/stateless-application/guestbook/)
+
+[TBD] Figure: it's system structure
+
+#### 4.1.1. Start up the Redis Database 
+##### 1) Creating the Redis Deployment
+```bash
+kubectl apply -f https://k8s.io/examples/application/guestbook/redis-leader-deployment.yaml
+```
+##### 2) Creating the Redis leader Service
+```bash
+kubectl apply -f https://k8s.io/examples/application/guestbook/redis-leader-service.yaml
+```
+##### 3) Set up Redis followers
+```bash
+kubectl apply -f https://k8s.io/examples/application/guestbook/redis-follower-deployment.yaml
+```
+##### 4) Creating the Redis follower service 
+```bash
+kubectl apply -f https://k8s.io/examples/application/guestbook/redis-follower-service.yaml
+```
+
+#### 4.1.2. Set up and Expose the Guestbook Frontend 
+##### 1) Creating the Guestbook Frontend Deployment
+```bash
+kubectl apply -f https://k8s.io/examples/application/guestbook/frontend-deployment.yaml
+```
+##### 2) Creating the Frontend Service 
+
+:exclamation: <ins>**A little update is required here,**</ins> for the quick and easy test :smile:
+
+The last line, `type: NodePort`, is added.
+```yaml
+# SOURCE: https://cloud.google.com/kubernetes-engine/docs/tutorials/guestbook
+apiVersion: v1
+kind: Service
+metadata:
+  name: frontend
+  labels:
+    app: guestbook
+    tier: frontend
+spec:
+  # if your cluster supports it, uncomment the following to automatically create
+  # an external load-balanced IP for the frontend service.
+  # type: LoadBalancer
+  #type: LoadBalancer
+  ports:
+    # the port that this service should serve on
+  - port: 80
+  selector:
+    app: guestbook
+    tier: frontend
+  type: NodePort
+```
+
+Create `frontend-service-with-node-port.yaml` with the above content
+```bash
+vim frontend-service-with-node-port.yaml
+```
+
+```bash
+kubectl apply -f frontend-service-with-node-port.yaml
+```
+
+#### 4.1.3. Check if Guestbook application is running
+
+You can access the frontend by `http://[PUBLIC_IP_OF_A_NODE]:[PORT]`.
+
+I'm sure you already have a list of the public IP for Kubernetes cluster.
+(If not, you can find it on AdminWeb of cb-network :smile:)
+
+You can find the port as follows:
+
+```bash
+kubectl get services
+```
+
+In here, the port is `32291`
+```bash
+NAME             TYPE        CLUSTER-IP       EXTERNAL-IP   PORT(S)        AGE
+frontend         NodePort    10.100.202.25    <none>        80:32291/TCP   74m
+kubernetes       ClusterIP   10.96.0.1        <none>        443/TCP        154m
+redis-follower   ClusterIP   10.102.170.131   <none>        6379/TCP       149m
+redis-leader     ClusterIP   10.99.5.243      <none>        6379/TCP       150m
+```
+
+#### 4.1.4. Result
+
+<p align="center">
+  <img src="https://user-images.githubusercontent.com/7975459/127101689-333a1355-c01f-41a7-a879-4310cdc105bc.png" width="90%" height="90%" >
+</p>
+
+
+### 4.2. Example: Deploying Weave Scope
+
+xxxx
+
+#### 4.2.1. Start up Weave Scope
+##### 1) Deploy Weave Scope
+```bash
+kubectl apply -f 'https://cloud.weave.works/launch/k8s/weavescope.yaml?k8s-service-type=NodePort'
+```
+
+##### 2) Check if Weave Scope is running
+
+You can access the frontend by `http://[PUBLIC_IP_OF_A_NODE]:[PORT]`.
+
+If you don't know a public IP of a node, you can find it on AdminWeb of cb-network.
+
+You can find the port as follows:
+
+```bash
+kubectl get service -n weave
+```
+
+In here, the port is `30439`
+```bash
+NAME              TYPE       CLUSTER-IP     EXTERNAL-IP   PORT(S)        AGE
+weave-scope-app   NodePort   10.111.120.5   <none>        80:30439/TCP   18s
+```
+
+#### 4.2.2. Result
+
+<p align="center">
+  <img src="https://user-images.githubusercontent.com/7975459/128309030-15042dbc-7991-4022-94e6-efa171cdbc76.png" width="90%" height="90%" >
+</p>
+
+
+---
+
+## Appendix
+### 1. Overall information
+#### 1.1. Instances across Multi-clouds and Cloud Adaptive Network
+
+Networking Rules for Cloud Adpative Network
+
+|     Host ID    | Host IP CIDR Block | Host IP Address |    Public IP   |
+|:--------------:|:------------------:|:---------------:|:--------------:|
+|  aws-ap-se-1-0 |   192.168.10.2/28  |   192.168.10.2  |  13.212.92.36  |
+| gcp-as-east1-0 |   192.168.10.3/28  |   192.168.10.3  | 35.201.166.112 |
+|    az-wus-0    |   192.168.10.4/28  |   192.168.10.4  |  13.64.168.164 |
+
+#### 1.2. Interface configuration
+##### 1) aws-ap-se-1-0
+```bash
+ifconfig
+```
+<details>
+<summary>Click to expand</summary>
+<p>
+
+```bash
+cali20065a4bf18: flags=4163<UP,BROADCAST,RUNNING,MULTICAST>  mtu 8981
+        inet6 fe80::ecee:eeff:feee:eeee  prefixlen 64  scopeid 0x20<link>
+        ether ee:ee:ee:ee:ee:ee  txqueuelen 0  (Ethernet)
+        RX packets 7957  bytes 673232 (673.2 KB)
+        RX errors 0  dropped 0  overruns 0  frame 0
+        TX packets 9436  bytes 6702093 (6.7 MB)
+        TX errors 0  dropped 0 overruns 0  carrier 0  collisions 0
+
+cali9e3f2c2b44c: flags=4163<UP,BROADCAST,RUNNING,MULTICAST>  mtu 1500
+        inet6 fe80::ecee:eeff:feee:eeee  prefixlen 64  scopeid 0x20<link>
+        ether ee:ee:ee:ee:ee:ee  txqueuelen 0  (Ethernet)
+        RX packets 12776  bytes 1300240 (1.3 MB)
+        RX errors 0  dropped 0  overruns 0  frame 0
+        TX packets 13042  bytes 1283178 (1.2 MB)
+        TX errors 0  dropped 0 overruns 0  carrier 0  collisions 0
+
+calie2a64becc96: flags=4163<UP,BROADCAST,RUNNING,MULTICAST>  mtu 1500
+        inet6 fe80::ecee:eeff:feee:eeee  prefixlen 64  scopeid 0x20<link>
+        ether ee:ee:ee:ee:ee:ee  txqueuelen 0  (Ethernet)
+        RX packets 12805  bytes 1304445 (1.3 MB)
+        RX errors 0  dropped 0  overruns 0  frame 0
+        TX packets 12921  bytes 1276877 (1.2 MB)
+        TX errors 0  dropped 0 overruns 0  carrier 0  collisions 0
+
+cbnet0: flags=4305<UP,POINTOPOINT,RUNNING,NOARP,MULTICAST>  mtu 1300
+        inet 192.168.10.2  netmask 255.255.255.240  destination 192.168.10.2
+        inet6 fe80::9c40:d9c4:a862:6809  prefixlen 64  scopeid 0x20<link>
+        unspec 00-00-00-00-00-00-00-00-00-00-00-00-00-00-00-00  txqueuelen 500  (UNSPEC)
+        RX packets 76737  bytes 17008849 (17.0 MB)
+        RX errors 0  dropped 0  overruns 0  frame 0
+        TX packets 76582  bytes 49563213 (49.5 MB)
+        TX errors 0  dropped 0 overruns 0  carrier 0  collisions 0
+
+docker0: flags=4099<UP,BROADCAST,MULTICAST>  mtu 1500
+        inet 172.17.0.1  netmask 255.255.0.0  broadcast 172.17.255.255
+        ether 02:42:ec:92:65:b7  txqueuelen 0  (Ethernet)
+        RX packets 0  bytes 0 (0.0 B)
+        RX errors 0  dropped 0  overruns 0  frame 0
+        TX packets 0  bytes 0 (0.0 B)
+        TX errors 0  dropped 0 overruns 0  carrier 0  collisions 0
+
+ens3: flags=4163<UP,BROADCAST,RUNNING,MULTICAST>  mtu 9001
+        inet 192.168.2.152  netmask 255.255.255.0  broadcast 192.168.2.255
+        inet6 fe80::406:c7ff:fe7b:97c4  prefixlen 64  scopeid 0x20<link>
+        ether 06:06:c7:7b:97:c4  txqueuelen 1000  (Ethernet)
+        RX packets 377349  bytes 439316860 (439.3 MB)
+        RX errors 0  dropped 0  overruns 0  frame 0
+        TX packets 111593  bytes 65963448 (65.9 MB)
+        TX errors 0  dropped 0 overruns 0  carrier 0  collisions 0
+
+lo: flags=73<UP,LOOPBACK,RUNNING>  mtu 65536
+        inet 127.0.0.1  netmask 255.0.0.0
+        inet6 ::1  prefixlen 128  scopeid 0x10<host>
+        loop  txqueuelen 1000  (Local Loopback)
+        RX packets 1772987  bytes 321635217 (321.6 MB)
+        RX errors 0  dropped 0  overruns 0  frame 0
+        TX packets 1772987  bytes 321635217 (321.6 MB)
+        TX errors 0  dropped 0 overruns 0  carrier 0  collisions 0
+
+tunl0: flags=193<UP,RUNNING,NOARP>  mtu 8981
+        inet 10.77.182.64  netmask 255.255.255.255
+        tunnel   txqueuelen 1000  (IPIP Tunnel)
+        RX packets 35243  bytes 12245454 (12.2 MB)
+        RX errors 0  dropped 0  overruns 0  frame 0
+        TX packets 25039  bytes 28128676 (28.1 MB)
+        TX errors 0  dropped 0 overruns 0  carrier 0  collisions 0
+```
+</p>
+</details>
+
+##### 2) gcp-as-east1-0
+```bash
+ifconfig
+```
+<details>
+<summary>Click to expand</summary>
+<p>
+
+```bash
+cali2016913df02: flags=4163<UP,BROADCAST,RUNNING,MULTICAST>  mtu 1440
+        inet6 fe80::ecee:eeff:feee:eeee  prefixlen 64  scopeid 0x20<link>
+        ether ee:ee:ee:ee:ee:ee  txqueuelen 0  (Ethernet)
+        RX packets 144  bytes 16165 (16.1 KB)
+        RX errors 0  dropped 0  overruns 0  frame 0
+        TX packets 138  bytes 17223 (17.2 KB)
+        TX errors 0  dropped 0 overruns 0  carrier 0  collisions 0
+
+cali2707d9a9525: flags=4163<UP,BROADCAST,RUNNING,MULTICAST>  mtu 1440
+        inet6 fe80::ecee:eeff:feee:eeee  prefixlen 64  scopeid 0x20<link>
+        ether ee:ee:ee:ee:ee:ee  txqueuelen 0  (Ethernet)
+        RX packets 188  bytes 21788 (21.7 KB)
+        RX errors 0  dropped 0  overruns 0  frame 0
+        TX packets 178  bytes 21001 (21.0 KB)
+        TX errors 0  dropped 0 overruns 0  carrier 0  collisions 0
+
+cali4b11e323c22: flags=4163<UP,BROADCAST,RUNNING,MULTICAST>  mtu 1440
+        inet6 fe80::ecee:eeff:feee:eeee  prefixlen 64  scopeid 0x20<link>
+        ether ee:ee:ee:ee:ee:ee  txqueuelen 0  (Ethernet)
+        RX packets 23327  bytes 1563383 (1.5 MB)
+        RX errors 0  dropped 0  overruns 0  frame 0
+        TX packets 23297  bytes 2309996 (2.3 MB)
+        TX errors 0  dropped 0 overruns 0  carrier 0  collisions 0
+
+calic4b020815fa: flags=4163<UP,BROADCAST,RUNNING,MULTICAST>  mtu 1440
+        inet6 fe80::ecee:eeff:feee:eeee  prefixlen 64  scopeid 0x20<link>
+        ether ee:ee:ee:ee:ee:ee  txqueuelen 0  (Ethernet)
+        RX packets 70498  bytes 15537000 (15.5 MB)
+        RX errors 0  dropped 0  overruns 0  frame 0
+        TX packets 75831  bytes 73411767 (73.4 MB)
+        TX errors 0  dropped 0 overruns 0  carrier 0  collisions 0
+
+cbnet0: flags=4305<UP,POINTOPOINT,RUNNING,NOARP,MULTICAST>  mtu 1300
+        inet 192.168.10.3  netmask 255.255.255.240  destination 192.168.10.3
+        inet6 fe80::a37e:1eb5:27f7:8681  prefixlen 64  scopeid 0x20<link>
+        unspec 00-00-00-00-00-00-00-00-00-00-00-00-00-00-00-00  txqueuelen 500  (UNSPEC)
+        RX packets 113855  bytes 67595764 (67.5 MB)
+        RX errors 0  dropped 0  overruns 0  frame 0
+        TX packets 108918  bytes 19134171 (19.1 MB)
+        TX errors 0  dropped 0 overruns 0  carrier 0  collisions 0
+
+docker0: flags=4099<UP,BROADCAST,MULTICAST>  mtu 1500
+        inet 172.17.0.1  netmask 255.255.0.0  broadcast 172.17.255.255
+        ether 02:42:f2:96:69:25  txqueuelen 0  (Ethernet)
+        RX packets 0  bytes 0 (0.0 B)
+        RX errors 0  dropped 0  overruns 0  frame 0
+        TX packets 0  bytes 0 (0.0 B)
+        TX errors 0  dropped 0 overruns 0  carrier 0  collisions 0
+
+ens4: flags=4163<UP,BROADCAST,RUNNING,MULTICAST>  mtu 1460
+        inet 192.168.4.2  netmask 255.255.255.255  broadcast 0.0.0.0
+        inet6 fe80::4001:c0ff:fea8:402  prefixlen 64  scopeid 0x20<link>
+        ether 42:01:c0:a8:04:02  txqueuelen 1000  (Ethernet)
+        RX packets 536012  bytes 667945843 (667.9 MB)
+        RX errors 0  dropped 0  overruns 0  frame 0
+        TX packets 133298  bytes 25877743 (25.8 MB)
+        TX errors 0  dropped 0 overruns 0  carrier 0  collisions 0
+
+lo: flags=73<UP,LOOPBACK,RUNNING>  mtu 65536
+        inet 127.0.0.1  netmask 255.0.0.0
+        inet6 ::1  prefixlen 128  scopeid 0x10<host>
+        loop  txqueuelen 1000  (Local Loopback)
+        RX packets 38204  bytes 2706288 (2.7 MB)
+        RX errors 0  dropped 0  overruns 0  frame 0
+        TX packets 38204  bytes 2706288 (2.7 MB)
+        TX errors 0  dropped 0 overruns 0  carrier 0  collisions 0
+
+tunl0: flags=193<UP,RUNNING,NOARP>  mtu 1440
+        inet 10.77.181.64  netmask 255.255.255.255
+        tunnel   txqueuelen 1000  (IPIP Tunnel)
+        RX packets 93070  bytes 55684440 (55.6 MB)
+        RX errors 0  dropped 0  overruns 0  frame 0
+        TX packets 84180  bytes 15166442 (15.1 MB)
+        TX errors 10  dropped 8 overruns 0  carrier 0  collisions 0
+```
+</p>
+</details>  
+
+
+##### 3) az-wus-0
+```bash
+ifconfig
+```
+
+<details>
+<summary>Click to expand</summary>
+<p>
+
+```bash
+cali2f56b640720: flags=4163<UP,BROADCAST,RUNNING,MULTICAST>  mtu 1480
+        inet6 fe80::ecee:eeff:feee:eeee  prefixlen 64  scopeid 0x20<link>
+        ether ee:ee:ee:ee:ee:ee  txqueuelen 0  (Ethernet)
+        RX packets 11855  bytes 1165515 (1.1 MB)
+        RX errors 0  dropped 0  overruns 0  frame 0
+        TX packets 11914  bytes 795158 (795.1 KB)
+        TX errors 0  dropped 0 overruns 0  carrier 0  collisions 0
+
+cali5f3e9043f95: flags=4163<UP,BROADCAST,RUNNING,MULTICAST>  mtu 1480
+        inet6 fe80::ecee:eeff:feee:eeee  prefixlen 64  scopeid 0x20<link>
+        ether ee:ee:ee:ee:ee:ee  txqueuelen 0  (Ethernet)
+        RX packets 230  bytes 33246 (33.2 KB)
+        RX errors 0  dropped 0  overruns 0  frame 0
+        TX packets 221  bytes 28575 (28.5 KB)
+        TX errors 0  dropped 0 overruns 0  carrier 0  collisions 0
+
+caliad0be7a2d6f: flags=4163<UP,BROADCAST,RUNNING,MULTICAST>  mtu 1480
+        inet6 fe80::ecee:eeff:feee:eeee  prefixlen 64  scopeid 0x20<link>
+        ether ee:ee:ee:ee:ee:ee  txqueuelen 0  (Ethernet)
+        RX packets 10060  bytes 4672890 (4.6 MB)
+        RX errors 0  dropped 0  overruns 0  frame 0
+        TX packets 10896  bytes 1431047 (1.4 MB)
+        TX errors 0  dropped 0 overruns 0  carrier 0  collisions 0
+
+calif0e3a11c6d3: flags=4163<UP,BROADCAST,RUNNING,MULTICAST>  mtu 1480
+        inet6 fe80::ecee:eeff:feee:eeee  prefixlen 64  scopeid 0x20<link>
+        ether ee:ee:ee:ee:ee:ee  txqueuelen 0  (Ethernet)
+        RX packets 11833  bytes 1164034 (1.1 MB)
+        RX errors 0  dropped 0  overruns 0  frame 0
+        TX packets 11881  bytes 793008 (793.0 KB)
+        TX errors 0  dropped 0 overruns 0  carrier 0  collisions 0
+
+cbnet0: flags=4305<UP,POINTOPOINT,RUNNING,NOARP,MULTICAST>  mtu 1300
+        inet 192.168.10.4  netmask 255.255.255.240  destination 192.168.10.4
+        inet6 fe80::f85:38bc:7f3a:785  prefixlen 64  scopeid 0x20<link>
+        unspec 00-00-00-00-00-00-00-00-00-00-00-00-00-00-00-00  txqueuelen 500  (UNSPEC)
+        RX packets 73779  bytes 14534138 (14.5 MB)
+        RX errors 0  dropped 0  overruns 0  frame 0
+        TX packets 78834  bytes 29866225 (29.8 MB)
+        TX errors 0  dropped 0 overruns 0  carrier 0  collisions 0
+
+docker0: flags=4099<UP,BROADCAST,MULTICAST>  mtu 1500
+        inet 172.17.0.1  netmask 255.255.0.0  broadcast 172.17.255.255
+        ether 02:42:81:17:2f:d4  txqueuelen 0  (Ethernet)
+        RX packets 0  bytes 0 (0.0 B)
+        RX errors 0  dropped 0  overruns 0  frame 0
+        TX packets 0  bytes 0 (0.0 B)
+        TX errors 0  dropped 0 overruns 0  carrier 0  collisions 0
+
+eth0: flags=4163<UP,BROADCAST,RUNNING,MULTICAST>  mtu 1500
+        inet 192.168.3.4  netmask 255.255.255.0  broadcast 192.168.3.255
+        inet6 fe80::20d:3aff:fe34:f5ac  prefixlen 64  scopeid 0x20<link>
+        ether 00:0d:3a:34:f5:ac  txqueuelen 1000  (Ethernet)
+        RX packets 548812  bytes 640435641 (640.4 MB)
+        RX errors 0  dropped 0  overruns 0  frame 0
+        TX packets 160685  bytes 47878370 (47.8 MB)
+        TX errors 0  dropped 0 overruns 0  carrier 0  collisions 0
+
+lo: flags=73<UP,LOOPBACK,RUNNING>  mtu 65536
+        inet 127.0.0.1  netmask 255.0.0.0
+        inet6 ::1  prefixlen 128  scopeid 0x10<host>
+        loop  txqueuelen 1000  (Local Loopback)
+        RX packets 107499  bytes 7101129 (7.1 MB)
+        RX errors 0  dropped 0  overruns 0  frame 0
+        TX packets 107499  bytes 7101129 (7.1 MB)
+        TX errors 0  dropped 0 overruns 0  carrier 0  collisions 0
+
+tunl0: flags=193<UP,RUNNING,NOARP>  mtu 1480
+        inet 10.77.32.128  netmask 255.255.255.255
+        tunnel   txqueuelen 1000  (IPIP Tunnel)
+        RX packets 53552  bytes 3148208 (3.1 MB)
+        RX errors 0  dropped 0  overruns 0  frame 0
+        TX packets 47408  bytes 26131005 (26.1 MB)
+        TX errors 9  dropped 10 overruns 0  carrier 0  collisions 0
+```
+</p>
+</details>  
+
+
+#### 1.2. Kubernetes nodes
+```bash
+kubectl get nodes
+```
+```bash
+NAME               STATUS   ROLES                  AGE    VERSION
+az-wus-0           Ready    <none>                 172m   v1.22.0
+gcp-as-east1-0     Ready    <none>                 172m   v1.22.0
+ip-192-168-2-152   Ready    control-plane,master   172m   v1.22.0
+```
+
+#### 1.3. Kubernetes pods
+```bash
+kubectl get pods -o wide
+```
+```bash
+NAME                             READY   STATUS    RESTARTS   AGE    IP             NODE             NOMINATED NODE READINESS GATES
+frontend-85595f5bf9-77dws        1/1     Running   0          169m   10.77.181.67   gcp-as-east1-0   <none>  <none>
+frontend-85595f5bf9-cpn99        1/1     Running   0          169m   10.77.181.66   gcp-as-east1-0   <none>  <none>
+frontend-85595f5bf9-dr6hv        1/1     Running   0          169m   10.77.32.131   az-wus-0         <none>  <none>
+redis-follower-dddfbdcc9-csd6x   1/1     Running   0          170m   10.77.32.130   az-wus-0         <none>  <none>
+redis-follower-dddfbdcc9-sxhds   1/1     Running   0          170m   10.77.32.129   az-wus-0         <none>  <none>
+redis-leader-fb76b4755-7kgwh     1/1     Running   0          171m   10.77.181.65   gcp-as-east1-0   <none>  <none>
+```
+
+#### 1.4. Kubernetes services 
+```bash
+kubectl get services
+```
+```bash
+NAME             TYPE        CLUSTER-IP       EXTERNAL-IP   PORT(S)        AGE
+frontend         NodePort    10.100.202.25    <none>        80:32291/TCP   95m
+kubernetes       ClusterIP   10.96.0.1        <none>        443/TCP        176m
+redis-follower   ClusterIP   10.102.170.131   <none>        6379/TCP       171m
+redis-leader     ClusterIP   10.99.5.243      <none>        6379/TCP       171m
+```
