@@ -6,7 +6,7 @@ This article provides **a step by step tutorial to deploy a single Kubernetes cl
 The figure below shows the brief concept of this tutorial. 
 Public CSPs on the bottom provides virtual machines (VMs). 
 Cloud-Barista provides the integrated operation and management of resources related to VMs, and also provides an overlay network.
-Thus, an user could configure a single Kubernetes cluster across Multi-clouds.
+Thus, a user could configure a single Kubernetes cluster across Multi-clouds.
 
 <p align="center">
   <img src="https://user-images.githubusercontent.com/7975459/127124490-9c66f406-e455-4ad3-91b8-0184ad055157.png" width="90%" height="90%" >
@@ -22,10 +22,14 @@ The figure below depicts the associated Cloud-Barista components from the bottom
 
 ## 1. Deploy Cloud-Barista's components
 
-At lease 2 nodes are recommended. I newly created 2 instances (nodes) on Amazon Web Services (AWS), and tried this tutorial to make sure it.   
+At lease 2 nodes are needed. I newly created 2 instances (nodes) on Amazon Web Services (AWS), and tried this tutorial to make sure it.   
 In Node 1, a CB-Spider server and a CB-tumblebug server are deployed.   
 In Node 2, a cb-network controller and a standalone cluster for the distributed key-value store are deployed.   
 NOTE - It is possible to deploy the cb-network controller and the standalone cluster respectively.
+
+<p align="center">
+  <img src="https://user-images.githubusercontent.com/7975459/128865365-41ab514f-ad9c-426d-a3dd-18d74850059f.png" width="90%" height="90%" >
+</p>
 
 ### 1.1. Deploy a CB-Spider server in Node 1
 
@@ -221,6 +225,17 @@ http://[YOUR_PUBLIC_IP_ADDRESS]:[YOUR_ADMIN_WEB_PORT]
 
 ## 2. Prepare instances across Multi-clouds in Node 1
 
+Based on Node 1 and 2, a user can:
+- create a Multi-Cloud Infra Service (MCIS: a group of instances) by CB-Tumblebug server,
+- deploy the cb-network agent on the instances by CB-Tumblebug server, and
+- create a Cloud Adpative Network (CLADNet: an overlay network for multi-cloud) on AdminWeb of cb-network system.
+
+The figure below depicts it.
+
+<p align="center">
+  <img src="https://user-images.githubusercontent.com/7975459/128871704-76c6d12f-9c6c-4282-997d-4aa6105f9a0a.png" width="90%" height="90%" >
+</p>
+
 ### 2.1. Create instances by CB-Tumblebug
 
 Please refer to [(2) CB-Tumblebug 스크립트를 통한 테스트](https://github.com/cloud-barista/cb-tumblebug/blob/main/README.md#2-cb-tumblebug-%EC%8A%A4%ED%81%AC%EB%A6%BD%ED%8A%B8%EB%A5%BC-%ED%86%B5%ED%95%9C-%ED%85%8C%EC%8A%A4%ED%8A%B8)
@@ -248,10 +263,10 @@ cp credentials.conf.example credentials.conf
 vim credentials.conf
 ```
 
-#### 2.1.2. Prepare a specification to create a group of instances
+#### 2.1.2. Prepare a specification to create an MCIS
 
 `testSet.env` provides the useful, investigated information in each cloud. 
-With this, it's possible to create a specification to create a group of instances (i.e., MCIS, Multi-Cloud Infra Service).
+With this, it's possible to create a specification to create an MCIS (that is a group of instances).
 
 Before creating a specification, I'd like to describe several things in `testSet.env`.
 
@@ -584,9 +599,29 @@ Please check the result below
 ```
 
 
-### 2.2. Configure an overlay network by CB-Tumblebug and CB-Larva
+### 2.2. Configure an Cloud Adaptive Network by CB-Tumblebug and CB-Larva
 
-#### 2.2.1. Prepare a script to deploy cb-network agent
+NOTE - A Cloud Adpative Network (CLADNet) is an overlay network for multi-cloud.
+
+#### 2.2.1. Create a CLADNet
+
+##### 1) Access the AdminWeb
+```
+http://[YOUR_PUBLIC_IP_ADDRESS]:[YOUR_ADMIN_WEB_PORT]
+```
+##### 2) Go to the section, `Create your CLADNet: Cloud Adaptive Network`
+##### 3) Create a CLADNet with a private network CIDR block
+NOTE - CIDR: Classless Inter-Domain Routing
+
+You can assign a private network CIDR block for the CLADNet as you want.
+
+For example: 
+- Network(IPv4 CIDR block): 192.168.10.0/26 (It should be in range of private network.)
+- Description: MyCLADNet01
+##### 4) Get a CLADNet ID
+
+
+#### 2.2.2. Prepare a script to deploy cb-network agent
 
 #### 1) Create `deploy-cb-network-agent-in-background.sh` with the content below
 
@@ -705,18 +740,6 @@ vim deploy-cb-network-agent-in-background.sh
 chmod 775 deploy-cb-network-agent-in-background.sh
 ```
 
-#### 2.2.2. Create a network CIDR block 
-##### 1) Access the AdminWeb
-```
-http://[YOUR_PUBLIC_IP_ADDRESS]:[YOUR_ADMIN_WEB_PORT]
-```
-##### 2) Go to the section `Create you CLADNet: Cloud Adaptive Network`
-##### 3) Create a CLADNet
-Example: 
-- Network(IPv4 CIDR block): 192.168.10.0/26 (It should be in range of private network.)
-- Description: MyCLADNet01
-##### 4) Get a CLADNet ID
-
 #### 2.2.3. Deploy cb-network agent to instances in an MCIS
 ```bash
 cd ${HOME}/go/src/github.com/cloud-barista/cb-tumblebug/src/testclient/scripts/sequentialFullTest
@@ -736,9 +759,9 @@ Modify `xxx.xxx.xxx.xxx`(The endpoint of Node 2) and `xxxxxxxxxxxxxxxxxxxxx` (CL
 
 ## 3. Deploy a single Kubernetnes cluster across Multi-clouds
 <ins>**As a user**</ins>, all scripts in `~/cb-larva/scripts/Kubernetes` directory can be run.
-<ins>One reboot will be required.</ins>
+<ins>1 time rebooting will be expected.</ins>
 
-Currently, all steps below can be done manually :sweat_smile: :pray:
+Currently, all steps below can be done <ins>**manually**</ins> :sweat_smile: :pray:
 
 ### 3.1. Generate SSH keys of all instances by CB-Tumblebug
 ##### 1) Go to the CB-Tumblebug's script directory in Node 1
