@@ -1,25 +1,25 @@
-# MS Azure
+# A guide to creating and accessing an instance in MS Azure
 
-> Create Virtual Machine With Web
+> [1. Create Virtual Machine With Web](#1-Create-Virtual-Machine-With-Web)
 > 
-> Create Virtual Machine With CLI
+> [2. Create Virtual Machine With CLI](#2-Create-Virtual-Machine-With-CLI)
 > 
-> Running Virtual Machine With MobaXterm and Remote desktop
+> [3. Running Virtual Machine With MobaXterm and Remote desktop](#3-Running-Virtual-Machine-With-MobaXterm-and-remote-desktop)
 
 
-## Create Virtual Machine With Web
+## #1-Create-Virtual-Machine-With-Web
 
-  - Virtual Machine 생성 : 가상 머신 만들기 선택
+  ### Virtual Machine 생성 : 가상 머신 만들기 선택
 
       ![1](https://user-images.githubusercontent.com/33706689/129452169-9c24847e-bb7b-4fe3-bdad-46279a7bad7e.png)
 
-  - Resource Group : 
+  ### Resource Group : 
     - Azure 솔루션에 관련된 리소스를 보유하는 컨테이너입니다. 리소스 그룹에는 솔루션에 대한 모든 Resource 또는 Group으로 관리하려는 해당 리소스만 포함될 수 있습니다.
     - 새로 만들기 선택 후 리소스 이름 입력
 
       ![2](https://user-images.githubusercontent.com/33706689/129452170-16ed89b3-aafd-4034-bcea-f4d256db5b91.png)
 
-  - 인스턴스 정보 :
+  ### 인스턴스 정보 :
     - 가상 머신 이름 : Ms Azure에 생성할 VM Name
     - 지역 : VM을 생성할 위치
     - 이미지 : OS Image
@@ -60,7 +60,7 @@
 
 
 
-## Create Virtual Machine With CLI
+## #2-Create-Virtual-Machine-With-CLI
 
   - [Ms Azure CLI download](https://docs.microsoft.com/ko-kr/cli/azure/install-azure-cli)
 
@@ -93,7 +93,7 @@
 
 
 
-## Running Virtual Machine With MobaXterm and remote desktop
+## #3-Running-Virtual-Machine-With-MobaXterm-and-remote-desktop
 
   - VM 생성 후 Resource Group에 생성되는 리소스들
 
