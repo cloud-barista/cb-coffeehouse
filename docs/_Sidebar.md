@@ -1,10 +1,14 @@
 **[Home](https://github.com/cloud-barista/cb-coffeehouse/wiki)**
 
 **Learning about the public cloud**
-- [AWS Instance Creation Tip by AWS Go SDK](AWS-Instance-Creation-Tip)
-- [Amazon EC2-Creating an AWS EC2 Instance](https://chloe-codes1.gitbook.io/til/aws/aws_tips/amazon_ec2-creating_an_aws_ec2_instance)
-- [One step into the key pair](One-step-into-the-key-pair)
-- [A step by step guide to creating credentials of each cloud service provider](A-step-by-step-guide-to-creating-credentials-of-each-cloud-service-provider)
+- Valuable guides to create virtual machine instances on the public cloud
+  - [Amazon Web Services (AWS) - Instance Creation Tip by AWS Go SDK](AWS-Instance-Creation-Tip)
+  - [Amazon Web Services (AWS) - Creating an AWS EC2 Instance](https://chloe-codes1.gitbook.io/til/aws/aws_tips/amazon_ec2-creating_an_aws_ec2_instance)
+  - [Microsoft Azure (MS Azure) - Creating and accessing an instance](Creating-and-accessing-an-instance-on-MS-Azure-Platform)
+
+- Secrets
+  - [One step into the key pair](One-step-into-the-key-pair)
+  - [A step by step guide to creating credentials of each cloud service provider](A-step-by-step-guide-to-creating-credentials-of-each-cloud-service-provider)
 
 **Git**
 - Getting Started with Git
@@ -54,6 +58,7 @@
 
 **Cloud-Barista**
 - [CB-Spider 컨테이너 시작 절차](CB-Spider-container-startup-procedure)
+- [A step by step tutorial to deploy a single Kubernetes cluster on Multi-cloud](A-step-by-step-tutorial-to-deploy-a-single-Kubernetes-cluster-on-Multi-cloud)
 
 **DFS(Distributed File System)**
 - [How to install Ceph Distributed Storage Cluster on Cloud](How-to-install-Ceph-Distributed-Storage-Cluster-on-Cloud)
