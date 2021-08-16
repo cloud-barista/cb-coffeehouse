@@ -90,6 +90,7 @@ Please, refer to [Install Ms Azure CLI](https://docs.microsoft.com/ko-kr/cli/azu
 
 ### 2.2. Steps to create a virtual machine
 
+NOTE - Please, refer to 2.2.8. Parameter Description. (It will be helpful for you in following some steps.)
 #### 2.2.1. Login
 ```
 az login -u UserID -p UserPassword
@@ -112,39 +113,62 @@ az vm image list
 
 #### 2.2.3. Create a virtual machine
 ```
-az vm create --resource-group %RESOURCE% --name %VM_NAME% --image %VM_IMAGE% --size %VM_SIZE% --admin-username %VM_USER_NAME% --admin-password %VM_PWD% --location %VM_LOCATION%
+az vm create --resource-group %RESOURCE_GROUP% --name %VM_NAME% --image %VM_IMAGE% --size %VM_SIZE% --admin-username %VM_USER_NAME% --admin-password %VM_PWD% --location %VM_LOCATION%
 ```
 
 #### 2.2.4. Open port
 ```
-az vm open-port --resource-group %RESOURCE% --name %VM_NAME% --port "VM_Port_Num"
+az vm open-port --resource-group %RESOURCE_GROUP% --name %VM_NAME% --port "VM_Port_Num"
 ```
 
 #### 2.2.5. Attach disk 
 ```
-az vm disk attach -g %RESOURCE% --name %VM_NAME% --name "VM_DISK_NAME --new --size-gb %VM_SIZE%
+az vm disk attach -g %RESOURCE_GROUP% --name %VM_NAME% --name %VM_DISK_NAME% --new --size-gb %VM_DISK_SIZE%
 ```
 
-#### 2.2.6. Delete the resource group
+#### 2.2.6. Run the PowerShell Script on the virtual machine
 ```
-azure group delete --name %RESOURCE%
-```
-
-#### 2.2.7. Delete the resource group 
-```
-az vm delete -g %RESOURCE% -n %VM_NAME% --yes
+az vm run-command invoke -g %RESOURCE_GROUP% -n %VM_NAME% --command-id RunPowerShellScript --script "Powershell_Script"
 ```
 
-#### 2.2.8. Run the PowerShell Script on the virtual machine
+#### 2.2.7. Check the virtual machine
 ```
-az vm run-command invoke -g %RESOURCE% -n %VM_NAME% --command-id RunPowerShellScript --script "Powershell_Script"
-```
-
-#### 2.2.9. Check the virtual machine
-```
-az vm show --resource-group %RESOURCE%  --name %VM_NAME%
+az vm show --resource-group %RESOURCE_GROUP%  --name %VM_NAME%
 ```
 
+#### 2.2.8. Parameter Description
+- [RESOURCE_GROUP](https://docs.microsoft.com/ko-kr/cli/azure/group?view=azure-cli-latest#az_group_create) : 사용할 RESOURCE_Group
+```
+// Resource_Group을 새로 생성
+az group create --location %LOCATION% --name "사용할 Resource_Group_Name"
+
+// Resource_Group이 있는지 확인
+az group exists --name "확인할 Resource_Group_Name"
+```
+- VM_NAME : 사용할 VM 이름
+- [VM_IMAGE](https://docs.microsoft.com/ko-kr/cli/azure/vm/image?view=azure-cli-latest#az_vm_image_list) : VM OS version
+```
+// 사용 가능한 이미지를 모두 나열
+az vm image list --all
+
+// 모든 CentOS 이미지를 나열
+az vm image list -f CentOS --all
+```
+- VM_SIZE : 생성할 VM의 CPU, 메모리 크기
+```
+// 미국 서 부 지역에서 사용 가능한 VM 크기 나열
+az vm list-sizes -l westus
+```
+- VM_USER_NAME : 생성할 VM User Name
+- VM_PWD : 생성할 VM Password
+- VM_LOCATION : VM을 생성할 지역
+```
+// 현재 구독에 대해 지원 되는 영역을 나열
+az account list-locations
+```
+- VM_Port_Num : 생성된 VM의 열어 둘 포트 번호
+- VM_DISK_NAME : 생성된 VM에 추가할 DISK Name
+- VM_DISK_SIZE : 생성된 VM에 추가할 DISK Size (단위 : GB)
 
 ## 3. Access the virtual machine by MobaXterm or Remote Desktop
 
