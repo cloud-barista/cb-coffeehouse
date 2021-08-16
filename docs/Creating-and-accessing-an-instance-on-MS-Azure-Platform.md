@@ -90,6 +90,7 @@ Please, refer to [Install Ms Azure CLI](https://docs.microsoft.com/ko-kr/cli/azu
 
 ### 2.2. Steps to create a virtual machine
 
+NOTE - Please, refer to 2.2.8. Parameter Description. (It will be helpful for you in following some steps.)
 #### 2.2.1. Login
 ```
 az login -u UserID -p UserPassword
@@ -122,7 +123,7 @@ az vm open-port --resource-group %RESOURCE_GROUP% --name %VM_NAME% --port "VM_Po
 
 #### 2.2.5. Attach disk 
 ```
-az vm disk attach -g %RESOURCE_GROUP% --name %VM_NAME% --name "VM_DISK_NAME% --new --size-gb %DISK_SIZE%
+az vm disk attach -g %RESOURCE_GROUP% --name %VM_NAME% --name %VM_DISK_NAME% --new --size-gb %VM_DISK_SIZE%
 ```
 
 #### 2.2.6. Run the PowerShell Script on the virtual machine
@@ -135,7 +136,7 @@ az vm run-command invoke -g %RESOURCE_GROUP% -n %VM_NAME% --command-id RunPowerS
 az vm show --resource-group %RESOURCE_GROUP%  --name %VM_NAME%
 ```
 
-### 2.2.8. Parameter Description
+#### 2.2.8. Parameter Description
 - [RESOURCE_GROUP](https://docs.microsoft.com/ko-kr/cli/azure/group?view=azure-cli-latest#az_group_create) : 사용할 RESOURCE_Group
 ```
 // Resource_Group을 새로 생성
@@ -167,7 +168,7 @@ az account list-locations
 ```
 - VM_Port_Num : 생성된 VM의 열어 둘 포트 번호
 - VM_DISK_NAME : 생성된 VM에 추가할 DISK Name
-- DISK_SIZE : 생성된 VM에 추가할 DISK Size (단위 : GB)
+- VM_DISK_SIZE : 생성된 VM에 추가할 DISK Size (단위 : GB)
 
 ## 3. Access the virtual machine by MobaXterm or Remote Desktop
 
