@@ -3,8 +3,6 @@
 ## Contents
 
 1. 알리바바 클라우드 계정 생성
-- [1. 알리바바 클라우드 계정 생성](## 1. 알리바바 클라우드 계정 생성)
-
 2. VPC 생성
 3. ECS(Elastic Compute Service, VM) 생성
 4. SSH Key Pairs 발급
@@ -62,12 +60,15 @@
 
 
 - 다시 Network & Security 섹션에서 Security Group에 들어가서 [Create Security Group] 버튼을 클릭합니다.
-
-![Untitled 7](https://user-images.githubusercontent.com/72970232/129754575-f48871c3-56fd-445e-a25f-2266761c8b1c.png)
+<p align="center">
+  <img src="https://user-images.githubusercontent.com/72970232/129754575-f48871c3-56fd-445e-a25f-2266761c8b1c.png" width="90%" height="90%" >
+</p>
 
 - Security Group 이름과 VPC 네트워크를 선택합니다. Access Rule에서 인바운드 및 아웃바운드 포트와 IP설정이 가능합니다. 일종의 방화벽입니다.
 
-![Untitled 8](https://user-images.githubusercontent.com/72970232/129754576-d3d9e772-4a96-4bea-872f-5fb7aafd1f09.png)
+<p align="center">
+  <img src="https://user-images.githubusercontent.com/72970232/129754576-d3d9e772-4a96-4bea-872f-5fb7aafd1f09.png" width="90%" height="90%" >
+</p>
 
 ## 3. ECS(Elastic Compute Service, VM) 생성
 
