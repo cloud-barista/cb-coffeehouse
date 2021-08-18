@@ -55,11 +55,7 @@
 
 ## 3. ECS(Elastic Compute Service, VM) 생성
 
-- 참고 : 중국 본토 리전은 반드시 실명 등록증을 제출하여야함.
-
-                기본적으로 중국 리전은 outbound만 열려있고, inbound는 허가된 사람에게만 허용됨.
-
-                 따라서, 실습 간 이 외의 지역을 사용하여 실습하여야 함.
+<ins>**참고(중요): 실습에서는 중국 본토 이외의 리전을 사용 바람.**</ins> 기본적으로 중국 리전은 outbound만 열려있고, inbound는 허가된 사람에게만 허용되기 때문. (중국 본토 리전을 사용하기 위해서는 반드시 실명 등록증을 제출해야함.)
 
 ![Untitled 9](https://user-images.githubusercontent.com/72970232/129754578-9aac16b8-9ec6-417c-bd4b-95942303a318.png)
 
