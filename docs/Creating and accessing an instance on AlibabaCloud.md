@@ -12,7 +12,6 @@
 
 
 ## 1. 알리바바 클라우드 계정 생성
-- [1. Create a virtual machine on the MS Azure portal](#1-Create-a-virtual-machine-on-the-MS-Azure-portal)
 
 - URL : [www.alibabacloud.com](http://www.alibabacloud.com)
 
@@ -22,40 +21,45 @@
   <img src="https://user-images.githubusercontent.com/72970232/129754492-d661b683-30ca-4fa1-8bc8-2c5f844945ee.png" width="90%" height="90%" >
 </p>
 
-
-## 1. 알리바바 클라우드 계정 생성
-
-- URL : [www.alibabacloud.com](http://www.alibabacloud.com)
-
-1)  무료 계정 버튼 클릭
-
-![Untitled](https://user-images.githubusercontent.com/72970232/129754492-d661b683-30ca-4fa1-8bc8-2c5f844945ee.png)
-
 2) 국가 / 이메일 / 암호 입력 후 확인 버튼 클릭
 
-![Untitled 1](https://user-images.githubusercontent.com/72970232/129754513-e0820c23-2ac6-4bc6-871e-2937fb08fc7c.png)
+<p align="center">
+  <img src="https://user-images.githubusercontent.com/72970232/129754513-e0820c23-2ac6-4bc6-871e-2937fb08fc7c.png" width="90%" height="90%" >
+</p>
 
 3) 이메일 / 전화 인증 실시
 
-![Untitled 2](https://user-images.githubusercontent.com/72970232/129754567-b0631e1e-e374-4d49-a7f2-c212f3ac26ee.png)
+<p align="center">
+  <img src="https://user-images.githubusercontent.com/72970232/129754567-b0631e1e-e374-4d49-a7f2-c212f3ac26ee.png" width="90%" height="90%" >
+</p>
 
 4) 기본정보 입력
-![Untitled 3](https://user-images.githubusercontent.com/72970232/129754569-826d5f50-786d-4371-ac67-29d6c7df19b0.png)
+
+<p align="center">
+  <img src="https://user-images.githubusercontent.com/72970232/129754569-826d5f50-786d-4371-ac67-29d6c7df19b0.png" width="90%" height="90%" >
+</p>
 
 5) 결제정보 작성
-
-![Untitled 4](https://user-images.githubusercontent.com/72970232/129754570-99fe8199-a610-4e9a-87a5-658ffa8df272.png)
+<p align="center">
+  <img src="https://user-images.githubusercontent.com/72970232/129754570-99fe8199-a610-4e9a-87a5-658ffa8df272.png" width="90%" height="90%" >
+</p>
 
 ## 2. VPC 생성
 
 - Network & Security 섹션에서 Virtual Private Cloud를 누르면 VPC 생성이 가능합니다.
 - [Create VPC] 버튼을 클릭합니다.
 
-![Untitled 5](https://user-images.githubusercontent.com/72970232/129754573-387af87a-4949-4c25-93f4-e3123bb0a5dd.png)
+<p align="center">
+  <img src="https://user-images.githubusercontent.com/72970232/129754573-387af87a-4949-4c25-93f4-e3123bb0a5dd
+.png" width="90%" height="90%" >
+</p>
 
 - VPC 이름과 IPv4 CIDR Block 및 vSwitch 설정이 가능합니다.
 
-![Untitled 6](https://user-images.githubusercontent.com/72970232/129754574-f82b65df-c422-4d55-82e8-c38e063480e2.png)
+<p align="center">
+  <img src="https://user-images.githubusercontent.com/72970232/129754574-f82b65df-c422-4d55-82e8-c38e063480e2.png" width="90%" height="90%" >
+</p>
+
 
 - 다시 Network & Security 섹션에서 Security Group에 들어가서 [Create Security Group] 버튼을 클릭합니다.
 
