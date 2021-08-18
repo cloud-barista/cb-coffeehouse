@@ -1,15 +1,27 @@
-# Alibaba Cloud
+# A guide to creating and accessing an instance in Alibaba Cloud
 
 ## Contents
 
 1. 알리바바 클라우드 계정 생성
+[1. Create a virtual machine on the MS Azure portal](#1-Create-a-virtual-machine-on-the-MS-Azure-portal)
+
 2. VPC 생성
 3. ECS(Elastic Compute Service, VM) 생성
 4. SSH Key Pairs 발급
 5. ECS 접속
-6. Credential Key 발급
 
-  >> [https://github.com/cloud-barista/cb-coffeehouse/blob/main/docs/A-step-by-step-guide-to-creating-credentials-of-each-cloud-service-provider.md](https://github.com/cloud-barista/cb-coffeehouse/blob/main/docs/A-step-by-step-guide-to-creating-credentials-of-each-cloud-service-provider.md)
+
+## 1. 알리바바 클라우드 계정 생성
+- [1. Create a virtual machine on the MS Azure portal](#1-Create-a-virtual-machine-on-the-MS-Azure-portal)
+
+- URL : [www.alibabacloud.com](http://www.alibabacloud.com)
+
+1)  무료 계정 버튼 클릭
+
+<p align="center">
+  <img src="https://user-images.githubusercontent.com/72970232/129754492-d661b683-30ca-4fa1-8bc8-2c5f844945ee.png" width="90%" height="90%" >
+</p>
+
 
 ## 1. 알리바바 클라우드 계정 생성
 
