@@ -11,8 +11,9 @@
 ### Valuable guides to create virtual machine instances on the public cloud
 - [Amazon Web Services (AWS) - Instance Creation Tip by AWS Go SDK](AWS-Instance-Creation-Tip)
 - [Amazon Web Services (AWS) - Creating an AWS EC2 Instance](https://chloe-codes1.gitbook.io/til/aws/aws_tips/amazon_ec2-creating_an_aws_ec2_instance)
-- [Microsoft Azure (MS Azure) - Creating and accessing an instance](Creating-and-accessing-an-instance-on-MS-Azure-Platform)
-- [Google Cloud Platform(GCP) - Creating and accessing an instance on GCP](https://github.com/cloud-barista/cb-coffeehouse/wiki/Creating-and-accessing-an-instance-on-GCP)
+- [Microsoft Azure (MS Azure) - Creating and accessing an instance on MS Azure](Creating-and-accessing-an-instance-on-MS-Azure-Platform)
+- [Google Cloud Platform (GCP) - Creating and accessing an instance on GCP](Creating-and-accessing-an-instance-on-GCP)
+- [Alibaba Cloud - Creating and accessing an instance on Alibaba Cloud](Creating-and-accessing-an-instance-on-AlibabaCloud)
 
 ### Secrets
 - [One step into the key pair](One-step-into-the-key-pair)
