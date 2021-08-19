@@ -3,15 +3,15 @@
 
 ### Table of contents
 
-- [1. Overview](#1-Overview)
+- [1. overview](#1-overview)
  
-- [2. Create Project](#02-Create-Project)
+- [2. create project](#2-create-project)
  
-- [3. Create VPC](#3-Create-VPC)
+- [3. create vpc](#3-create-vpc)
 
-- [4. Access the virtual machine](#4-Access-the-virtual-machine)
+- [4. access the virtual machine](#4-access-the-virtual-machine)
 
-## #1-Overview
+## 1. overview
 
 각 CSP의 웹 콘솔 또는 포털에서 가상머신(VM, Virtual Machine) 생성 및 접속 연습
  - VM 생성 과정 중 VPC, Security Group 등을 생성하시면서 의미를 파악
@@ -19,7 +19,7 @@
 
 <!-- Overview 삭제해도 될 것 같습니다!!-->
 
-## #02-Create-Project
+## 2. create project
 
 #### `OSS-CA2021` 이라는 명칭으로 프로젝트를 생성합니다. 앞으로 Cloud Barista 관련 내용을 이 곳에서 실행할 수 있도록합니다.
 
@@ -69,7 +69,7 @@
 #### 프로젝트 이름과 프로젝트 ID, 그리고 프로젝트 번호를 확인할 수 있습니다. 
 
 
-## #3-Create-VPC
+## 3. create vpc
 
 <!-- 가상 머신을 만들기 위해서는 사전작업이 조금 필요합니다. 바로 네트워크와 방화벽을 구성하는 것입니다. -->
 
@@ -94,7 +94,7 @@
   <img src="https://github.com/eeeclipse/2021CA/blob/main/figure/image-20210818204546459.png?raw=true" width="90%" height="90%" >
 </p>
 
-## #4-Access-the-virtual-machine
+## 4. access the virtual machine
 
 <!--> 이제 가상머신을 생성할 시간입니다! -->
 
