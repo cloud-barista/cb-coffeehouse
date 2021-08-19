@@ -70,10 +70,24 @@ English Coffeehouse (별칭 Penny House)는 1 Penny가격의 커피 한잔을 �
         </a>
     </td>
     <td align="center">
+        <a href="https://github.com/eeeclipse">
+            <img src="https://avatars.githubusercontent.com/u/48973781?v=4" width="100;" alt="eeeclipse"/>
+            <br />
+            <sub><b>Eeeclipse</b></sub>
+        </a>
+    </td>
+    <td align="center">
         <a href="https://github.com/seokho-son">
             <img src="https://avatars.githubusercontent.com/u/5966944?v=4" width="100;" alt="seokho-son"/>
             <br />
             <sub><b>Seokho Son</b></sub>
+        </a>
+    </td>
+    <td align="center">
+        <a href="https://github.com/jangh-lee">
+            <img src="https://avatars.githubusercontent.com/u/72970232?v=4" width="100;" alt="jangh-lee"/>
+            <br />
+            <sub><b>jangh-lee</b></sub>
         </a>
     </td></tr>
 </table>
