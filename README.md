@@ -87,7 +87,7 @@ English Coffeehouse (별칭 Penny House)는 1 Penny가격의 커피 한잔을 �
         <a href="https://github.com/jangh-lee">
             <img src="https://avatars.githubusercontent.com/u/72970232?v=4" width="100;" alt="jangh-lee"/>
             <br />
-            <sub><b>jangh-lee</b></sub>
+            <sub><b>Jangh-lee</b></sub>
         </a>
     </td></tr>
 </table>
