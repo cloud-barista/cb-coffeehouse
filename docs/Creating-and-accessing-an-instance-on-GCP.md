@@ -40,29 +40,14 @@
 
 ![image-20210816092707741](https://github.com/eeeclipse/2021CA/blob/main/figure/image-20210816092707741.png?raw=true)
 
-저는 `2021CA-OSS`  라는 이름으로 프로젝트를 생성하였습니다. 위의 `만들기` 버튼을 누르면 프로젝트 초기 화면으로 리디렉션 됩니다.
+`2021CA-OSS`  라는 이름으로 프로젝트를 생성하였습니다. 위의 `만들기` 버튼을 누르면 프로젝트 초기 화면으로 리디렉션 됩니다.
 
-![image-20210816092525387](https://github.com/eeeclipse/2021CA/blob/main/figure/image-20210816092525387.png?raw=true) 
+생성한 프로젝트에 대한 내용을 확인하고 싶다면 좌측 네비게이션 메뉴에서 IAM - 설정을 클릭합니다.
 
-
-
-생성한 프로젝트에 대한 내용을 살펴볼까요 ? 
-
-좌측 네비게이션 메뉴에서 IAM - 설정을 클릭합니다
-
-
-
-![image-20210816093236275](https://github.com/eeeclipse/2021CA/blob/main/figure/image-20210816093236275.png?raw=true)
-
-
-
-
-
-
+프로젝트 이름과 프로젝트 ID, 그리고 프로젝트 번호를 확인할 수 있습니다. 
 
 ![image-20210816093108328](https://github.com/eeeclipse/2021CA/blob/main/figure/image-20210816093108328.png?raw=true)
 
-프로젝트 이름과 프로젝트 ID, 그리고 프로젝트 번호를 확인할 수 있습니다. 
 
 
 
