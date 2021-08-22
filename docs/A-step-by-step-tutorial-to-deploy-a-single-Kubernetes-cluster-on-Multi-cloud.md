@@ -23,8 +23,8 @@ The figure below depicts the associated Cloud-Barista components from the bottom
 ## 1. Deploy Cloud-Barista's components
 
 At lease 2 nodes are needed. I newly created 2 instances (nodes) on Amazon Web Services (AWS), and tried this tutorial to make sure it.   
-In Node 1, a CB-Spider server and a CB-tumblebug server are deployed.   
-In Node 2, a cb-network controller and a standalone cluster for the distributed key-value store are deployed.   
+In Node 1, a CB-Spider server (v0.3.19) and a CB-tumblebug server (v0.3.12) are deployed.   
+In Node 2, a cb-network controller (v0.0.4) and a standalone cluster for the distributed key-value store are deployed.   
 NOTE - It is possible to deploy the cb-network controller and the standalone cluster respectively.
 
 <p align="center">
@@ -758,6 +758,12 @@ source 3.check-K8s-status.sh
 
 ## 4. Deploy pods as an example
 
+As an example, the below figure illustrates in-detail of Pod-to-Pod communication over CLADNet. I hope this figure helps you understand the use-cases below.
+
+<p align="center">
+  <img src="https://user-images.githubusercontent.com/7975459/130356887-da37b3eb-b48e-45c9-b3ba-fd52860d807e.png" width="90%" height="90%" >
+</p>
+
 ### 4.1. Example: Deploying PHP Guestbook application with Redis
 
 I would like to express all my gratitude to the author and contributors :heart:
@@ -859,7 +865,8 @@ redis-leader     ClusterIP   10.99.5.243      <none>        6379/TCP       150m
 
 ### 4.2. Example: Deploying Weave Scope
 
-xxxx
+I would like to express my special thanks to [seokho-son](https://github.com/seokho-son) for helping me run this example :blush:
+
 
 #### 4.2.1. Start up Weave Scope
 ##### 1) Deploy Weave Scope
