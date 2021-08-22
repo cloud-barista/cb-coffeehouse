@@ -167,7 +167,9 @@ Compute Engine - VM 인스턴스로 이동합니다.
 ![image-20210818211854844](https://github.com/eeeclipse/2021CA/blob/main/figure/image-20210818211854844-16292891353561.png?raw=true)
 
 
+## 주의할 점
 
+* [Naver Whale](https://user-images.githubusercontent.com/47745785/130347062-f053037b-7090-4f0f-a102-cede2c85564c.png) 사용시에 GCP VM 인스턴스 웹 콘솔로 접근이 안되는 현상 발생. 구글 크롬 브라우저를 사용하는 것이 좋음. 
 
 
 ## Reference
