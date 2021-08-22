@@ -19,6 +19,7 @@
 
 ### 1.1 무료 계정 버튼 클릭
 
+
 <p align="center">
   <img src="https://user-images.githubusercontent.com/72970232/129754492-d661b683-30ca-4fa1-8bc8-2c5f844945ee.png" width="90%" height="90%" >
 </p>
@@ -42,6 +43,7 @@
 </p>
 
 ### 1.5 결제정보 작성
+
 <p align="center">
   <img src="https://user-images.githubusercontent.com/72970232/129754570-99fe8199-a610-4e9a-87a5-658ffa8df272.png" width="90%" height="90%" >
 </p>
@@ -58,17 +60,19 @@
 
 #### VPC 이름과 IPv4 CIDR Block 및 vSwitch 설정이 가능합니다.
 
+
 <p align="center">
   <img src="https://user-images.githubusercontent.com/72970232/129754574-f82b65df-c422-4d55-82e8-c38e063480e2.png" width="90%" height="90%" >
 </p>
 
-
 #### 다시 Network & Security 섹션에서 Security Group에 들어가서 [Create Security Group] 버튼을 클릭합니다.
+
 <p align="center">
   <img src="https://user-images.githubusercontent.com/72970232/129754575-f48871c3-56fd-445e-a25f-2266761c8b1c.png" width="90%" height="90%" >
 </p>
 
 #### Security Group 이름과 VPC 네트워크를 선택합니다. Access Rule에서 인바운드 및 아웃바운드 포트와 IP설정이 가능합니다. 일종의 방화벽입니다.
+
 
 <p align="center">
   <img src="https://user-images.githubusercontent.com/72970232/129754576-d3d9e772-4a96-4bea-872f-5fb7aafd1f09.png" width="90%" height="90%" >
@@ -195,6 +199,7 @@
   <img src="https://user-images.githubusercontent.com/72970232/129754608-1e3a7ded-2b1d-4a13-916c-2c80577e9973.png" width="90%" height="90%" >
 </p>
 
+
 - Creation Type : Auto-create : 자동으로 암호화 키를 생성
 - Import : 사용자가 직접 키 생성 스크립트를 입력
 
@@ -229,6 +234,7 @@
 ## 5. ECS 접속 (SSH Key Pair / 비밀번호 설정 / 간편한 연결)
 
 ### 5.1 SSH Key Pair 방식
+
 
 - 인스턴스의 Public IP Address를 통해 PuTTy로 접속이 가능합니다.
 - 기본적으로 SSH Key Pairs를 이용하면 root 사용자로 비밀번호 로그인 없이 가능합니다.
