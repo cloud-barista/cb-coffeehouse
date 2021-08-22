@@ -30,12 +30,14 @@ This article provides a guide to creating and accessing an instance (i.e., a vir
 ### 1.3. 인스턴스 정보 :
 - 가상 머신 이름 : Ms Azure에 생성할 VM Name
 - 지역 : VM을 생성할 위치
+  - (Advanced) 가용성 옵션 : 지역에 있는 여러 IDC센터에 분리하여 VM 생성 가능
 - 이미지 : OS Image
   - Windows 2012-R2, Windows 2016, Window 2019, Ubuntu18, Ubuntu20, CentOS7, CentOS8
+- (Advanced) 스폿 인스턴스 : 트래픽이 많이 몰리는 스폿시간 대에만 인스턴스 증가가 필요시 사용(다만 안정성이 떨어져, 중요한 서비스에서는 사용하지 않음)
 - 크기 : 생성할 VM의 CPU, 메모리 크기
 - 사용자 이름 : 생성할 VM User Name
 - 암호 : 생성할 VM Password
-  - Ubuntu : SSH / 암호 설정 둘다 가능
+  - Ubuntu : SSH / 암호 설정 둘 다 가능 (선택은 둘 중 하나)
 - 인바운드 포트 : VM으로 들어오는 방화벽 규칙
 
 <p align="center">
@@ -71,6 +73,7 @@ This article provides a guide to creating and accessing an instance (i.e., a vir
 
 - Advanced : 
   - 사용자 지정 데이터 (Cloud-init) : VM이 프로비저닝되는 동안 스크립트, 구성 파일 또는 기타 데이터를 가상 머신으로 전달할 수 있습니다.
+  - 다만, 사용 가능한 OS가 클라우드 마다 제한적이므로 확인이 필요 [cloud-init](https://docs.microsoft.com/ko-kr/azure/virtual-machines/linux/using-cloud-init)
 
 <p align="center">
   <img src="https://user-images.githubusercontent.com/33706689/129452178-1e99b870-79e0-4b3b-afd9-28fd6e0c3be1.png" width="90%" height="90%" >

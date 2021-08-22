@@ -689,7 +689,7 @@ Modify `xxx.xxx.xxx.xxx`(The endpoint of Node 2) and `xxxxxxxxxxxxxxxxxxxxx` (CL
 
 
 
-## 3. Deploy a single Kubernetnes cluster across Multi-clouds
+## 3. Deploy a single Kubernetes cluster across Multi-clouds
 <ins>**As a user**</ins>, all scripts in `~/cb-larva/scripts/Kubernetes` directory can be run.
 <ins>1 time rebooting will be expected.</ins>
 
