@@ -49,28 +49,27 @@
 
 ## 2. VPC 생성
 
-#### Network & Security 섹션에서 Virtual Private Cloud를 누르면 VPC 생성이 가능합니다.
-#### [Create VPC] 버튼을 클릭합니다.
+- Network & Security 섹션에서 Virtual Private Cloud를 누르면 VPC 생성이 가능합니다.
+### 2.1 [Create VPC] 버튼을 클릭합니다.
 
 <p align="center">
   <img src="https://user-images.githubusercontent.com/72970232/129754573-387af87a-4949-4c25-93f4-e3123bb0a5dd.png" width="90%" height="90%" >
 </p>
 
-#### VPC 이름과 IPv4 CIDR Block 및 vSwitch 설정이 가능합니다.
-
+### 2.2 VPC 이름과 IPv4 CIDR Block 및 vSwitch 설정이 가능합니다.
 
 <p align="center">
   <img src="https://user-images.githubusercontent.com/72970232/129754574-f82b65df-c422-4d55-82e8-c38e063480e2.png" width="90%" height="90%" >
 </p>
 
-#### 다시 Network & Security 섹션에서 Security Group에 들어가서 [Create Security Group] 버튼을 클릭합니다.
+### 2.3 Network & Security 섹션에서 Security Group에 들어가서 [Create Security Group] 버튼을 클릭합니다.
 
 <p align="center">
   <img src="https://user-images.githubusercontent.com/72970232/129754575-f48871c3-56fd-445e-a25f-2266761c8b1c.png" width="90%" height="90%" >
 </p>
 
-#### Security Group 이름과 VPC 네트워크를 선택합니다. Access Rule에서 인바운드 및 아웃바운드 포트와 IP설정이 가능합니다. 일종의 방화벽입니다.
-
+### 2.4 Security Group 이름과 VPC 네트워크를 선택합니다. 
+- Access Rule에서 인바운드 및 아웃바운드 포트와 IP설정이 가능합니다. 일종의 방화벽입니다.
 
 <p align="center">
   <img src="https://user-images.githubusercontent.com/72970232/129754576-d3d9e772-4a96-4bea-872f-5fb7aafd1f09.png" width="90%" height="90%" >
