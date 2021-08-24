@@ -10,6 +10,8 @@
 
 - [4. Create and Access Virtual Machine](#4-create-and-access-virtual-machine)
 
+- [5. How to use GCP CLI command](#5-how-to-use-gcp-cli-command)
+
 ## 1. Overview
 
 #### 각 CSP의 웹 콘솔 또는 포털에서 가상머신(VM, Virtual Machine) 생성 및 접속 연습
@@ -141,6 +143,90 @@
 <p align="center">
   <img src="https://github.com/eeeclipse/2021CA/blob/main/figure/image-20210818211854844-16292891353561.png?raw=true" width="90%" height="90%" >
 </p>
+
+
+## 5. How to use GCP CLI command
+
+### 5.1. Install GCP CLI
+Please, refer to [Install GCP CLI](https://cloud.google.com/sdk/docs/quickstart?hl=ko#windows)
+
+### 5.2. Step to create a virtual machine
+
+NOTE - Please, refer to 2.2.8. Parameter Description. (It will be helpful for you in following some steps.)
+
+#### 5.2.1. Setting GCP Cloud
+```
+gcloud init
+```
+##### Google 사용자 계정을 사용하여 로그인하는 옵션을 수락합니다.
+```
+To continue, you must log in. Would you like to log in (Y/n)? Y
+```
+##### 브라우저에서 메시지가 표시되면 Google 사용자 계정에 로그인하고 허용을 클릭하여 Google Cloud 리소스에 액세스할 수 있는 권한을 부여합니다.
+
+##### 명령 프롬프트에서 소유자, 편집자 또는 뷰어 권한이 있는 프로젝트 목록의 Google Cloud 프로젝트를 선택합니다.
+```
+Pick cloud project to use:
+[1] [my-project-1]
+[2] [my-project-2]
+...
+Please enter your numeric choice:
+```
+- 참고: 
+  - 프로젝트가 하나만 있는 경우 gcloud init가 프로젝트를 선택합니다.
+  - 200개가 넘는 프로젝트에 액세스할 수 있는 경우 프로젝트 ID를 입력하거나 새 프로젝트를 만들거나 프로젝트를 나열하라는 메시지가 표시됩니다.
+
+##### Google Compute Engine API를 사용 설정한 경우 gcloud init을 사용하여 기본 Compute Engine 영역을 선택할 수 있습니다.
+```
+Which compute zone would you like to use as project default?
+ [1] [asia-east1-a]
+ [2] [asia-east1-b]
+ ...
+ [14] Do not use default zone
+ Please enter your numeric choice:
+```
+
+#### 5.2.2. Login
+```
+gcloud auth login
+```
+
+#### 5.2.3. Get available VM list
+gcloud compute images list 프로젝트의 모든 Google Compute Engine 이미지를 표시합니다.
+```
+gcloud compute images list
+```
+
+<p align="center">
+<img src="https://user-images.githubusercontent.com/33706689/130573413-7d6aa5ba-bd93-4592-81c1-cc589f428ade.png" width="90%" height="90%">
+</p>
+
+#### 5.2.4. Create a virtual machine
+```
+gcloud compute instances create %VM_NAME% --image-family=%VM_FAMILY% --image-project=%VM_PROJECT% --zone=%VM_LOCATION%
+```
+
+#### 5.2.5. Attach disk
+```
+//가상 머신에 붙일 디스크 생성
+gcloud compute disks create %VM_DISK_NAME% --zone=%ZONE% --size=%VM_DISK_SIZE%
+
+//가상 머신에 디스크를 붙임
+gcloud compute instances attach-disk %VM_NAME% --disk %VM_DISK_NAME%
+```
+
+#### 5.2.8. Parameter Description
+// Resource_Group을 새로 생성
+- VM_NAME : 사용할 VM 이름
+- VM_FAMILY : 부팅 디스크를 초기화할 운영 체제의 이미지 계열
+- VM_PROJECT : 모든 이미지 및 이미지 계열 참조가 확인되는 GCP 프로젝트
+- VM_LOCATION : VM을 생성할 지역
+- ZONE : 생성할 영역
+```
+//영역 목록을 가져옴
+gcloud compute zones list
+```
+
 
 ## 주의할 점
 
