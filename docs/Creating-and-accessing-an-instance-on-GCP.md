@@ -154,9 +154,12 @@ Compute Engine - VM 인스턴스로 이동합니다.
 
 ![image-20210818210428816](https://github.com/eeeclipse/2021CA/blob/main/figure/image-20210818210428816.png?raw=true)
 
-머신에 접속하는 방법은 여러가지가 있습니다. `PuTTY` 등의 클라이언트를 사용할 수도 있고, shell로 접근할 수도 있습니다. 여기에서는 GCP에서 제공하는 연결 방법을 이용해보겠습니다. 
+머신에 접속하는 방법은 여러가지가 있습니다. `PuTTY` 등의 클라이언트를 사용할 수도 있고, shell로 접근할 수도 있습니다. 
+
+여기에서는 GCP에서 제공하는 연결 방법과 터미널 접속을 이용해보겠습니다. 
 
 
+1) GCP에서 제공하는 연결 방법 
 
 `연결 - SSH`  좌측의 화살표를 클릭하여 `브라우저 창에서 열기`를 선택합니다.
 
@@ -166,6 +169,22 @@ Compute Engine - VM 인스턴스로 이동합니다.
 
 ![image-20210818211854844](https://github.com/eeeclipse/2021CA/blob/main/figure/image-20210818211854844-16292891353561.png?raw=true)
 
+2) ssh키 생성 후 Terminal을 통해 접속하는 방법 [Mac OS 환경]
+
+아래 명령어를 통해 로컬에서 ssh 키를 만든다.
+
+ ```ssh-keygen -t rsa -f ~/.ssh/[키 파일 이름] -C [UserName]```
+
+콘솔에서 Compute Engine > 메타데이터 > SSH키 에서 생성 된 ssh 키를 추가한다. 
+
+![](https://images.velog.io/images/kyungkoh/post/88ec52ea-14e0-4127-b1e2-e89bba054ecd/%E1%84%89%E1%85%B3%E1%84%8F%E1%85%B3%E1%84%85%E1%85%B5%E1%86%AB%E1%84%89%E1%85%A3%E1%86%BA%202021-08-24%20%E1%84%8B%E1%85%A9%E1%84%92%E1%85%AE%204.59.10.png)
+
+아래 명령어를 통해 터미널 에서 vm에 접속한다 
+```ssh -i ~/.ssh/[ssh key fileName] [UserName@IP주소]```
+
+정상적으로 접속 된 모습을 아래와 같이 확인 할 수 있습니다. 
+
+![](https://images.velog.io/images/kyungkoh/post/3028cf6b-39c3-46ef-b583-4fe0407db9aa/%E1%84%89%E1%85%B3%E1%84%8F%E1%85%B3%E1%84%85%E1%85%B5%E1%86%AB%E1%84%89%E1%85%A3%E1%86%BA%202021-08-17%20%E1%84%8B%E1%85%A9%E1%84%92%E1%85%AE%2010.57.28.png)
 
 ## 주의할 점
 
