@@ -20,21 +20,20 @@
 
 ## 2. Create Project
 
-#### 상단의 My First Project 를 클릭합니다
+### 2.1. 상단의 My First Project 를 클릭
 
 <p align="center">
   <img src="https://github.com/eeeclipse/2021CA/blob/main/figure/image-20210816092613251.png?raw=true" width="90%" height="90%" >
 </p>
 
-#### 우측 상단의 `새 프로젝트`를 선택합니다.
+### 2.2. 우측 상단의 `새 프로젝트`를 선택
 
 <p align="center">
   <img src="https://github.com/eeeclipse/2021CA/blob/main/figure/image-20210816092645594.png?raw=true" width="90%" height="90%" >
 </p>
 
-#### 주의: 프로젝트 이름은 변경할 수 있지만 프로젝트 ID 는 변경할 수 없습니다.
-
-#### gcloud sdk를 활용할 때 식별할 수 있도록 알아보기 쉽고 unique한 값을 입력합니다.
+<ins>**주의: 프로젝트 이름은 변경할 수 있지만 프로젝트 ID 는 변경할 수 없습니다.**</ins>
+<ins>**gcloud sdk를 활용할 때 식별할 수 있도록 알아보기 쉽고 unique한 값을 입력합니다.**</ins>
 - 프로젝트 이름 제약사항 : 이름은 4~30자(영문 기준) 사이
 - 입력가능한 특수문자 : 문자, 숫자, 작은따옴표, 하이픈, 공백 또는 느낌표
 
@@ -42,33 +41,33 @@
   <img src="https://github.com/eeeclipse/2021CA/blob/main/figure/image-20210816092707741.png?raw=true" width="90%" height="90%" >
 </p>
 
-#### `만들기` 버튼을 누르면 프로젝트 초기 화면으로 리디렉션 됩니다.
+`만들기` 버튼을 누르면 프로젝트 초기 화면으로 리디렉션 됩니다.
 
-#### 생성한 프로젝트에 대한 내용을 확인하고 싶다면 좌측 네비게이션 메뉴에서 IAM - 설정을 클릭합니다.
+### 2.3. 생성한 프로젝트 확인
 
-#### 프로젝트 이름과 프로젝트 ID, 그리고 프로젝트 번호를 확인할 수 있습니다. 
+생성한 프로젝트에 대한 내용을 확인하고 싶다면 좌측 네비게이션 메뉴에서 IAM - 설정을 클릭합니다.
+프로젝트 이름과 프로젝트 ID, 그리고 프로젝트 번호를 확인할 수 있습니다. 
 
 <p align="center">
   <img src="https://github.com/eeeclipse/2021CA/blob/main/figure/image-20210816093108328.png?raw=true" width="90%" height="90%" >
 </p>
 
-## 3. Create VPC
+## 3. Create VPC Network
 
-#### 가상 머신을 만들기 위해서는 사전작업이 필요합니다. 바로 네트워크와 방화벽을 구성하는 것입니다.
+가상 머신을 만들기 위해서는 사전작업이 필요합니다. 바로 네트워크와 방화벽을 구성하는 것입니다.
+Cloud VPC를 통해서 가용역영을 분리하고 VPN 토폴로지를 커스텀 설정할 수 있습니다. 
+VPC 네트워크를 생성하지 않으면 기본 네트워크로 잡히게 됩니다. 기본 VPN 게이트 웨이에는 인터페이스 한개, 외부 주소 한개가 있으며 동적 또는 정적 라우팅을 사용하는 터널을 지원하게 됩니다. 
 
-#### Cloud VPC를 통해서 가용역영을 분리하고 VPN 토폴로지를 커스텀 설정할 수 있습니다. 
+### 3.1. VPC Network 생성
 
-#### VPC 네트워크를 생성하지 않으면 기본 네트워크로 잡히게 됩니다. 기본 VPN 게이트 웨이에는 인터페이스 한개, 외부 주소 한개가 있으며 동적 또는 정적 라우팅을 사용하는 터널을 지원하게 됩니다. 
-
-#### VPC 네트워크에서 네트워크 만들기를 설정하고 구분할 수 있는 VPC 네트워크와 서브넷을 생성합니다.
-
-#### 필요한 VPC의 리전과 public subnet을 구성하고, 대역을 지정합니다.
+VPC 네트워크에서 네트워크 만들기를 설정하고 구분할 수 있는 VPC 네트워크와 서브넷을 생성합니다.
+필요한 VPC의 리전과 public subnet을 구성하고, 대역을 지정합니다.
 
 <p align="center">
   <img src="https://github.com/eeeclipse/2021CA/blob/main/figure/image-20210818204404124.png?raw=true" width="90%" height="90%" >
 </p>
 
-### VPC와 서브넷이 생성되었음을 확인할 수 있습니다.
+### 3.2. VPC와 서브넷이 생성되었음을 확인
 
 <p align="center">
   <img src="https://github.com/eeeclipse/2021CA/blob/main/figure/image-20210818204546459.png?raw=true" width="90%" height="90%" >
@@ -76,15 +75,15 @@
 
 ## 4. Create and Access Virtual Machine
 
-#### Compute Engine - VM 인스턴스로 이동합니다.
+### 4.1. Compute Engine - VM 인스턴스로 이동
 
 <p align="center">
   <img src="https://github.com/eeeclipse/2021CA/blob/main/figure/image-20210818204713847.png?raw=true" width="90%" height="90%" >
 </p>
 
-#### 상단에 위치한 `인스턴스 만들기` 를 클릭합니다.
+### 4.2. 상단에 위치한 `인스턴스 만들기` 클릭
 
-#### 인스턴스 생성에는 4개의 옵션이 제공됩니다.
+인스턴스 생성에는 4개의 옵션:
 - 새 VM 인스턴스 : 공개된 OS 이미지 또는 커스텀 이미지에서 VM을 생성합니다.
 - 템플릿에서 VM 인스턴스 만들기 : 구글에서 제공하는 
 - 머신 이미지의 새 VM 인스턴스
@@ -94,11 +93,11 @@
   <img src="https://github.com/eeeclipse/2021CA/blob/main/figure/image-20210818204837145.png?raw=true" width="90%" height="90%" >
 </p>
 
-#### 주의: 인스턴스의 이름, 리전 그리고 영역은 변경할 수 없으므로 신중하게 결정해야합니다.
+<ins>**주의: 인스턴스의 이름, 리전 그리고 영역은 변경할 수 없으므로 신중하게 결정해야합니다.**</ins>
 
-#### 머신 구성은 일반용도로 설정하고, vCPU와 메모리를 선택합니다. 물론 상황에 맞게 커스텀 머신을 설정할 수도 있습니다. 
+머신 구성은 일반용도로 설정하고, vCPU와 메모리를 선택합니다. 물론 상황에 맞게 커스텀 머신을 설정할 수도 있습니다. 
 
-#### 머신의 시리즈는 다음과 같습니다.
+머신의 시리즈:
 - 일반용도 : 일반적인 작업 부하에 적합한 머신 유형이며 가격 및 유연성을 위해 최적화
   - E2 : 가용성 기반 CPU 플랫폼
   - N2 : Cascade LAke CPU 플랫폼
@@ -110,19 +109,21 @@
   <img src="https://github.com/eeeclipse/2021CA/blob/main/figure/image-20210818205637876.png?raw=true" width="90%" height="90%" >
 </p>
 
-#### 다음으로는 부팅디스크를 설정합니다. 공개된 이미지를 선택할 수도 있으며, 맞춤이미지를 활용할 수 있습니다. 기존에 운영하던 머신이 있다면 스냅샷을 이용하거나 기존 디스크를 선택할 수 있습니다. 저는 여기서 Ubuntu 21.04 이미지를 선택해보겠습니다. 
+### 4.3. 부팅디스크를 설정
+
+공개된 이미지를 선택할 수도 있으며, 맞춤이미지를 활용할 수 있습니다. 기존에 운영하던 머신이 있다면 스냅샷을 이용하거나 기존 디스크를 선택할 수 있습니다. 저는 여기서 Ubuntu 21.04 이미지를 선택해보겠습니다. 
 
 <p align="center">
   <img src="https://github.com/eeeclipse/2021CA/blob/main/figure/image-20210818205807045.png?raw=true" width="90%" height="90%" >
 </p>
 
-#### 이제 추가적인 설정들이 남았습니다. 위에서 생성한 VPC를 활용하여 네트워크 인터페이스를 붙여줄 예정입니다.
+### 4.4 생성한 VPC Network 할당
 
 <p align="center">
   <img src="https://github.com/eeeclipse/2021CA/blob/main/figure/image-20210818210121433.png?raw=true" width="90%" height="90%" >
 </p>
 
-#### 물론 이 작업을 하지 않아도 머신을 생성하는데에는 문제가 없습니다. 다만 실제 서비스를 운영한다면 VPC 와 서브넷을 분리하여 운영하고, 각각의 서브넷에 정책을 적용하여 보안을 강화하는 것이 좋습니다.
+물론 이 작업을 하지 않아도 머신을 생성하는데에는 문제가 없습니다. 다만 실제 서비스를 운영한다면 VPC 와 서브넷을 분리하여 운영하고, 각각의 서브넷에 정책을 적용하여 보안을 강화하는 것이 좋습니다.
 
 
 <p align="center">
@@ -135,10 +136,10 @@
   <img src="https://github.com/eeeclipse/2021CA/blob/main/figure/image-20210818210428816.png?raw=true" width="90%" height="90%" >
 </p>
 
-#### 머신에 접속하는 방법은 여러가지가 있습니다. `PuTTY` 등의 클라이언트를 사용할 수도 있고, shell로 접근할 수도 있습니다. 여기에서는 GCP에서 제공하는 연결 방법을 이용해보겠습니다. 
+머신에 접속하는 방법은 여러가지가 있습니다. `PuTTY` 등의 클라이언트를 사용할 수도 있고, shell로 접근할 수도 있습니다. 여기에서는 GCP에서 제공하는 연결 방법을 이용해보겠습니다. 
 
 
-#### `연결 - SSH`  좌측의 화살표를 클릭하여 `브라우저 창에서 열기`를 선택합니다.
+`연결 - SSH`  좌측의 화살표를 클릭하여 `브라우저 창에서 열기`를 선택합니다.
 
 <p align="center">
   <img src="https://github.com/eeeclipse/2021CA/blob/main/figure/image-20210818211854844-16292891353561.png?raw=true" width="90%" height="90%" >
@@ -158,13 +159,13 @@ NOTE - Please, refer to 2.2.8. Parameter Description. (It will be helpful for yo
 ```
 gcloud init
 ```
-##### Google 사용자 계정을 사용하여 로그인하는 옵션을 수락합니다.
+Google 사용자 계정을 사용하여 로그인하는 옵션을 수락합니다.
 ```
 To continue, you must log in. Would you like to log in (Y/n)? Y
 ```
-##### 브라우저에서 메시지가 표시되면 Google 사용자 계정에 로그인하고 허용을 클릭하여 Google Cloud 리소스에 액세스할 수 있는 권한을 부여합니다.
+브라우저에서 메시지가 표시되면 Google 사용자 계정에 로그인하고 허용을 클릭하여 Google Cloud 리소스에 액세스할 수 있는 권한을 부여합니다.
 
-##### 명령 프롬프트에서 소유자, 편집자 또는 뷰어 권한이 있는 프로젝트 목록의 Google Cloud 프로젝트를 선택합니다.
+명령 프롬프트에서 소유자, 편집자 또는 뷰어 권한이 있는 프로젝트 목록의 Google Cloud 프로젝트를 선택합니다.
 ```
 Pick cloud project to use:
 [1] [my-project-1]
@@ -176,7 +177,7 @@ Please enter your numeric choice:
   - 프로젝트가 하나만 있는 경우 gcloud init가 프로젝트를 선택합니다.
   - 200개가 넘는 프로젝트에 액세스할 수 있는 경우 프로젝트 ID를 입력하거나 새 프로젝트를 만들거나 프로젝트를 나열하라는 메시지가 표시됩니다.
 
-##### Google Compute Engine API를 사용 설정한 경우 gcloud init을 사용하여 기본 Compute Engine 영역을 선택할 수 있습니다.
+Google Compute Engine API를 사용 설정한 경우 gcloud init을 사용하여 기본 Compute Engine 영역을 선택할 수 있습니다.
 ```
 Which compute zone would you like to use as project default?
  [1] [asia-east1-a]
@@ -230,7 +231,7 @@ gcloud compute zones list
 
 ## 주의할 점
 
-#### [Naver Whale](https://user-images.githubusercontent.com/47745785/130347062-f053037b-7090-4f0f-a102-cede2c85564c.png) 사용시에 GCP VM 인스턴스 웹 콘솔로 접근이 안되는 현상 발생. 구글 크롬 브라우저를 사용하는 것이 좋음. 
+<ins>**[Naver Whale](https://user-images.githubusercontent.com/47745785/130347062-f053037b-7090-4f0f-a102-cede2c85564c.png) 사용시에 GCP VM 인스턴스 웹 콘솔로 접근이 안되는 현상 발생. 구글 크롬 브라우저를 사용하는 것이 좋음.**</ins>
 
 
 ## Reference
