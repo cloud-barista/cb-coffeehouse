@@ -296,7 +296,7 @@ ppk 파일이 비밀번호 역할을 해주기 때문에 별도의 비밀번호 
 
 **VPC(Virtual Private Cloud):** 사용자의 AWS 계정 전용 가상 네트워크
 
-### Access AWS VPC
+### 4.1 Access AWS VPC
 
 [https://console.aws.amazon.com/vpc/]로 들어가 Amazon VPC 콘솔로 접속합니다.
 
@@ -304,7 +304,7 @@ ppk 파일이 비밀번호 역할을 해주기 때문에 별도의 비밀번호 
   <img src="https://i.imgur.com/1SustsL.jpg" width="90%" height="90%" >
 </p>
 
-#### 4.1. Select Option
+### 4.2. Select Option
 
 왼쪽 4가지 옵션에서 자신에게 맞는 옵션을 선택한 후 **선택** 버튼을 클릭합니다.
 
@@ -314,7 +314,7 @@ ppk 파일이 비밀번호 역할을 해주기 때문에 별도의 비밀번호 
   <img src="https://i.imgur.com/3NJseF5.jpg" width="90%" height="90%" >
 </p>
 
-#### 4.2. Create VPC
+### 4.3. Create VPC
  
 VPC 이름과 기타 옵션을 설정한 후 우측 하단에 **VPC 생성** 버튼을 클릭합니다.
 
@@ -322,13 +322,13 @@ VPC 이름과 기타 옵션을 설정한 후 우측 하단에 **VPC 생성** 버
   <img src="https://i.imgur.com/acFYMNb.jpg" width="90%" height="90%" >
 </p>
 
-#### 4.3. VPC 생성 완료
+### 4.4. VPC 생성 완료
 
 <p align="center">
   <img src="https://i.imgur.com/wL6a5j6.jpg" width="90%" height="90%" >
 </p>
 
-#### 4.4. Create Security Group
+### 4.5. Create Security Group
 
 보안 그룹을 생성하기 위해 대시보드 왼쪽 하단 **네트워크 보안** 메뉴에 있는 **보안 그룹** 메뉴를 선택한 후 새로운 보안 그룹을 생성하기 위해 우측 상단에 있는 **보안 그룹 생성** 버튼을 클릭합니다.
 
@@ -336,7 +336,7 @@ VPC 이름과 기타 옵션을 설정한 후 우측 하단에 **VPC 생성** 버
   <img src="https://i.imgur.com/mnfax9c.jpg" width="90%" height="90%" >
 </p>
 
-#### 4.5. Enter Inbound, Outbound rule
+### 4.6. Enter Inbound, Outbound rule
 
 보안 그룹 정보 및 인바운드, 아웃바운드 규칙을 입력한 후 우측 하단에 **보안 그룹 생성** 버튼을 클릭합니다.
 
@@ -344,7 +344,7 @@ VPC 이름과 기타 옵션을 설정한 후 우측 하단에 **VPC 생성** 버
   <img src="https://i.imgur.com/KSKfDUl.jpg" width="90%" height="90%" >
 </p>
 
-#### 4.3. Security Group 생성 완료
+### 4.7. Security Group 생성 완료
 
 기본 보안 그룹은 생성되어 있으니 추가적인 보안 그룹 설정이 필요할 경우에만 만들면 됩니다.
 
