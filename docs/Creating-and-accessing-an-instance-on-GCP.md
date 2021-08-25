@@ -175,7 +175,7 @@ Compute Engine - VM 인스턴스로 이동합니다.
 
  ```ssh-keygen -t rsa -f ~/.ssh/[키 파일 이름] -C [UserName]```
 
-콘솔에서 Compute Engine > 메타데이터 > SSH키 에서 생성 된 ssh 키를 추가한다. 
+GCP 콘솔의 Compute Engine > 메타데이터 > SSH 키 에서 생성한 SSH 키를 추가한다. 
 
 ![](https://images.velog.io/images/kyungkoh/post/88ec52ea-14e0-4127-b1e2-e89bba054ecd/%E1%84%89%E1%85%B3%E1%84%8F%E1%85%B3%E1%84%85%E1%85%B5%E1%86%AB%E1%84%89%E1%85%A3%E1%86%BA%202021-08-24%20%E1%84%8B%E1%85%A9%E1%84%92%E1%85%AE%204.59.10.png)
 
