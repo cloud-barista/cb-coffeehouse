@@ -6,9 +6,11 @@
 
 - [2. Create a Virtual Machine Using AWS - Linux](#2-create-a-virtual-machine-using-aws---linux)
 
-- [3. Access Virtual Machine](#3-access-virtual-machine)
+- [3. Create a virtual machine with AWS CLI](#3-create-a-virtual-machine-with-aws-cli)
 
-- [4. Create VPC and Security Groups](#4-create-vpc-and-security-groups)
+- [4. Access Virtual Machine](#4-access-virtual-machine)
+
+- [5. Create VPC and Security Groups](#5-create-vpc-and-security-groups)
 
 ## 1. Create AWS account
 
@@ -213,9 +215,59 @@ AMI를 선택하는 단계에서 **Red Hat Enterprise Linux 8** 항목 오른쪽
   <img src="https://i.imgur.com/36eUkIx.jpg" width="90%" height="90%" >
 </p>
 
-## 3. Access Virtual Machine
+## 3. Create a virtual machine with AWS CLI
 
-### 3.1. DownLoad putty
+### 3.1. Install AWS CLI
+Please, refer to [Install AWS CLI](https://docs.aws.amazon.com/ko_kr/cli/latest/userguide/install-cliv2.html)
+
+### 3.2. Steps to create a virtual machine
+
+NOTE - Please, refer to 2.2.8. Parameter Description. (It will be helpful for you in following some steps.)
+
+#### 3.2.1. Configure
+```
+//AWS CLI 설치를 설정
+aws configure
+```
+[출력](https://docs.aws.amazon.com/ko_kr/cli/latest/userguide/cli-configure-quickstart.html):
+- AWS Access Key ID [None]: ******************
+- AWS Secret Access Key [None]: *******************
+- Default region name [None]: 기본적으로 요청을 전송할 서버가 있는 AWS region
+- Default output format [None]: 출력 형식
+[AWS Access Key ID, Secret Access Key 찾기](https://github.com/cloud-barista/cb-coffeehouse/wiki/A-step-by-step-guide-to-creating-credentials-of-each-cloud-service-provider#amazon-web-services-aws)
+
+#### 3.2.2. Create AWS Key Pair
+```
+//AWS 키 페어 생성 : EC2 접근 시 사용할 Key
+aws ec2 create-key-pair --key-name %Key_Name% --query 'KeyMaterial' --output text > %FILEPATH.pem%
+```
+관련 Options:
+  - [--query 'KeyMaterial' --output text > %FILEPATH.pem%] : 개인 키를 파일로 직접 파이프 --query하는 --output text옵션
+
+#### 3.2.3. [Create a Security Group](https://docs.aws.amazon.com/cli/latest/userguide/cli-services-ec2-sg.html)
+```
+aws ec2 create-security-group --group-name %Security_Group_Name% --description %Group_Description% --vpc-id %VPC_ID%
+```
+
+#### 3.2.4. Create Virtual Machine
+```
+aws ec2 run-instances --image-id %OS_IMAGE% --count 1 --instance-type t2.micro --key-name %KEY_PAIR_NAME% --security-group-ids %SECURITY_GROUP_ID% --subnet-id %SUBNET_ID%
+```
+
+#### 3.2.5. Parameter Description
+- Key_Name : AWS에서 생성할 Key Pair 이름
+- FILEPATH.pem : local PC에 Key Pair를 떨궈줄 file 경로
+- Security_Group_Name : 생성할 Security Group의 이름
+- Group_Description : 생성할 Security Group의 설명
+- VPC_ID : 생성한 VPC에서 찾을 수 있음.
+- OS_IMAGE : 생성할 VM의 OS 버전
+- KEY_PAIR_NAME : 생성한 VM에서 사용할 Key Pair
+- SECURITY_GROUP_ID : 생성할 VM에서 사용할 Security group
+- SUBNET_ID : 생성할 VM에서 사용할 Subnet
+
+## 4. Access Virtual Machine
+
+### 4.1. DownLoad putty
 
 인스턴스 접속을 위해 putty를 다운로드 하여 실행합니다.
 
@@ -226,7 +278,7 @@ AMI를 선택하는 단계에서 **Red Hat Enterprise Linux 8** 항목 오른쪽
   <img src="https://i.imgur.com/RMn1MaK.jpg" width="90%" height="90%" >
 </p>
 
-### 3.2. Putty Key Generator를 실행
+### 4.2. Putty Key Generator를 실행
 
 PuTTYgen이라는 파일명으로 되어 있습니다.
 생성한 키 페어 파일을 putty에서 사용할 ppk로 변환 과정을 거치기 위함입니다.
@@ -235,7 +287,7 @@ PuTTYgen이라는 파일명으로 되어 있습니다.
   <img src="https://i.imgur.com/Uuv5sgH.jpg" width="90%" height="90%" >
 </p>
 
-### 3.3. Change pem to ppk
+### 4.3. Change pem to ppk
 
 하단 **Type of key to generate** 항목에서 **RSA**를 선택하고, 화면 우측 하단 **Load** 버튼을 클릭합니다.
 
@@ -258,7 +310,7 @@ PuTTYgen이라는 파일명으로 되어 있습니다.
   <img src="https://i.imgur.com/DUc0Qch.jpg" width="90%" height="90%" >
 </p>
 
-### 3.4. Access Virtual Machine
+### 4.4. Access Virtual Machine
 
 putty를 실행시킨 후 **Host Name** 부분에 대시보드에 적혀있는 **퍼블릭 IPv4** 항목에 나온 IP 주소를 입력합니다.
 
@@ -274,7 +326,7 @@ putty를 실행시킨 후 **Host Name** 부분에 대시보드에 적혀있는 *
   <img src="https://i.imgur.com/kj6X7Jm.jpg" width="90%" height="90%" >
 </p>
 
-### 3.5 Login Virtual Machine
+### 4.5 Login Virtual Machine
 
 **login as** 부분에 **ec2-user**라고 입력하면 접속까지 최종 완료됩니다.
 
@@ -284,7 +336,7 @@ ppk 파일이 비밀번호 역할을 해주기 때문에 별도의 비밀번호 
   <img src="https://i.imgur.com/WDjPIzY.jpg" width="90%" height="90%" >
 </p>
 
-### 3.6 Remove Virtual Machine
+### 4.6 Remove Virtual Machine
 
 만약, 인스턴스를 사용하지 않을 경우 대시보드 우측 상단 **인스턴스 상태** 버튼을 클릭한 후, **인스턴스 중지** 버튼을 차례로 클릭하여 중지시켜놔야 추가 과금이 일어나지 않음
 
@@ -292,11 +344,11 @@ ppk 파일이 비밀번호 역할을 해주기 때문에 별도의 비밀번호 
   <img src="https://i.imgur.com/ofyMKCO.jpg" width="90%" height="90%" >
 </p>
 
-## 4. Create VPC and Security Groups
+## 5. Create VPC and Security Groups
 
 **VPC(Virtual Private Cloud):** 사용자의 AWS 계정 전용 가상 네트워크
 
-### 4.1 Access AWS VPC
+### 5.1 Access AWS VPC
 
 [https://console.aws.amazon.com/vpc/]로 들어가 Amazon VPC 콘솔로 접속합니다.
 
@@ -304,7 +356,7 @@ ppk 파일이 비밀번호 역할을 해주기 때문에 별도의 비밀번호 
   <img src="https://i.imgur.com/1SustsL.jpg" width="90%" height="90%" >
 </p>
 
-### 4.2. Select Option
+### 5.2. Select Option
 
 왼쪽 4가지 옵션에서 자신에게 맞는 옵션을 선택한 후 **선택** 버튼을 클릭합니다.
 
@@ -314,7 +366,7 @@ ppk 파일이 비밀번호 역할을 해주기 때문에 별도의 비밀번호 
   <img src="https://i.imgur.com/3NJseF5.jpg" width="90%" height="90%" >
 </p>
 
-### 4.3. Create VPC
+### 5.3. Create VPC
  
 VPC 이름과 기타 옵션을 설정한 후 우측 하단에 **VPC 생성** 버튼을 클릭합니다.
 
@@ -322,13 +374,13 @@ VPC 이름과 기타 옵션을 설정한 후 우측 하단에 **VPC 생성** 버
   <img src="https://i.imgur.com/acFYMNb.jpg" width="90%" height="90%" >
 </p>
 
-### 4.4. VPC 생성 완료
+### 5.4. VPC 생성 완료
 
 <p align="center">
   <img src="https://i.imgur.com/wL6a5j6.jpg" width="90%" height="90%" >
 </p>
 
-### 4.5. Create Security Group
+### 5.5. Create Security Group
 
 보안 그룹을 생성하기 위해 대시보드 왼쪽 하단 **네트워크 보안** 메뉴에 있는 **보안 그룹** 메뉴를 선택한 후 새로운 보안 그룹을 생성하기 위해 우측 상단에 있는 **보안 그룹 생성** 버튼을 클릭합니다.
 
@@ -336,7 +388,7 @@ VPC 이름과 기타 옵션을 설정한 후 우측 하단에 **VPC 생성** 버
   <img src="https://i.imgur.com/mnfax9c.jpg" width="90%" height="90%" >
 </p>
 
-### 4.6. Enter Inbound, Outbound rule
+### 5.6. Enter Inbound, Outbound rule
 
 보안 그룹 정보 및 인바운드, 아웃바운드 규칙을 입력한 후 우측 하단에 **보안 그룹 생성** 버튼을 클릭합니다.
 
@@ -344,7 +396,7 @@ VPC 이름과 기타 옵션을 설정한 후 우측 하단에 **VPC 생성** 버
   <img src="https://i.imgur.com/KSKfDUl.jpg" width="90%" height="90%" >
 </p>
 
-### 4.7. Security Group 생성 완료
+### 5.7. Security Group 생성 완료
 
 기본 보안 그룹은 생성되어 있으니 추가적인 보안 그룹 설정이 필요할 경우에만 만들면 됩니다.
 
