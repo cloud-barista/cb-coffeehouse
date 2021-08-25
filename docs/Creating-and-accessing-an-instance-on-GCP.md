@@ -169,7 +169,7 @@ Compute Engine - VM 인스턴스로 이동합니다.
 
 ![image-20210818211854844](https://github.com/eeeclipse/2021CA/blob/main/figure/image-20210818211854844-16292891353561.png?raw=true)
 
-2) ssh키 생성 후 Terminal을 통해 접속하는 방법 [Mac OS 환경]
+2) SSH 키 생성 후 Terminal을 통해 접속하는 방법 [Mac OS 환경]
 
 아래 명령어를 통해 로컬에서 ssh 키를 만든다.
 
