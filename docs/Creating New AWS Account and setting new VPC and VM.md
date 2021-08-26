@@ -78,7 +78,7 @@
   <img src="https://i.imgur.com/5EhEQbX.jpg" width="90%" height="90%" >
 </p>
 
-#### 1.9.1 AWS 지불 카드 등록 오류
+<ins>**참고 1 - AWS 지불 카드 등록 오류가 발생한 경우**</ins>
 
 **루트 사용자**를 체크 후, 로그인 진행
 
@@ -104,7 +104,7 @@
   <img src="https://i.imgur.com/yVolCGP.jpg" width="90%" height="90%" >
 </p>
 
-#### 1.9.2. 1.9.과정을 다시 재시도
+`1.8.` 부터 다시 시도
 
 <p align="center">
   <img src="https://i.imgur.com/5EhEQbX.jpg" width="90%" height="90%" >
@@ -267,9 +267,9 @@ aws ec2 run-instances --image-id %OS_IMAGE% --count 1 --instance-type t2.micro -
 
 ## 4. Access Virtual Machine
 
-### 4.1. DownLoad putty
+### 4.1. Download PuTTY
 
-인스턴스 접속을 위해 putty를 다운로드 하여 실행합니다.
+인스턴스 접속을 위해 PuTTY를 다운로드 하여 실행합니다.
 
 <ins>**다운로드 링크 : https://www.chiark.greenend.org.uk/~sgtatham/putty/latest.html**</ins>
 <ins>자신의 OS 환경에 맞게 msi 파일을 다운로드 받습니다.**</ins>
@@ -278,7 +278,7 @@ aws ec2 run-instances --image-id %OS_IMAGE% --count 1 --instance-type t2.micro -
   <img src="https://i.imgur.com/RMn1MaK.jpg" width="90%" height="90%" >
 </p>
 
-### 4.2. Putty Key Generator를 실행
+### 4.2. PuTTY Key Generator를 실행
 
 PuTTYgen이라는 파일명으로 되어 있습니다.
 생성한 키 페어 파일을 putty에서 사용할 ppk로 변환 과정을 거치기 위함입니다.
