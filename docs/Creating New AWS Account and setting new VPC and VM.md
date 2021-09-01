@@ -14,7 +14,7 @@
 
 ## 1. Create AWS account
 
-### 1.1. [https://aws.amazon.com/ko/]에 접속
+### 1.1. [aws.amazon.com](https://aws.amazon.com/ko/, "Go aws")에 접속
 
 ### 1.2. **콘솔에 로그인** 버튼을 클릭
 
@@ -27,6 +27,11 @@
 <p align="center">
   <img src="https://i.imgur.com/QeLs9fo.jpg" width="90%" height="90%" >
 </p>
+
+  - 기존 계정 닫힘 이슈 : 결제카드 기간 만료 등으로 인해 기존 생성했던 계정이 닫히고 난 뒤 90일이 지나면, 
+  계정은 영구 닫힘 상태가 되어 계정내 모든 정보가 삭제되기에 계정 재활성화가 불가능 
+  -> 계정 재생성 후 사용가능
+  - [AWS 계정 상태에 대한 자세한 내용](https://docs.aws.amazon.com/ko_kr/awsaccountbilling/latest/aboutv2/close-account.html#post-closure-period)
 
 ### 1.4. 아이디, 비밀번호, 계정 이름 입력
 
