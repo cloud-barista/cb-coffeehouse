@@ -1,4 +1,4 @@
-# vmmem 프로세스 메모리 과점유
+# Docker Desktop 활용시 메모리 과점유 이슈 및 해결 방법
 
 
 Cloud-barista를 widnwos 환경에서 작업시 wsl2나 docker desktop을 설치해서 진행하게 됩니다.
