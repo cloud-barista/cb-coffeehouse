@@ -14,7 +14,7 @@
 
 ## 1. Create AWS account
 
-### 1.1. [aws.amazon.com](https://aws.amazon.com/ko/, "Go aws")에 접속
+### 1.1. [aws.amazon.com](https://aws.amazon.com/ko "Go aws")에 접속
 
 ### 1.2. **콘솔에 로그인** 버튼을 클릭
 
