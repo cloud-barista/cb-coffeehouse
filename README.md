@@ -50,7 +50,7 @@ English Coffeehouse (별칭 Penny House)는 1 Penny가격의 커피 한잔을 �
 비고: 본 Repository의 자료는 추후 Cloud-Barista Contributor’s Guide에 활용될 수 있습니다.
 
 
-## Collaborators and contributros
+## Collaborators and contributors
 
 <!-- readme: collaborators,contributors -start -->
 <table>
