@@ -26,7 +26,7 @@ An easy explanation from a beginner's point of view will be of great help to fut
 
 🎁 [Message for future contributors](https://github.com/cb-contributhon/cb-coffeehouse/wiki/Interview-with-Seokho-Son) 💯 😍 ⭐ 👍
 
-## Description/information sharing method (draft)
+## Description/information sharing guide
 
 The method below is somewhat of a guide.
 
