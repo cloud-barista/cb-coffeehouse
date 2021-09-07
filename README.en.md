@@ -1,12 +1,12 @@
+Read this in other languages: [English](https://github.com/cloud-barista/cb-coffeehouse/blob/main/README.en.md) or [한국어](https://github.com/cloud-barista/cb-coffeehouse/blob/main/README.md).
+
 # Cloud-Barista's Coffeehouse
 
 Explanation of different perspectives lowers the entry barriers for future contributors. 😉
 
-Read this in other languages: [English](https://github.com/cloud-barista/cb-coffeehouse/blob/main/README.en.md) or [한국어](https://github.com/cloud-barista/cb-coffeehouse/blob/main/README.md).
-
 > The historian Brian Cowan describes English coffeehouses as "places where people gathered to drink coffee, learn the news of the day, and perhaps to meet with other local residents and discuss matters of mutual concern.“ (See [English coffeehouses in the 17th and 18th centuries](https://en.wikipedia.org/wiki/English_coffeehouses_in_the_17th_and_18th_centuries))
 
-Like English Coffeehouse (aka Penny House), I hope that Cloud-Barista’s Coffeehouse can share various information “easily” 
+Like English Coffeehouse (aka Penny House), I hope you can **easily** share various information in Cloud-Barista’s Coffeehouse.
 
 **<ins>Cloud-Barista community encourages you to freely share information, comments, and opinions. This may be the first step towards getting involved in an open source project. In this process, you could find contribution points in Cloud-Barista's various repositories, and become a Contributor, Reviewer, and Maintainer naturally !**</ins> 😆
 
@@ -24,31 +24,36 @@ We expect lots of explanation/information, including the example below. 😊
 
 An easy explanation from a beginner's point of view will be of great help to future Cloud-Barista Contributors. 👍
 
-🎁 [Message for future contributors](https://github.com/cb-contributhon/cb-coffeehouse/wiki/Interview-with-Seokho-Son) 💯 😍 ⭐ 👍
+🎁 [Message for future contributors](https://github.com/cloud-barista/cb-coffeehouse/wiki/Interview-with-Seokho-Son) 💯 😍 ⭐ 👍
 
 ## Description/information sharing guide
 
 This is a rough guide to mitigating unnecessary redundant contributions.
 
-### Source/script sharing
+### Source code/scripts sharing
   1. Create an issue in the Issues tab (please write the title clearly)
   2. Create a branch
-  3. Create or add source/script to the created branch
-  4. How to use (simple)
+  3. Create or add source/script
+  4. Explain how to use it (simply)
   5. Create a pull request
 
-### Share Description/Information
-  1. Create a page on the wiki
-  2. Save after writing
-  3. Create a link on Wiki Home
+### Description/information sharing
+  1. Create an issue in the Issues tab (please write the title clearly)
+  2. Create a branch
+  3. Create a markdown to the docs directory
+  4. Create a pull request
   
 OR
 
-  1. Write the content in your personal repository and save it.
-  2. Create a link on Wiki Home.
-We will organize/relocate the content according to the shared content.
+  1. Create an issue in the Issues tab (please write the title clearly)
+  2. Create a branch
+  3. Write the content in your personal repository and save it.
+  4. Create a markdown to the docs directory
+  5. Write the content link to the markdown
+  6. Create a pull request
 
-Remark: The materials in this Repository can be used in the future Cloud-Barista Contributor’s Guide.
+NOTE - Markdown files in docs directory will be autoatically synchnoized to Wiki.
+NOTE - The materials in this repository can be used in the future Cloud-Barista Contributor’s Guide.
 
 ## Collaborators and contributors
 
