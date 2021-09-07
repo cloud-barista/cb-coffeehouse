@@ -28,7 +28,7 @@ An easy explanation from a beginner's point of view will be of great help to fut
 
 ## Description/information sharing guide
 
-The method below is somewhat of a guide.
+This is a rough guide to mitigating unnecessary redundant contributions.
 
 ### Source/script sharing
   1. Create an issue in the Issues tab (please write the title clearly)
