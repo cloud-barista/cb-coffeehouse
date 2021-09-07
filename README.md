@@ -1,8 +1,8 @@
+다른 언어로 읽기: [English](https://github.com/cloud-barista/cb-coffeehouse/blob/main/README.en.md) or [한국어](https://github.com/cloud-barista/cb-coffeehouse/blob/main/README.md).
+
 # Cloud-Barista's Coffeehouse
 
 **Explanation of different perspectives lowers the entry barriers for future contributors.** :wink:
-
-다른 언어로 읽기: [English](https://github.com/cloud-barista/cb-coffeehouse/blob/main/README.en.md) or [한국어](https://github.com/cloud-barista/cb-coffeehouse/blob/main/README.md).
 
 > The historian Brian Cowan describes English coffeehouses as *"places where people gathered to drink coffee, learn the news of the day, and perhaps to meet with other local residents and discuss matters of mutual concern.“* (See [English coffeehouses in the 17th and 18th centuries](https://en.wikipedia.org/wiki/English_coffeehouses_in_the_17th_and_18th_centuries))
 
@@ -25,29 +25,32 @@ English Coffeehouse (별칭 Penny House)는 1 Penny가격의 커피 한잔을 �
 
 입문자 시각에서 쉬운 설명은 미래 Cloud-Barista Contributor에게 큰 도움이 될 것 입니다. :thumbsup:
 
-:gift: [미래 컨트리뷰터를 위한 메시지](https://github.com/cb-contributhon/cb-coffeehouse/wiki/Interview-with-Seokho-Son) :100: :heart_eyes: :star: :thumbsup:
+:gift: [미래 컨트리뷰터를 위한 메시지](https://github.com/cloud-barista/cb-coffeehouse/wiki/Interview-with-Seokho-Son) :100: :heart_eyes: :star: :thumbsup:
 
-## 설명/정보 공유 방법(안)
-아래 방법은 어느 정도의 가이드 입니다.
+## 설명/정보 공유 가이드
+이것은 불필요한 중복 기여를 완화하기 위한 대략적인 가이드 입니다.
 
-### 소스/스크립트 공유
+### 소스코드/스크립트 공유
 1. Issues 탭에서 Issue를 생성 (제목을 명확하게 적어주세요.)
 2. Branch를 생성
-3. 생성한 Branch에 소스/스크립트 생성 또는 추가
-4. 사용방법 정리 (간단히)
+3. 소스코드/스크립트 생성 또는 추가
+4. 사용방법 설명 (간단히)
 5. Pull request를 생성
 
 ### 설명/정보 공유
-1. Wiki에 페이지 생성
-2. 내용 작성 후 저장
-3. Wiki Home에 링크 생성
+1. Issues 탭에서 Issue를 생성 (제목을 명확하게 적어주세요.)
+2. Branch를 생성
+3. docs 디렉토리에 Markdown 생성
+4. Pull request를 생성
 
 또는 
 
-1. 개인 Repository에 내용을 작성후 저장한다.
-2. Wiki Home에 링크를 생성한다.
-
-공유된 내용에 따라 컨텐츠를 정리/재배치 하겠습니다.
+1. Issues 탭에서 Issue를 생성 (제목을 명확하게 적어주세요.)
+2. Branch를 생성
+3. 개인 Repository에 콘텐츠 작성후 저장
+4. docs 디렉토리에 Markdown 생성
+5. Markdown에 콘텐츠 링크 기입
+6. Pull request를 생성
 
 비고: 본 Repository의 자료는 추후 Cloud-Barista Contributor’s Guide에 활용될 수 있습니다.
 
