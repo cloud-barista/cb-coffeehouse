@@ -1,18 +1,18 @@
 # Cloud-Barista's Coffeehouse
 
-Explanation of different perspectives lowers the entry barriers for future contributors. ??
+Explanation of different perspectives lowers the entry barriers for future contributors. 😉
 
-Read this in other languages: [English](https://github.com/cloud-barista/cb-coffeehouse/blob/master/README.en.md) or [???](https://github.com/cloud-barista/cb-coffeehouse/blob/master/README.md).
+Read this in other languages: [English](https://github.com/cloud-barista/cb-coffeehouse/blob/master/README.en.md) or [한국어](https://github.com/cloud-barista/cb-coffeehouse/blob/master/README.md).
 
-> The historian Brian Cowan describes English coffeehouses as "places where people gathered to drink coffee, learn the news of the day, and perhaps to meet with other local residents and discuss matters of mutual concern.� (See [English coffeehouses in the 17th and 18th centuries](https://en.wikipedia.org/wiki/English_coffeehouses_in_the_17th_and_18th_centuries))
+> The historian Brian Cowan describes English coffeehouses as "places where people gathered to drink coffee, learn the news of the day, and perhaps to meet with other local residents and discuss matters of mutual concern.“ (See [English coffeehouses in the 17th and 18th centuries](https://en.wikipedia.org/wiki/English_coffeehouses_in_the_17th_and_18th_centuries))
 
 English Coffeehouse (aka Penny House) was a social club where intellectuals shared various opinions while sipping a cup of coffee for 1 penny.
 
-I hope that Cloud-Barista�s Coffeehouse can share various information �easily� like this.
+I hope that Cloud-Barista’s Coffeehouse can share various information “easily” like this.
 
-**<ins>Participate in open source projects by freely sharing information, explanations, and opinions, naturally find contribution points in Cloud-Barista's various Repositories, and become a Contributor, Reviewer, and Maintainer!**</ins> ??
+**<ins>Participate in open source projects by freely sharing information, explanations, and opinions, naturally find contribution points in Cloud-Barista's various Repositories, and become a Contributor, Reviewer, and Maintainer!**</ins> 😆
 
-Expect a lot of clarification/information, including the example below. ??
+Expect a lot of clarification/information, including the example below. 😊
 
 - Cloud or multi-cloud concept
 - Cloud-Barista related terms, technologies, and concepts
@@ -24,9 +24,9 @@ Expect a lot of clarification/information, including the example below. ??
 - Cloud-Barista Issues and Solutions
 - Installation/Deployment Automation Script
 
-An easy explanation from a beginner's point of view will be of great help to future Cloud-Barista Contributors. ??
+An easy explanation from a beginner's point of view will be of great help to future Cloud-Barista Contributors. 👍
 
-?? [Message for future contributors](https://github.com/cb-contributhon/cb-coffeehouse/wiki/Interview-with-Seokho-Son) ?? ?? ? ??
+🎁 [Message for future contributors](https://github.com/cb-contributhon/cb-coffeehouse/wiki/Interview-with-Seokho-Son) 💯 😍 ⭐ 👍
 
 ## Description/information sharing method (draft)
 
@@ -50,7 +50,7 @@ OR
   2. Create a link on Wiki Home.
 We will organize/relocate the content according to the shared content.
 
-Remark: The materials in this Repository can be used in the future Cloud-Barista Contributor�s Guide.
+Remark: The materials in this Repository can be used in the future Cloud-Barista Contributor’s Guide.
 
 ## Collaborators and contributors
 
