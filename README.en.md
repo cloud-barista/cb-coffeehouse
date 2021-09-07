@@ -6,9 +6,7 @@ Read this in other languages: [English](https://github.com/cloud-barista/cb-coff
 
 > The historian Brian Cowan describes English coffeehouses as "places where people gathered to drink coffee, learn the news of the day, and perhaps to meet with other local residents and discuss matters of mutual concern.“ (See [English coffeehouses in the 17th and 18th centuries](https://en.wikipedia.org/wiki/English_coffeehouses_in_the_17th_and_18th_centuries))
 
-English Coffeehouse (aka Penny House) was a social club where intellectuals shared various opinions while sipping a cup of coffee for 1 penny.
-
-I hope that Cloud-Barista’s Coffeehouse can share various information “easily” like this.
+Like English Coffeehouse (aka Penny House), I hope that Cloud-Barista’s Coffeehouse can share various information “easily” 
 
 **<ins>Participate in open source projects by freely sharing information, explanations, and opinions, naturally find contribution points in Cloud-Barista's various Repositories, and become a Contributor, Reviewer, and Maintainer!**</ins> 😆
 
