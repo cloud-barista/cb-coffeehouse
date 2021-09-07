@@ -2,7 +2,7 @@
 
 **Explanation of different perspectives lowers the entry barriers for future contributors.** :wink:
 
-?? ??? ??: [English](https://github.com/cloud-barista/cb-coffeehouse/blob/master/README.en.md) or [???](https://github.com/cloud-barista/cb-coffeehouse/blob/master/README.md).
+다른 언어로 읽기: [English](https://github.com/cloud-barista/cb-coffeehouse/blob/master/README.en.md) or [한국어](https://github.com/cloud-barista/cb-coffeehouse/blob/master/README.md).
 
 > The historian Brian Cowan describes English coffeehouses as *"places where people gathered to drink coffee, learn the news of the day, and perhaps to meet with other local residents and discuss matters of mutual concern.“* (See [English coffeehouses in the 17th and 18th centuries](https://en.wikipedia.org/wiki/English_coffeehouses_in_the_17th_and_18th_centuries))
 
