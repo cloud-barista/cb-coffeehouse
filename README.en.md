@@ -12,15 +12,15 @@ Like English Coffeehouse (aka Penny House), I hope that Cloud-Barista’s Coffee
 
 We expect lots of explanation/information, including the example below. 😊
 
-- Cloud or multi-cloud concept
+- Cloud or Multi-cloud concept
 - Cloud-Barista related terms, technologies, and concepts
   - Microservice architecture (MSA)
   - gRPC (Remote Procedure Call)
   - GitHub Container Registry (GHCR)
   - GitHub Actions
   - Golang CI/CD (Continuous Integration/Continuous Delivery)
-- Cloud-Barista Issues and Solutions
-- Installation/Deployment Automation Script
+- Cloud-Barista issues and those solutions
+- Installation/deployment automation scripts
 
 An easy explanation from a beginner's point of view will be of great help to future Cloud-Barista Contributors. 👍
 
