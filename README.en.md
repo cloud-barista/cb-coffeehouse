@@ -8,7 +8,7 @@ Read this in other languages: [English](https://github.com/cloud-barista/cb-coff
 
 Like English Coffeehouse (aka Penny House), I hope that Cloud-Barista’s Coffeehouse can share various information “easily” 
 
-**<ins>Participate in open source projects by freely sharing information, explanations, and opinions, naturally find contribution points in Cloud-Barista's various Repositories, and become a Contributor, Reviewer, and Maintainer!**</ins> 😆
+**<ins>Cloud-Barista community encourages you to freely share information, comments, and opinions. This may be the first step towards getting involved in an open source project. In this process, you could find contribution points in Cloud-Barista's various repositories, and become a Contributor, Reviewer, and Maintainer naturally !**</ins> 😆
 
 Expect a lot of clarification/information, including the example below. 😊
 
