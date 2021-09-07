@@ -10,7 +10,7 @@ Like English Coffeehouse (aka Penny House), I hope that Cloud-Barista’s Coffee
 
 **<ins>Cloud-Barista community encourages you to freely share information, comments, and opinions. This may be the first step towards getting involved in an open source project. In this process, you could find contribution points in Cloud-Barista's various repositories, and become a Contributor, Reviewer, and Maintainer naturally !**</ins> 😆
 
-Expect a lot of clarification/information, including the example below. 😊
+We expect lots of explanation/information, including the example below. 😊
 
 - Cloud or multi-cloud concept
 - Cloud-Barista related terms, technologies, and concepts
