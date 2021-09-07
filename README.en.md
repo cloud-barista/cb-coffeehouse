@@ -1,56 +1,56 @@
 # Cloud-Barista's Coffeehouse
 
-**Explanation of different perspectives lowers the entry barriers for future contributors.** :wink:
+Explanation of different perspectives lowers the entry barriers for future contributors. ??
 
-?? ??? ??: [English](https://github.com/cloud-barista/cb-coffeehouse/blob/master/README.en.md) or [???](https://github.com/cloud-barista/cb-coffeehouse/blob/master/README.md).
+Read this in other languages: [English](https://github.com/cloud-barista/cb-coffeehouse/blob/master/README.en.md) or [???](https://github.com/cloud-barista/cb-coffeehouse/blob/master/README.md).
 
-> The historian Brian Cowan describes English coffeehouses as *"places where people gathered to drink coffee, learn the news of the day, and perhaps to meet with other local residents and discuss matters of mutual concern.“* (See [English coffeehouses in the 17th and 18th centuries](https://en.wikipedia.org/wiki/English_coffeehouses_in_the_17th_and_18th_centuries))
+> The historian Brian Cowan describes English coffeehouses as "places where people gathered to drink coffee, learn the news of the day, and perhaps to meet with other local residents and discuss matters of mutual concern.� (See [English coffeehouses in the 17th and 18th centuries](https://en.wikipedia.org/wiki/English_coffeehouses_in_the_17th_and_18th_centuries))
 
-English Coffeehouse (별칭 Penny House)는 1 Penny가격의 커피 한잔을 마시며 지식인들이 다양한 의견을 공유하는 사교 클럽이었습니다.
+English Coffeehouse (aka Penny House) was a social club where intellectuals shared various opinions while sipping a cup of coffee for 1 penny.
 
-이처럼 Cloud-Barista’s Coffeehouse에서 다양한 정보를 **"편하게"** 공유하셨으면 좋겠습니다.
+I hope that Cloud-Barista�s Coffeehouse can share various information �easily� like this.
 
-**<ins>자유롭게 정보, 설명, 의견을 공유하시면서 오픈소스 프로젝트에 참여하시고, 자연스럽게 Cloud-Barista의 여러 Repository에서 기여 포인트를 찾으시며, Contributor, Reviewer, Maintainer로 거듭나십시오!</ins>** :satisfied:
+**<ins>Participate in open source projects by freely sharing information, explanations, and opinions, naturally find contribution points in Cloud-Barista's various Repositories, and become a Contributor, Reviewer, and Maintainer!**</ins> ??
 
-아래 예시를 포함하여 많은 설명/정보를 기대합니다. :blush:
-- 클라우드 또는 멀티 클라우드 개념
-- Cloud-Barista 관련 용어, 기술, 개념 정리
+Expect a lot of clarification/information, including the example below. ??
+
+- Cloud or multi-cloud concept
+- Cloud-Barista related terms, technologies, and concepts
   - Microservice architecture (MSA)
   - gRPC (Remote Procedure Call)
   - GitHub Container Registry (GHCR)
   - GitHub Actions
   - Golang CI/CD (Continuous Integration/Continuous Delivery)
-- Cloud-Barista 이슈 및 해결 방안
-- 설치/배포 자동화 Script
+- Cloud-Barista Issues and Solutions
+- Installation/Deployment Automation Script
 
-입문자 시각에서 쉬운 설명은 미래 Cloud-Barista Contributor에게 큰 도움이 될 것 입니다. :thumbsup:
+An easy explanation from a beginner's point of view will be of great help to future Cloud-Barista Contributors. ??
 
-:gift: [미래 컨트리뷰터를 위한 메시지](https://github.com/cb-contributhon/cb-coffeehouse/wiki/Interview-with-Seokho-Son) :100: :heart_eyes: :star: :thumbsup:
+?? [Message for future contributors](https://github.com/cb-contributhon/cb-coffeehouse/wiki/Interview-with-Seokho-Son) ?? ?? ? ??
 
-## 설명/정보 공유 방법(안)
-아래 방법은 어느 정도의 가이드 입니다.
+## Description/information sharing method (draft)
 
-### 소스/스크립트 공유
-1. Issues 탭에서 Issue를 생성 (제목을 명확하게 적어주세요.)
-2. Branch를 생성
-3. 생성한 Branch에 소스/스크립트 생성 또는 추가
-4. 사용방법 정리 (간단히)
-5. Pull request를 생성
+The method below is somewhat of a guide.
 
-### 설명/정보 공유
-1. Wiki에 페이지 생성
-2. 내용 작성 후 저장
-3. Wiki Home에 링크 생성
+### Source/script sharing
+  1. Create an issue in the Issues tab (please write the title clearly)
+  2. Create a branch
+  3. Create or add source/script to the created branch
+  4. How to use (simple)
+  5. Create a pull request
 
-또는 
+### Share Description/Information
+  1. Create a page on the wiki
+  2. Save after writing
+  3. Create a link on Wiki Home
+  
+OR
 
-1. 개인 Repository에 내용을 작성후 저장한다.
-2. Wiki Home에 링크를 생성한다.
+  1. Write the content in your personal repository and save it.
+  2. Create a link on Wiki Home.
+We will organize/relocate the content according to the shared content.
 
-공유된 내용에 따라 컨텐츠를 정리/재배치 하겠습니다.
-
-비고: 본 Repository의 자료는 추후 Cloud-Barista Contributor’s Guide에 활용될 수 있습니다.
-
+Remark: The materials in this Repository can be used in the future Cloud-Barista Contributor�s Guide.
 
 ## Collaborators and contributors
 
@@ -68,7 +68,7 @@ English Coffeehouse (별칭 Penny House)는 1 Penny가격의 커피 한잔을 �
         <a href="https://github.com/leedohun">
             <img src="https://avatars.githubusercontent.com/u/33706689?v=4" width="100;" alt="leedohun"/>
             <br />
-            <sub><b>K039_이도훈</b></sub>
+            <sub><b>K039_???</b></sub>
         </a>
     </td>
     <td align="center">
