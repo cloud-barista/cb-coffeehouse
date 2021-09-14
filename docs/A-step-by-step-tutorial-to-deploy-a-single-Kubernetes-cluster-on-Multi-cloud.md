@@ -143,10 +143,14 @@ And also, replace `[PUBLIC_IP_OF_NODE_2]` with a public IP of Node 2.
 #### 1.3.4. Open another terminal of Node 2
 
 #### 1.3.5. Check if it is running
+[By CLI]
 ```bash
 cd ~/etcd
 ./bin/etcdctl version
 ```
+
+[By ETCD Manager]
+Link: [ETCD Manager](https://www.electronjs.org/apps/etcd-manager): Modern, efficient and multi-platform GUI for ETCD
 
 
 ### 1.4. Deploy cb-network controller and AdminWeb in Node 2
@@ -168,8 +172,8 @@ git checkout tags/v0.0.5 -b v0.0.5
 ##### 2) Copy templates
 ```bash
 cd ${HOME}/cb-larva/poc-cb-net/configs
-cp template\)config.yaml config.yaml
-cp template\)log_conf.yaml log_conf.yaml
+cp template-config.yaml config.yaml
+cp template-log_conf.yaml log_conf.yaml
 ```
 
 ##### 3) Replace "xxx" with your values on `config.yaml`
@@ -178,7 +182,7 @@ cp template\)log_conf.yaml log_conf.yaml
 etcd_cluster:
 endpoints: [ "xxx.xxx.xxx:xxxx" ]
 
-# configs for the cb-network controller as follows:
+# configs for the cb-network AdminWeb as follows:
 admin_web:
   host: "xxx" # e.g.) "localhost"
   port: "xxx" # e.g.) "9999"
@@ -233,6 +237,11 @@ sudo ./admin-web
 http://[YOUR_PUBLIC_IP_ADDRESS]:[YOUR_ADMIN_WEB_PORT]
 ```
 
+<p align="center">
+  <img src="https://user-images.githubusercontent.com/7975459/133242011-728fd427-488a-48f5-8870-e197b7e9fdee.png" width="90%" height="90%" >
+</p>
+
+
 
 ## 2. Prepare instances across Multi-clouds in Node 1
 
@@ -274,11 +283,11 @@ cp credentials.conf.example credentials.conf
 vim credentials.conf
 ```
 
-#### 2.1.2. Prepare a specification to create an MCIS
+#### 2.1.2. Prepare a test configuration to create an MCIS
 
 <ins>**Please, take a look [What is CB-Tumblebug's testSet ?!](https://github.com/cloud-barista/cb-coffeehouse/blob/main/docs/What%20is%20CB-Tumblebug's%20testSet.env.md)**</ins>
 
-From now on, I'm going to create my specification as follows:
+From now on, I'm going to create my test configuration as follows:
 - 1 instance, ap-southeast-1 region, Amazon Web Services (AWS),
 - 1 instance, asia-east1 region, Google Cloud Platform (GCP), and
 - 1 instance, West US region, Microsoft Azure (MS Azure).
@@ -527,12 +536,10 @@ cd ${HOME}/go/src/github.com/cloud-barista/cb-tumblebug/src/testclient/scripts/s
 Thanks to CB-Spider and CB-Tumblebug :pray:, it's possible to test all at once, such as "cloud information registration", "namespace creation", "Multi-Cloud Infra Resource (MCIR) generation", and "Multi-Cloud Infra Service (MCIS) generation".
 
 Meaning:
-- `all`: all specified CSPs
-- `1`: no meaning here (it will be updated)
-- `kimyk01`: a developer name (recommend you to add an incremental number for testing)
-- `../testsetAMG.env`: a specification for this trial
+- `-n`: an option for a developer name (recommend you to add an incremental number for testing)
+- `-f`: an option for the test configuration for this trial
 ```bash
-./create-all.sh -n kimyk -f ../testSetAMG.env
+./create-all.sh -n kimyk01 -f ../testSetAMG.env
 ```
 
 ##### 3) Check if the instances are created properly
@@ -552,7 +559,12 @@ NOTE - A Cloud Adpative Network (CLADNet) is an overlay network for multi-cloud.
 ```
 http://[YOUR_PUBLIC_IP_ADDRESS]:[YOUR_ADMIN_WEB_PORT]
 ```
+
 ##### 2) Go to the section, `Create your CLADNet: Cloud Adaptive Network`
+<p align="center">
+  <img src="https://user-images.githubusercontent.com/7975459/133243120-8d606bf3-d635-4912-8071-ee62ac4a8c66.png" width="70%" height="70%" >
+</p>
+
 ##### 3) Create a CLADNet with a private network CIDR block
 NOTE - CIDR: Classless Inter-Domain Routing
 
@@ -561,6 +573,7 @@ You can assign a private network CIDR block for the CLADNet as you want.
 For example: 
 - Network(IPv4 CIDR block): 192.168.10.0/26 (It should be in range of private network.)
 - Description: MyCLADNet01
+
 ##### 4) Get a CLADNet ID
 
 
@@ -621,7 +634,6 @@ for row in $(echo "${VMARRAY}" | jq -r '.[] | @base64'); do
 
     getCloudIndexGeneral $cloudType
 
-#    ChangeHostCMD="sudo hostnamectl set-hostname ${GeneralINDEX}-${connectionName}-${publicIP}; sudo hostname -f"
     BuildAndRunCBNetworkAgentCMD="wget https://raw.githubusercontent.com/cloud-barista/cb-larva/main/poc-cb-net/scripts/build-and-run-agent-in-the-background.sh -O ~/build-and-run-agent-in-the-background.sh; chmod +x ~/build-and-run-agent-in-the-background.sh; ~/build-and-run-agent-in-the-background.sh '${ETCD_HOSTS}' ${CLADNET_ID} ${VMID}"
     echo "CMD: ${BuildAndRunCBNetworkAgentCMD}"
 
@@ -657,7 +669,9 @@ chmod 775 deploy-cb-network-agent-in-background.sh
 ```
 
 #### 2.2.3. Deploy cb-network agent to instances in an MCIS
-Modify `xxx.xxx.xxx.xxx`(The endpoint of Node 2) and `xxxxxxxxxxxxxxxxxxxxx` (CLADNet ID) below
+- Assign your the endpoint of Node 2 to `xxx.xxx.xxx.xxx`
+- Assign CLADNet ID you have created in the section 2.2.1 to `xxxxxxxxxxxxxxxxxxxxx`
+
 ```bash
 cd ${HOME}/go/src/github.com/cloud-barista/cb-tumblebug/src/testclient/scripts/sequentialFullTest
 
@@ -666,12 +680,22 @@ cd ${HOME}/go/src/github.com/cloud-barista/cb-tumblebug/src/testclient/scripts/s
 
 #### 2.2.4. Check if the overlay network is configured or not on the cb-network AdminWeb
 ##### 1) Go to the section `The CLADNet status: connectivity and latency`
+
+<p align="center">
+  <img src="https://user-images.githubusercontent.com/7975459/133244329-36b5b01c-ca34-4152-b02b-bf02fa1f8553.png" width="70%" height="70%" >
+</p>
+
 ##### 2) Select the CLADNet ID and set the trial count
 ##### 3) Click execute button
 ##### 4) Obtain and check the status result
 
 
 ## 3. Deploy a single Kubernetes cluster across Multi-clouds
+
+<p align="center">
+  <img src="https://user-images.githubusercontent.com/7975459/127101689-333a1355-c01f-41a7-a879-4310cdc105bc.png" width="90%" height="90%" >
+</p>
+
 <ins>**As a user**</ins>, all scripts in `~/cb-larva/scripts/Kubernetes` directory can be run.
 <ins>1 time rebooting will be expected.</ins>
 
