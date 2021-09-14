@@ -23,8 +23,8 @@ The figure below depicts the associated Cloud-Barista components from the bottom
 ## 1. Deploy Cloud-Barista's components
 
 At lease 2 nodes are needed. I newly created 2 instances (nodes) on Amazon Web Services (AWS), and tried this tutorial to make sure it.   
-In Node 1, a CB-Spider server (v0.3.19) and a CB-tumblebug server (v0.3.12) are deployed.   
-In Node 2, a cb-network controller (v0.0.4) and a standalone cluster for the distributed key-value store are deployed.   
+In Node 1, a CB-Spider server (v0.4.9) and a CB-tumblebug server (v0.4.6) are deployed.   
+In Node 2, a cb-network controller (v0.0.5) and a standalone cluster for the distributed key-value store are deployed.   
 NOTE - It is possible to deploy the cb-network controller and the standalone cluster respectively.
 
 <p align="center">
@@ -50,9 +50,12 @@ wget https://raw.githubusercontent.com/hermitkim1/scripts4Ubuntu/master/2.Docker
 source 2.Docker-installation.sh
 ```
 
-#### 1.1.2. Run a container for CB-Spider server 0.3.19
+#### 1.1.2. Run a container for CB-Spider server
+NOTE - You can assign the version of CB-Spider you want.   
+<ins>NOTE - If you have plan to use CB-Tumblebug, **I'd like you to to check CB-Tumblebug pre-release note in order to check version compatibility between CB-Spider and CB-Tumblebug.**</ins>
+
 ```bash
-sudo docker run --rm -p 1024:1024 -p 2048:2048 -v ${HOME}/cloud-barista/cb-spider/meta_db:/root/go/src/github.com/cloud-barista/cb-spider/meta_db --name cb-spider cloudbaristaorg/cb-spider:0.3.19
+sudo docker run --rm -p 1024:1024 -p 2048:2048 -v ${HOME}/cloud-barista/cb-spider/meta_db:/root/go/src/github.com/cloud-barista/cb-spider/meta_db --name cb-spider cloudbaristaorg/cb-spider:0.4.9
 ```
 
 ### 1.2. Deploy a CB-Tumblebug server in Node 1
@@ -82,11 +85,12 @@ wget https://raw.githubusercontent.com/cloud-barista/cb-coffeehouse/master/scrip
 source go-installation.sh
 ```
 
-#### 1.2.2. Download CB-Tumblebug source code and checkout 0.3.12
+#### 1.2.2. Download CB-Tumblebug source code and checkout
+NOTE - You can assign the version of CB-Tumblebug you want.
 ```bash
 git clone https://github.com/cloud-barista/cb-tumblebug.git ${HOME}/go/src/github.com/cloud-barista/cb-tumblebug
 cd ${HOME}/go/src/github.com/cloud-barista/cb-tumblebug
-git checkout tags/v0.3.12 -b v0.3.12
+git checkout tags/v0.4.6 -b v0.4.6
 ```    
 
 #### 1.2.3. Setup environment variables
@@ -95,13 +99,13 @@ cd ${HOME}/go/src/github.com/cloud-barista/cb-tumblebug/conf
 source ./setup.env
 ```
 
-#### 1.2.4. Build a CB-Tumblebug server 0.3.12
+#### 1.2.4. Build a CB-Tumblebug server
 ```bash
 cd ${HOME}/go/src/github.com/cloud-barista/cb-tumblebug/src
 make
 ```
 
-#### 1.2.5. Run a CB-Tumblebug server 0.3.12
+#### 1.2.5. Run a CB-Tumblebug server
 ```bash
 make run
 ```
@@ -145,30 +149,30 @@ cd ~/etcd
 ```
 
 
-### 1.4. Deploy cb-network controller in Node 2
+### 1.4. Deploy cb-network controller and AdminWeb in Node 2
 
 CB-Larva tries to provide an overlay network for virtual machines (VMs) across Multi-clouds.
 
 **<ins> See more ideas :arrow_forward: [CB-Larva README](https://github.com/cloud-barista/cb-larva)</ins>**
 
-#### 1.4.1. Download CB-Larva source code and checkout 0.0.4
+#### 1.4.1. Pre-requisites
+##### 1) Download CB-Larva source code and checkout
+NOTE - I'd like you to use the specified version of CB-Larva because it is under-study.
 ```bash
 cd ${HOME}
 git clone https://github.com/cloud-barista/cb-larva.git
 cd ${HOME}/cb-larva
-git checkout tags/v0.0.4 -b v0.0.4
+git checkout tags/v0.0.5 -b v0.0.5
 ```
 
-#### 1.4.2. Copy and setup configurations ONLY for the cb-network controller
-
-##### 1) Copy templates
+##### 2) Copy templates
 ```bash
 cd ${HOME}/cb-larva/poc-cb-net/configs
 cp template\)config.yaml config.yaml
 cp template\)log_conf.yaml log_conf.yaml
 ```
 
-##### 2) Replace "xxx" with your values on `config.yaml`
+##### 3) Replace "xxx" with your values on `config.yaml`
 ```yaml
 # configs for the both cb-network controller and agent as follows:
 etcd_cluster:
@@ -187,7 +191,7 @@ demo_app:
   is_run: false
 ```
 
-##### 3) (Be able to) use log_conf.yaml as it is
+##### 4) (Be able to) use log_conf.yaml as it is
 ```yaml
 #### Config for CB-Log Lib. ####
 
@@ -210,11 +214,18 @@ logfileinfo:
   maxage: 31 # days
 ```
 
-#### 1.4.3. Run cb-network controller (currenly server)
+#### 1.4.2. Run cb-network controller
 ```bash
-cd ${HOME}/cb-larva/poc-cb-net/cmd/server
-go build server.go
-sudo ./server
+cd ${HOME}/cb-larva/poc-cb-net/cmd/controller
+go build controller.go
+sudo ./controller
+```
+
+#### 1.4.3. Run cb-network AdminWeb
+```bash
+cd ${HOME}/cb-larva/poc-cb-net/cmd/admin-web
+go build admin-web.go
+sudo ./admin-web
 ```
 
 #### 1.4.4. Visit AdminWeb
@@ -228,12 +239,12 @@ http://[YOUR_PUBLIC_IP_ADDRESS]:[YOUR_ADMIN_WEB_PORT]
 Based on Node 1 and 2, a user can:
 - create a Multi-Cloud Infra Service (MCIS: a group of instances) by CB-Tumblebug server,
 - deploy the cb-network agent on the instances by CB-Tumblebug server, and
-- create a Cloud Adpative Network (CLADNet: an overlay network for multi-cloud) on AdminWeb of cb-network system.
+- create a Cloud Adpative Network (CLADNet: an overlay network for multi-cloud) on cb-network AdminWeb.
 
 The figure below depicts it.
 
 <p align="center">
-  <img src="https://user-images.githubusercontent.com/7975459/128871704-76c6d12f-9c6c-4282-997d-4aa6105f9a0a.png" width="90%" height="90%" >
+  <img src="https://user-images.githubusercontent.com/7975459/133212566-07974e1a-4e93-4ab1-9117-9da8e7fc11d7.png" width="90%" height="90%" >
 </p>
 
 ### 2.1. Create instances by CB-Tumblebug
@@ -521,7 +532,7 @@ Meaning:
 - `kimyk01`: a developer name (recommend you to add an incremental number for testing)
 - `../testsetAMG.env`: a specification for this trial
 ```bash
-./create-all.sh all 1 kimyk01 ../testSetAMG.env
+./create-all.sh -n kimyk -f ../testSetAMG.env
 ```
 
 ##### 3) Check if the instances are created properly
@@ -564,6 +575,10 @@ For example:
 ```bash
 #!/bin/bash
 
+echo "####################################################################"
+echo "## Command (SSH) to MCIS to run cb-network agent"
+echo "####################################################################"a
+
 # Set duration timer to 0
 SECONDS=0
 
@@ -571,39 +586,11 @@ SECONDS=0
 echo "[Check jq package (if not, install)]"
 if ! dpkg-query -W -f='${Status}' jq | grep "ok installed"; then sudo apt install -y jq; fi
 
+source ../init.sh
 
-# tesetSet.env is default test set.
-# If the 4th parameter exists, use the test set.
-# Check if the one of the test sets exists or not
-TestSetFile=${4:-../testSet.env}
-if [ ! -f "$TestSetFile" ]; then
-        echo "$TestSetFile does not exist."
-        exit
-fi
-source $TestSetFile
-source ../conf.env
+ETCD_HOSTS=${OPTION01}
+CLADNET_ID=${OPTION02}
 
-echo "####################################################################"
-echo "## Command (SSH) to MCIS to run cb-network agent"
-echo "####################################################################"
-
-CSP=${1}
-REGION=${2:-1}
-POSTFIX=${3:-developer}
-ETCD_HOSTS=${5:-no}
-CLADNET_ID=${6:-no}
-
-#if [ "${ETCD_HOSTS}" == "no" ]; then
-#        echo "ETCD_HOSTS parameter is needed."
-#        exit
-#fi
-
-#if [ "${CLADNET_ID}" == "no" ]; then
-#        echo "CLADNET_ID paramater is needed."
-#        exit
-#fi
-
-source ../common-functions.sh
 getCloudIndex $CSP
 
 MCISID=${CONN_CONFIG[$INDEX,$REGION]}-${POSTFIX}
@@ -637,26 +624,23 @@ for row in $(echo "${VMARRAY}" | jq -r '.[] | @base64'); do
 #    ChangeHostCMD="sudo hostnamectl set-hostname ${GeneralINDEX}-${connectionName}-${publicIP}; sudo hostname -f"
     BuildAndRunCBNetworkAgentCMD="wget https://raw.githubusercontent.com/cloud-barista/cb-larva/main/poc-cb-net/scripts/build-and-run-agent-in-the-background.sh -O ~/build-and-run-agent-in-the-background.sh; chmod +x ~/build-and-run-agent-in-the-background.sh; ~/build-and-run-agent-in-the-background.sh '${ETCD_HOSTS}' ${CLADNET_ID} ${VMID}"
     echo "CMD: ${BuildAndRunCBNetworkAgentCMD}"
-    ./command-mcis-vm-custom.sh "${1}" "${2}" "${3}" "${4}" "${VMID}" "${BuildAndRunCBNetworkAgentCMD}" &
-#VAR1=$(
-#       curl -H "${AUTH}" -sX POST http://$TumblebugServer/tumblebug/ns/$NSID/cmd/mcis/$MCISID/vm/$VMID -H 'Content-Type: application/json' -d @- <<EOF
-#       {
-#       "command"        : "${BuildAndRunCBNetworkAgentCMD}"
-#       }
-#EOF
-#)
-#echo "${VAR1}" | jq ''
+
+    VAR1=$(curl -H "${AUTH}" -sX POST http://$TumblebugServer/tumblebug/ns/$NSID/cmd/mcis/$MCISID/vm/$VMID -H 'Content-Type: application/json' -d @- <<EOF
+        {
+        "command"        : "${BuildAndRunCBNetworkAgentCMD}"
+        }
+EOF
+    )
+    echo "${VAR1}" | jq ''
+    echo ""
 
 done
-wait
 
 echo "Done!"
 duration=$SECONDS
 
 printElapsed $@
 echo ""
-
-./command-mcis.sh "$@"
 
 ```
 </p>
@@ -673,27 +657,25 @@ chmod 775 deploy-cb-network-agent-in-background.sh
 ```
 
 #### 2.2.3. Deploy cb-network agent to instances in an MCIS
-```bash
-cd ${HOME}/go/src/github.com/cloud-barista/cb-tumblebug/src/testclient/scripts/sequentialFullTest
-```
-
 Modify `xxx.xxx.xxx.xxx`(The endpoint of Node 2) and `xxxxxxxxxxxxxxxxxxxxx` (CLADNet ID) below
 ```bash
+cd ${HOME}/go/src/github.com/cloud-barista/cb-tumblebug/src/testclient/scripts/sequentialFullTest
+
 ./deploy-cb-network-agent-in-background.sh all 1 kimyk01 ../testSetAMG.env '[\"xxx.xxx.xxx.xxx:2379\"]' xxxxxxxxxxxxxxxxxxxxx
 ```
 
-#### 2.2.4. Check if the overlay network is configured or not on the AdminWeb
+#### 2.2.4. Check if the overlay network is configured or not on the cb-network AdminWeb
 ##### 1) Go to the section `The CLADNet status: connectivity and latency`
 ##### 2) Select the CLADNet ID and set the trial count
-##### 3) Click execute button and earn the status result
-
+##### 3) Click execute button
+##### 4) Obtain and check the status result
 
 
 ## 3. Deploy a single Kubernetes cluster across Multi-clouds
 <ins>**As a user**</ins>, all scripts in `~/cb-larva/scripts/Kubernetes` directory can be run.
 <ins>1 time rebooting will be expected.</ins>
 
-Currently, all steps below can be done <ins>**manually**</ins> :sweat_smile: :pray:
+<ins>Currently, all steps below can be done **manually**</ins> :sweat_smile: :pray:
 
 ### 3.1. Generate SSH keys of all instances by CB-Tumblebug
 ##### 1) Go to the CB-Tumblebug's script directory in Node 1
@@ -709,7 +691,7 @@ You could see somthing like `all 1 kimyk01 ../testSetAMG.env`. It is important.
 
 ##### 3) Generates SSH keys
 ```
-./gen-sshKey.sh all 1 kimyk01 ../testSetAMG.env
+./gen-sshKey.sh -n kimyk01 -f ../testSetAMG.env
 ```
 
 ### 3.2. Setup environment and tools to all nodes for Kubernetes cluster
@@ -738,7 +720,7 @@ source 2.setup-K8s-master.sh
 ```
 
 ##### 3) Copy a join command for the next step
-For example:
+As an example:
 ```
 kubeadm join 192.168.10.2:6443 --token 10no39.n7tziepyfbsfawgz \
         --discovery-token-ca-cert-hash sha256:b56ed81714c7395cc374644415a428f4ac7ce73863530a4c1e61ff829c30b805
@@ -748,7 +730,7 @@ kubeadm join 192.168.10.2:6443 --token 10no39.n7tziepyfbsfawgz \
 ##### 1) Access to a Kubernetes node
 ##### 2) Execute the join command
 NOTE - `sudo` is required.
-##### 3) Repeat 1) - 2) on the other nodes
+##### 3) Repeat 1) - 2) on the other Kubernetes nodes
 
 ### 3.5. Check the cluster status on the Kubernetes master
 ```
