@@ -23,7 +23,7 @@ The figure below depicts the associated Cloud-Barista components from the bottom
 ## 1. Deploy Cloud-Barista's components
 
 At lease 2 nodes are needed. I newly created 2 instances (nodes) on Amazon Web Services (AWS), and tried this tutorial to make sure it.   
-In Node 1, a CB-Spider server (v0.4.9) and a CB-tumblebug server (v0.4.6) are deployed.   
+In Node 1, a CB-Spider server (v0.4.9) and a CB-tumblebug server (v0.4.7) are deployed.   
 In Node 2, a cb-network controller (v0.0.5) and a standalone cluster for the distributed key-value store are deployed.   
 NOTE - It is possible to deploy the cb-network controller and the standalone cluster respectively.
 
@@ -90,7 +90,7 @@ NOTE - You can assign the version of CB-Tumblebug you want.
 ```bash
 git clone https://github.com/cloud-barista/cb-tumblebug.git ${HOME}/go/src/github.com/cloud-barista/cb-tumblebug
 cd ${HOME}/go/src/github.com/cloud-barista/cb-tumblebug
-git checkout tags/v0.4.6 -b v0.4.6
+git checkout tags/v0.4.7 -b v0.4.7
 ```    
 
 #### 1.2.3. Setup environment variables
