@@ -28,7 +28,7 @@ In Node 2, a cb-network controller (v0.0.5) and a standalone cluster for the dis
 NOTE - It is possible to deploy the cb-network controller and the standalone cluster respectively.
 
 <p align="center">
-  <img src="https://user-images.githubusercontent.com/7975459/128865365-41ab514f-ad9c-426d-a3dd-18d74850059f.png" width="90%" height="90%" >
+  <img src="https://user-images.githubusercontent.com/7975459/133385648-9fde4800-8006-4026-807f-47b2368d7c6d.png" width="90%" height="90%" >
 </p>
 
 ### 1.1. Deploy a CB-Spider server in Node 1
