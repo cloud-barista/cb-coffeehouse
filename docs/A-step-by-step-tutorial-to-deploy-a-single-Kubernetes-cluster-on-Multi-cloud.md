@@ -675,7 +675,7 @@ chmod 775 deploy-cb-network-agent-in-background.sh
 ```bash
 cd ${HOME}/go/src/github.com/cloud-barista/cb-tumblebug/src/testclient/scripts/sequentialFullTest
 
-./deploy-cb-network-agent-in-background.sh all 1 kimyk01 ../testSetAMG.env '[\"xxx.xxx.xxx.xxx:2379\"]' xxxxxxxxxxxxxxxxxxxxx
+./deploy-cb-network-agent-in-background.sh -n kimyk01 -f ../testSetAMG.env -x '[\"xxx.xxx.xxx.xxx:2379\"]' -y xxxxxxxxxxxxxxxxxxxxx
 ```
 
 #### 2.2.4. Check if the overlay network is configured or not on the cb-network AdminWeb
