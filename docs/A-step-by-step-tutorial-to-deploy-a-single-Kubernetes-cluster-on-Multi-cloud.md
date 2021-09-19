@@ -22,7 +22,7 @@ The figure below depicts the associated Cloud-Barista components from the bottom
 
 ## 1. Deploy Cloud-Barista's components
 
-At lease 2 nodes are needed. I newly created 2 instances (nodes) on Amazon Web Services (AWS), and tried this tutorial to make sure it.   
+At least 2 nodes are needed. I newly created 2 instances (nodes) on Amazon Web Services (AWS), and tried this tutorial to make sure it.   
 In Node 1, a CB-Spider server (v0.4.9) and a CB-tumblebug server (v0.4.7) are deployed.   
 In Node 2, a cb-network controller (v0.0.5) and a standalone cluster for the distributed key-value store are deployed.   
 NOTE - It is possible to deploy the cb-network controller and the standalone cluster respectively.
