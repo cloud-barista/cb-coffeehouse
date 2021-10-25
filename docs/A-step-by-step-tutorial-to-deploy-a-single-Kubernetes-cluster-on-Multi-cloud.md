@@ -23,15 +23,23 @@ The figure below depicts the associated Cloud-Barista components from the bottom
 ## 1. Deploy Cloud-Barista's components
 
 At least 2 nodes are needed. I newly created 2 instances (nodes) on Amazon Web Services (AWS), and tried this tutorial to make sure it.   
-In Node 1, a CB-Spider server (v0.4.9) and a CB-tumblebug server (v0.4.7) are deployed.   
-In Node 2, a cb-network controller (v0.0.5) and a standalone cluster for the distributed key-value store are deployed.   
-NOTE - It is possible to deploy the cb-network controller and the standalone cluster respectively.
+
+In Node 1, the followings are deployed.
+- a CB-Spider server (v0.4.9)
+- a CB-tumblebug server (v0.4.9)
+
+In Node 2, the followings are deployed.
+- a standalone cluster for the distributed key-value store
+- a cb-network controller (v0.0.6)
+- a cb-network cladnet-service (v0.0.6)
+- a cb-network AdminWeb (v0.0.6)
+NOTE - It is possible to deploy the standalone cluster, the cb-network controller, the cb-network cladnet-service, and the cb-network AdminWeb, respectively.
 
 <p align="center">
-  <img src="https://user-images.githubusercontent.com/7975459/133385648-9fde4800-8006-4026-807f-47b2368d7c6d.png" width="90%" height="90%" >
+  <img src="https://user-images.githubusercontent.com/7975459/138689182-7c2ff9c8-7bb4-473c-922b-fa1b973863fd.png" width="90%" height="90%" >
 </p>
 
-### 1.1. Deploy a CB-Spider server in Node 1
+### 1.1. Deploy a CB-Spider server **in Node 1**
 
 CB-Spider is necessary to connect all the clouds with a single interface.
 A CB-Spider server can be run in 3 ways, of which <ins>**I try to run the server based on container.**</ins>
@@ -58,7 +66,7 @@ NOTE - You can assign the version of CB-Spider you want.
 sudo docker run --rm -p 1024:1024 -p 2048:2048 -v ${HOME}/cloud-barista/cb-spider/meta_db:/root/go/src/github.com/cloud-barista/cb-spider/meta_db --name cb-spider cloudbaristaorg/cb-spider:0.4.9
 ```
 
-### 1.2. Deploy a CB-Tumblebug server in Node 1
+### 1.2. Deploy a CB-Tumblebug server **in Node 1**
 
 CB-Tumblebug is necessary to deploy and manage multi-cloud infrastructure.
 A CB-Tumblebug server also can be run in 3 ways, of which <ins>**I try to run the server based on source code.**</ins>
@@ -90,7 +98,7 @@ NOTE - You can assign the version of CB-Tumblebug you want.
 ```bash
 git clone https://github.com/cloud-barista/cb-tumblebug.git ${HOME}/go/src/github.com/cloud-barista/cb-tumblebug
 cd ${HOME}/go/src/github.com/cloud-barista/cb-tumblebug
-git checkout tags/v0.4.7 -b v0.4.7
+git checkout tags/v0.4.9 -b v0.4.9
 ```    
 
 #### 1.2.3. Setup environment variables
@@ -111,7 +119,7 @@ make run
 ```
 
 
-### 1.3. Deploy a standalone cluster for the distributed key-value store in Node 2
+### 1.3. Deploy a standalone cluster for the distributed key-value store **in Node 2**
 
 As the pre-requisites of cb-network system, a cluster for the distributed key-value store is needed. 
 
@@ -149,11 +157,11 @@ cd ~/etcd
 ./bin/etcdctl version
 ```
 
-[By ETCD Manager]
+[By ETCD Manager]   
 Link: [ETCD Manager](https://www.electronjs.org/apps/etcd-manager): Modern, efficient and multi-platform GUI for ETCD
 
 
-### 1.4. Deploy cb-network controller and AdminWeb in Node 2
+### 1.4. Deploy cb-network controller, cladnet-service, and AdminWeb in **Node 2**
 
 CB-Larva tries to provide an overlay network for virtual machines (VMs) across Multi-clouds.
 
@@ -166,7 +174,7 @@ NOTE - I'd like you to use the specified version of CB-Larva because it is under
 cd ${HOME}
 git clone https://github.com/cloud-barista/cb-larva.git
 cd ${HOME}/cb-larva
-git checkout tags/v0.0.5 -b v0.0.5
+git checkout tags/v0.0.6 -b v0.0.6
 ```
 
 ##### 2) Copy templates
@@ -178,18 +186,25 @@ cp template-log_conf.yaml log_conf.yaml
 
 ##### 3) Replace "xxx" with your values on `config.yaml`
 ```yaml
-# configs for the both cb-network controller and agent as follows:
+# A config for the both cb-network controller and agent as follows:
 etcd_cluster:
-endpoints: [ "xxx.xxx.xxx:xxxx" ]
+  endpoints: [ "xxx.xxx.xxx.xxx:xxx", "xxx.xxx.xxx.xxx:xxx", "xxx.xxx.xxx.xxx:xxx" ]
 
-# configs for the cb-network AdminWeb as follows:
+# A config for the cb-network AdminWeb as follows:
 admin_web:
-  host: "xxx" # e.g.) "localhost"
-  port: "xxx" # e.g.) "9999"
-# configs for the cb-network agent as follows:
+  host: "localhost"
+  port: "9999"
+
+# A config for the cb-network agent as follows:
 cb_network:
-  cladnet_id: "ooo"
-  host_id: "ooo"
+  cladnet_id: "xxxx"
+  host_id: "" # if host_id is "" (empty string), the cb-network agent will use hostname.
+
+# A config for the grpc as follows:
+grpc:
+  service_endpoint: "localhost:8089"
+  server_port: "8089"
+  gateway_port: "8088"
 
 demo_app:
   is_run: false
@@ -203,7 +218,7 @@ cblog:
   ## true | false
   loopcheck: true # This temp method for development is busy wait. cf) cblogger.go:levelSetupLoop().
 
-  ## debug | info | warn | error
+  ## trace | debug | info | warn | error
   loglevel: debug # If loopcheck is true, You can set this online.
 
   ## true | false
@@ -225,17 +240,22 @@ go build controller.go
 sudo ./controller
 ```
 
-#### 1.4.3. Run cb-network AdminWeb
+#### 1.4.3. Run cb-network cladnet-service
+```bash
+cd ${HOME}/cb-larva/poc-cb-net/cmd/service
+go build cladnet-service.go
+sudo ./cladnet-service
+```
+
+#### 1.4.4. Run cb-network AdminWeb
 ```bash
 cd ${HOME}/cb-larva/poc-cb-net/cmd/admin-web
 go build admin-web.go
 sudo ./admin-web
 ```
 
-#### 1.4.4. Visit AdminWeb
-```
-http://[YOUR_PUBLIC_IP_ADDRESS]:[YOUR_ADMIN_WEB_PORT]
-```
+#### 1.4.5. Visit AdminWeb
+`http://localhost:9999` or `http://[YOUR_PUBLIC_IP_ADDRESS]:[YOUR_ADMIN_WEB_PORT]`
 
 <p align="center">
   <img src="https://user-images.githubusercontent.com/7975459/133242011-728fd427-488a-48f5-8870-e197b7e9fdee.png" width="90%" height="90%" >
@@ -243,17 +263,18 @@ http://[YOUR_PUBLIC_IP_ADDRESS]:[YOUR_ADMIN_WEB_PORT]
 
 
 
-## 2. Prepare instances across Multi-clouds in Node 1
+## 2. Prepare instances across Multi-clouds in **Node 1**
 
 Based on Node 1 and 2, a user can:
 - create a Multi-Cloud Infra Service (MCIS: a group of instances) by CB-Tumblebug server,
-- deploy the cb-network agent on the instances by CB-Tumblebug server, and
-- create a Cloud Adpative Network (CLADNet: an overlay network for multi-cloud) on cb-network AdminWeb.
+- create a Cloud Adpative Network (CLADNet: an overlay network for multi-cloud) on cb-network AdminWeb, and
+- deploy the cb-network agent on the instances by CB-Tumblebug server.
+
 
 The figure below depicts it.
 
 <p align="center">
-  <img src="https://user-images.githubusercontent.com/7975459/133212566-07974e1a-4e93-4ab1-9117-9da8e7fc11d7.png" width="90%" height="90%" >
+  <img src="https://user-images.githubusercontent.com/7975459/138690766-05d60d2b-1a2c-4bf9-84d4-48189dfc1710.png" width="90%" height="90%" >
 </p>
 
 ### 2.1. Create instances by CB-Tumblebug
@@ -307,7 +328,7 @@ cp testSet.env testSetAMG.env
 #!/bin/bash
 
 ## MCIS name prefix text
-MCISPREFIX=mcis
+MCISPREFIX=cb
 
 ## MCIS monitoring agent install. [yes or no]
 AgentInstallOn=no
@@ -323,10 +344,17 @@ IndexAzure=$((++IX))
 IndexGCP=$((++IX))
 IndexAlibaba=$((++IX))
 
-IndexMock=$((++IX))
+IndexTestCloud01=$((++IX))
+IndexTestCloud02=$((++IX))
+IndexTestCloud03=$((++IX))
+
 IndexOpenstack=$((++IX))
 IndexNCP=$((++IX))
+IndexCloudit=$((++IX))
+IndexTencent=$((++IX))
+
 IndexCloudTwin=$((++IX))
+IndexMock=$((++IX))
 
 
 ## Designated strings for Cloud types
@@ -339,7 +367,11 @@ CSPType[$IndexMock]=mock
 CSPType[$IndexOpenstack]=openstack
 CSPType[$IndexNCP]=ncp
 CSPType[$IndexCloudTwin]=cloudtwin
-
+CSPType[$IndexCloudit]=cloudit
+CSPType[$IndexTencent]=tencent
+CSPType[$IndexTestCloud01]=testcloud01
+CSPType[$IndexTestCloud02]=testcloud02
+CSPType[$IndexTestCloud03]=testcloud03
 
 ## Test setting for Regions of Cloud types
 # Note: you can change order by replacing lines (automatically assign continuous numbers starting from 1)
@@ -348,27 +380,27 @@ CSPType[$IndexCloudTwin]=cloudtwin
 NumRegion[$IndexAWS]=1
 
 IY=0
-AwsApSoutheast1=$((++IY))                 # Location: Asia Pacific (Singapore)
-AwsApSoutheast2=$((++IY))                 # Location: Asia Pacific (Sydney)
-AwsEuWest2=$((++IY))                      # Location: Europe (London)
-AwsEuCentral1=$((++IY))                   # Location: Europe (Frankfurt)
-AwsApNortheast1=$((++IY))                 # Location: Asia Pacific (Tokyo)
-AwsCaCentral1=$((++IY))                   # Location: Canada (Central)
-AwsUsWest1=$((++IY))                      # Location: US West (N. California)
-AwsUsEast1=$((++IY))                      # Location: US East (N. Virginia)
-AwsApSouth1=$((++IY))                     # Location: Asia Pacific (Mumbai)
-AwsUsEast2=$((++IY))                      # Location: US East (Ohio)
-AwsUsWest2=$((++IY))                      # Location: US West (Oregon)
-AwsApNortheast3=$((++IY))                 # Location: Asia Pacific (Osaka)
-AwsEuWest1=$((++IY))                      # Location: Europe (Ireland)
-AwsEuWest3=$((++IY))                      # Location: Europe (Paris)
-AwsEuNorth1=$((++IY))                     # Location: Europe (Stockholm) - No t2.xxx Specs. t3 c5 m5 r5 .. are availble
-AwsSaEast1=$((++IY))                      # Location: South America (São Paulo)
-AwsApNortheast2=$((++IY))                 # Location: Asia Pacific (Seoul)
-AwsApEast1=$((++IY))                      # Location: Asia Pacific (Hong Kong)  -  Opt-In required
-AwsMeSouth1=$((++IY))                     # Location: Middle East (Bahrain)  -  Opt-In required
-AwsAfSouth1=$((++IY))                     # Location: Africa (Cape Town)  -  Opt-In required
-AwsEuSouth1=$((++IY))                     # Location: Europe (Milan)  -  Opt-In required
+AwsApSoutheast1=$((++IY))                       # Location: Asia Pacific (Singapore)
+AwsCaCentral1=$((++IY))                         # Location: Canada (Central)
+AwsUsWest1=$((++IY))                            # Location: US West (N. California)
+AwsUsEast1=$((++IY))                            # Location: US East (N. Virginia)
+AwsApNortheast1=$((++IY))                       # Location: Asia Pacific (Tokyo)
+AwsApSouth1=$((++IY))                           # Location: Asia Pacific (Mumbai)
+AwsApSoutheast2=$((++IY))                       # Location: Asia Pacific (Sydney)
+AwsEuWest2=$((++IY))                            # Location: Europe (London)
+AwsUsEast2=$((++IY))                            # Location: US East (Ohio)
+AwsUsWest2=$((++IY))                            # Location: US West (Oregon)
+AwsApNortheast3=$((++IY))                       # Location: Asia Pacific (Osaka)
+AwsEuCentral1=$((++IY))                         # Location: Europe (Frankfurt)
+AwsEuWest1=$((++IY))                            # Location: Europe (Ireland)
+AwsEuWest3=$((++IY))                            # Location: Europe (Paris)
+AwsEuNorth1=$((++IY))                           # Location: Europe (Stockholm) - No t2.xxx Specs. t3 c5 m5 r5 .. are availble
+AwsSaEast1=$((++IY))                            # Location: South America (São Paulo)
+AwsApNortheast2=$((++IY))                       # Location: Asia Pacific (Seoul)
+AwsApEast1=$((++IY))                        # Location: Asia Pacific (Hong Kong)  -  Opt-In required
+AwsMeSouth1=$((++IY))                       # Location: Middle East (Bahrain)  -  Opt-In required
+AwsAfSouth1=$((++IY))                       # Location: Africa (Cape Town)  -  Opt-In required
+AwsEuSouth1=$((++IY))                           # Location: Europe (Milan)  -  Opt-In required
 
 
 
@@ -376,29 +408,29 @@ AwsEuSouth1=$((++IY))                     # Location: Europe (Milan)  -  Opt-In 
 NumRegion[$IndexAlibaba]=1
 
 IY=0
-AlibabaApSoutheast2=$((++IY))             # Location: Australia (Sydney) [zone:a,b]
-AlibabaApNortheast1=$((++IY))             # Location: Japan (Tokyo)
-AlibabaApSouth1=$((++IY))                 # Location: Mumbai Zone A
-AlibabaApSoutheast1=$((++IY))             # Location: Singapore [zone:a,b,c]
-AlibabaApSoutheast3=$((++IY))             # Location: Malaysia (Kuala Lumpur) [zone:a,b]
-AlibabaApSoutheast5=$((++IY))             # Location: Indonesia (Jakarta) [zone:a,b]
-AlibabaUsWest1=$((++IY))                  # Location: US (Silicon Valley) [zone:a,b]
-AlibabaUsEast1=$((++IY))                  # Location: US (Virginia) [zone:a,b]
-AlibabaEuCentral1=$((++IY))               # Location: Germany (Frankfurt) [zone:a,b] - ERR: Unable to get GetVMSpec - context deadline exceeded
-AlibabaEuWest1=$((++IY))                  # Location: UK (London) [zone:a,b] - ERR: Unable to get GetVMSpec - context deadline exceeded
-AlibabaMeEast1=$((++IY))                  # Location: UAE (Dubai) [zone:a] - Few VM Specs are available
-AlibabaCnHongkong=$((++IY))               # Location: China (Hong Kong) [zone:b,c] - NEED TO CHECK NETWORK OUTBOUND
-AlibabaCnShanghai=$((++IY))               # Location: China (Shanghai) - NEED TO CHECK NETWORK OUTBOUND
-AlibabaCnBeijing=$((++IY))                # Location: China (Beijing) - NEED TO CHECK NETWORK OUTBOUND
-AlibabaCnQingdao=$((++IY))                # Location: China (Qingdao) - NEED TO CHECK NETWORK OUTBOUND
-AlibabaCnZhangjiakou=$((++IY))            # Location: China (Zhangjiakou) - NEED TO CHECK NETWORK OUTBOUND
-AlibabaCnHuhehaote=$((++IY))              # Location: China (Hohhot) - NEED TO CHECK NETWORK OUTBOUND
-AlibabaCnHangzhou=$((++IY))               # Location: China (Hangzhou) - NEED TO CHECK NETWORK OUTBOUND
-AlibabaCnShenzhen=$((++IY))               # Location: China (Shenzhen) - NEED TO CHECK NETWORK OUTBOUND
-AlibabaCnHeyuan=$((++IY))                 # Location: China (Heyuan) - NEED TO CHECK NETWORK OUTBOUND
-AlibabaCnChengdu=$((++IY))                # Location: China (Chengdu) - NEED TO CHECK NETWORK OUTBOUND
-AlibabaCnWulanchabu=$((++IY))             # Location: China (Ulanqab) - ERR: InvalidSystemDiskCategory.ValueNotSupported - NEED TO CHECK NETWORK OUTBOUND. no ecs.t5 available.
-AlibabaCnGuangzhou=$((++IY))              # Location: China (Guangzhou) - NEED TO CHECK NETWORK OUTBOUND. no ecs.t5 available.
+AlibabaApNortheast1=$((++IY))           # Location: Japan (Tokyo)
+AlibabaApSouth1=$((++IY))                       # Location: Mumbai Zone A
+AlibabaApSoutheast1=$((++IY))           # Location: Singapore [zone:a,b,c]
+AlibabaApSoutheast2=$((++IY))           # Location: Australia (Sydney) [zone:a,b]
+AlibabaApSoutheast3=$((++IY))           # Location: Malaysia (Kuala Lumpur) [zone:a,b]
+AlibabaApSoutheast5=$((++IY))           # Location: Indonesia (Jakarta) [zone:a,b]
+AlibabaUsWest1=$((++IY))                        # Location: US (Silicon Valley) [zone:a,b]
+AlibabaUsEast1=$((++IY))                        # Location: US (Virginia) [zone:a,b]
+AlibabaEuCentral1=$((++IY))                     # Location: Germany (Frankfurt) [zone:a,b] - ERR: Unable to get GetVMSpec - context deadline exceeded
+AlibabaEuWest1=$((++IY))                        # Location: UK (London) [zone:a,b] - ERR: Unable to get GetVMSpec - context deadline exceeded
+AlibabaMeEast1=$((++IY))                        # Location: UAE (Dubai) [zone:a] - Few VM Specs are available
+AlibabaCnHongkong=$((++IY))                     # Location: China (Hong Kong) [zone:b,c] - NEED TO CHECK NETWORK OUTBOUND
+AlibabaCnShanghai=$((++IY))                     # Location: China (Shanghai) - NEED TO CHECK NETWORK OUTBOUND
+AlibabaCnBeijing=$((++IY))                      # Location: China (Beijing) - NEED TO CHECK NETWORK OUTBOUND
+AlibabaCnQingdao=$((++IY))                      # Location: China (Qingdao) - NEED TO CHECK NETWORK OUTBOUND
+AlibabaCnZhangjiakou=$((++IY))          # Location: China (Zhangjiakou) - NEED TO CHECK NETWORK OUTBOUND
+AlibabaCnHuhehaote=$((++IY))            # Location: China (Hohhot) - NEED TO CHECK NETWORK OUTBOUND
+AlibabaCnHangzhou=$((++IY))                     # Location: China (Hangzhou) - NEED TO CHECK NETWORK OUTBOUND
+AlibabaCnShenzhen=$((++IY))                     # Location: China (Shenzhen) - NEED TO CHECK NETWORK OUTBOUND
+AlibabaCnHeyuan=$((++IY))                       # Location: China (Heyuan) - NEED TO CHECK NETWORK OUTBOUND
+AlibabaCnChengdu=$((++IY))                      # Location: China (Chengdu) - NEED TO CHECK NETWORK OUTBOUND
+AlibabaCnWulanchabu=$((++IY))           # Location: China (Ulanqab) - ERR: InvalidSystemDiskCategory.ValueNotSupported - NEED TO CHECK NETWORK OUTBOUND. no ecs.t5 available.
+AlibabaCnGuangzhou=$((++IY))            # Location: China (Guangzhou) - NEED TO CHECK NETWORK OUTBOUND. no ecs.t5 available.
 
 
 
@@ -406,31 +438,31 @@ AlibabaCnGuangzhou=$((++IY))              # Location: China (Guangzhou) - NEED T
 NumRegion[$IndexGCP]=1
 
 IY=0
-GcpAsiaEast1=$((++IY))                    # Location: Changhua County  Taiwan
-GcpAustraliaSoutheast1=$((++IY))          # Location: Sydney  Australia
-GcpEuropeWest2=$((++IY))                  # Location: London  England  UK
-GcpAsiaNortheast1=$((++IY))               # Location: Tokyo  Japan
-GcpEuropeWest3=$((++IY))                  # Location: Frankfurt  Germany
-GcpAsiaEast2=$((++IY))                    # Location: Hong Kong
-GcpAsiaNortheast2=$((++IY))               # Location: Osaka  Japan
-GcpAsiaNortheast3=$((++IY))               # Location: Seoul  South Korea
-GcpUsWest4=$((++IY))                      # Location: Las Vegas  Nevada  USA
-GcpAsiaSoutheast1=$((++IY))               # Location: Jurong West  Singapore
-GcpEuropeNorth1=$((++IY))                 # Location: Hamina  Finland
-GcpEuropeWest1=$((++IY))                  # Location: St. Ghislain  Belgium
-GcpEuropeWest4=$((++IY))                  # Location: Eemshaven  Netherlands
-GcpEuropeWest6=$((++IY))                  # Location: Zurich  Switzerland
-GcpNorthamericaNortheast1=$((++IY))       # Location: Montreal  Quebec  Canada
-GcpSouthamericaEast1=$((++IY))            # Location: Osasco (Sao Paulo)  Brazil
-GcpUsWest2=$((++IY))                      # Location: Los Angeles  California  USA
-GcpUsCentral1=$((++IY))                   # Location: Council Bluffs  Iowa  USA
-GcpUsEast1=$((++IY))                      # Location: Moncks Corner  South Carolina  USA
-GcpUsEast4=$((++IY))                      # Location: Ashburn  Northern Virginia  USA
-GcpUsWest1=$((++IY))                      # Location: The Dalles  Oregon  USA
-GcpUsWest3=$((++IY))                      # Location: Salt Lake City  Utah  USA
-GcpAsiaSouth1=$((++IY))                   # Location: Mumbai  India (zone b since zone a returns QUOTA_EXCEEDED)
-GcpAsiaSoutheast2=$((++IY))               # Location: Jakarta, Indonesia, APAC
-GcpEuropeCentral2=$((++IY))               # Location: Warsaw, Poland, Europe
+GcpAsiaEast1=$((++IY))                          # Location: Changhua County  Taiwan
+GcpEuropeWest3=$((++IY))                        # Location: Frankfurt  Germany
+GcpAsiaEast2=$((++IY))                          # Location: Hong Kong
+GcpAsiaNortheast1=$((++IY))                     # Location: Tokyo  Japan
+GcpAsiaNortheast2=$((++IY))                     # Location: Osaka  Japan
+GcpAsiaNortheast3=$((++IY))                     # Location: Seoul  South Korea
+GcpUsWest4=$((++IY))                            # Location: Las Vegas  Nevada  USA
+GcpAsiaSoutheast1=$((++IY))                     # Location: Jurong West  Singapore
+GcpAustraliaSoutheast1=$((++IY))        # Location: Sydney  Australia
+GcpEuropeNorth1=$((++IY))                       # Location: Hamina  Finland
+GcpEuropeWest1=$((++IY))                        # Location: St. Ghislain  Belgium
+GcpEuropeWest2=$((++IY))                        # Location: London  England  UK
+GcpEuropeWest4=$((++IY))                        # Location: Eemshaven  Netherlands
+GcpEuropeWest6=$((++IY))                        # Location: Zurich  Switzerland
+GcpNorthamericaNortheast1=$((++IY))     # Location: Montreal  Quebec  Canada
+GcpSouthamericaEast1=$((++IY))          # Location: Osasco (Sao Paulo)  Brazil
+GcpUsCentral1=$((++IY))                         # Location: Council Bluffs  Iowa  USA
+GcpUsEast1=$((++IY))                            # Location: Moncks Corner  South Carolina  USA
+GcpUsEast4=$((++IY))                            # Location: Ashburn  Northern Virginia  USA
+GcpUsWest1=$((++IY))                            # Location: The Dalles  Oregon  USA
+GcpUsWest2=$((++IY))                            # Location: Los Angeles  California  USA
+GcpUsWest3=$((++IY))                            # Location: Salt Lake City  Utah  USA
+GcpAsiaSouth1=$((++IY))                         # Location: Mumbai  India (zone b since zone a returns QUOTA_EXCEEDED)
+GcpAsiaSoutheast2=$((++IY))                     # Location: Jakarta, Indonesia, APAC
+GcpEuropeCentral2=$((++IY))                     # Location: Warsaw, Poland, Europe
 
 
 
@@ -439,58 +471,49 @@ GcpEuropeCentral2=$((++IY))               # Location: Warsaw, Poland, Europe
 NumRegion[$IndexAzure]=1
 
 IY=0
-AzureWestus=$((++IY))                     # Location: West US
-AzureEastus=$((++IY))                     # Location: East US
-AzureNortheurope=$((++IY))                # Location: North Europe
-AzureWesteurope=$((++IY))                 # Location: West Europe
-AzureEastasia=$((++IY))                   # Location: East Asia
-AzureSoutheastasia=$((++IY))              # Location: Southeast Asia
-AzureNorthcentralus=$((++IY))             # Location: North Central US
-AzureSouthcentralus=$((++IY))             # Location: South Central US
-AzureCentralus=$((++IY))                  # Location: Central US
-AzureEastus2=$((++IY))                    # Location: East US 2
-AzureJapaneast=$((++IY))                  # Location: Japan East
-AzureJapanwest=$((++IY))                  # Location: Japan West
-AzureBrazilsouth=$((++IY))                # Location: Brazil South
-AzureAustraliaeast=$((++IY))              # Location: Australia East
-AzureAustraliasoutheast=$((++IY))         # Location: Australia Southeast
-AzureCentralindia=$((++IY))               # Location: Central India
-AzureCanadacentral=$((++IY))              # Location: Canada Central
-AzureCanadaeast=$((++IY))                 # Location: Canada East
-AzureWestcentralus=$((++IY))              # Location: West Central US
-AzureWestus2=$((++IY))                    # Location: West US 2
-AzureUkwest=$((++IY))                     # Location: UK West
-AzureUksouth=$((++IY))                    # Location: UK South
-AzureKoreacentral=$((++IY))               # Location: Korea Central
-AzureKoreasouth=$((++IY))                 # Location: Korea South
-AzureFrancecentral=$((++IY))              # Location: France Central
-AzureAustraliacentral=$((++IY))           # Location: Australia Central
-AzureSouthafricanorth=$((++IY))           # Location: South Africa North
-AzureUaenorth=$((++IY))                   # Location: UAE North
-AzureSwitzerlandnorth=$((++IY))           # Location: Switzerland North
-AzureGermanywestcentral=$((++IY))         # Location: Germany West Central
-AzureNorwayeast=$((++IY))                 # Location: Norway East
+AzureWestus=$((++IY))                           # Location: West US
+AzureEastus=$((++IY))                           # Location: East US
+AzureNortheurope=$((++IY))                      # Location: North Europe
+AzureWesteurope=$((++IY))                       # Location: West Europe
+AzureEastasia=$((++IY))                         # Location: East Asia
+AzureSoutheastasia=$((++IY))            # Location: Southeast Asia
+AzureNorthcentralus=$((++IY))           # Location: North Central US
+AzureSouthcentralus=$((++IY))           # Location: South Central US
+AzureCentralus=$((++IY))                        # Location: Central US
+AzureEastus2=$((++IY))                          # Location: East US 2
+AzureJapaneast=$((++IY))                        # Location: Japan East
+AzureJapanwest=$((++IY))                        # Location: Japan West
+AzureBrazilsouth=$((++IY))                      # Location: Brazil South
+AzureAustraliaeast=$((++IY))            # Location: Australia East
+AzureAustraliasoutheast=$((++IY))       # Location: Australia Southeast
+AzureCentralindia=$((++IY))                     # Location: Central India
+AzureCanadacentral=$((++IY))            # Location: Canada Central
+AzureCanadaeast=$((++IY))                       # Location: Canada East
+AzureWestcentralus=$((++IY))            # Location: West Central US
+AzureWestus2=$((++IY))                          # Location: West US 2
+AzureUkwest=$((++IY))                           # Location: UK West
+AzureUksouth=$((++IY))                          # Location: UK South
+AzureKoreacentral=$((++IY))                     # Location: Korea Central
+AzureKoreasouth=$((++IY))                       # Location: Korea South
+AzureFrancecentral=$((++IY))            # Location: France Central
+AzureAustraliacentral=$((++IY))         # Location: Australia Central
+AzureSouthafricanorth=$((++IY))         # Location: South Africa North
+AzureUaenorth=$((++IY))                         # Location: UAE North
+AzureSwitzerlandnorth=$((++IY))         # Location: Switzerland North
+AzureGermanywestcentral=$((++IY))       # Location: Germany West Central
+AzureNorwayeast=$((++IY))                       # Location: Norway East
 
-AzureSouthindia=$((++IY))                 # Location: South India (not recommend) ERR: not subscribed by default
-AzureWestindia=$((++IY))                  # Location: West India (not recommend) ERR: not subscribed by default
+AzureSouthindia=$((++IY))                       # Location: South India (not recommend) ERR: not subscribed by default
+AzureWestindia=$((++IY))                        # Location: West India (not recommend) ERR: not subscribed by default
 # Azurejioindiawest
 
-
-AzureSouthafricawest=$((++IY))            # Location: South Africa West (not recommend)
-AzureSwitzerlandwest=$((++IY))            # Location: Switzerland West (not recommend)
-AzureGermanynorth=$((++IY))               # Location: Germany North (not recommend)
-AzureUaecentral=$((++IY))                 # Location: UAE Central (not recommend)
-AzureNorwaywest=$((++IY))                 # Location: Norway West (not recommend)
-AzureFrancesouth=$((++IY))                # Location: France South (not recommend)
-AzureAustraliacentral2=$((++IY))          # Location: Australia Central 2 (not recommend. not support vm service)
-
-
-
-# Mock (Total: 1 Regions / Recommend: 1 Regions)
-NumRegion[$IndexMock]=1
-
-IY=0
-MockSeoul=$((++IY))                       # Location: Korea Seoul (Virtual)
+AzureSouthafricawest=$((++IY))          # Location: South Africa West (not recommend)
+AzureSwitzerlandwest=$((++IY))          # Location: Switzerland West (not recommend)
+AzureGermanynorth=$((++IY))                     # Location: Germany North (not recommend)
+AzureUaecentral=$((++IY))                       # Location: UAE Central (not recommend)
+AzureNorwaywest=$((++IY))                       # Location: Norway West (not recommend)
+AzureFrancesouth=$((++IY))                      # Location: France South (not recommend)
+AzureAustraliacentral2=$((++IY))        # Location: Australia Central 2 (not recommend. not support vm service)
 
 
 
@@ -498,7 +521,7 @@ MockSeoul=$((++IY))                       # Location: Korea Seoul (Virtual)
 NumRegion[$IndexOpenstack]=1
 
 IY=0
-OpenstackRegion01=$((++IY))               # Location: Korea Daejeon (Internal)
+OpenstackRegion01=$((++IY))                     # Location: Korea Daejeon (Internal)
 
 
 
@@ -506,11 +529,27 @@ OpenstackRegion01=$((++IY))               # Location: Korea Daejeon (Internal)
 NumRegion[$IndexNCP]=5
 
 IY=0
-NcpKorea1=$((++IY))                       # Location: NCP Korea
-NcpUsWestern=$((++IY))                    # Location: NCP US West
-NcpGermany=$((++IY))                      # Location: NCP Germany
-NcpSingapore=$((++IY))                    # Location: NCP Singapore
-NcpJapan=$((++IY))                        # Location: NCP Japan
+NcpKorea1=$((++IY))                                     # Location: NCP Korea
+NcpUsWestern=$((++IY))                          # Location: NCP US West
+NcpGermany=$((++IY))                            # Location: NCP Germany
+NcpSingapore=$((++IY))                          # Location: NCP Singapore
+NcpJapan=$((++IY))                                      # Location: NCP Japan
+
+
+
+# Cloudit (Total: 1 Regions / Recommend: 1 Regions)
+NumRegion[$IndexCloudit]=1
+
+IY=0
+ClouditRegion01=$((++IY))                       # Location: Korea Seoul (Internal)
+
+
+
+# Tencent (Total: 17 Regions / Recommend: m Regions)
+NumRegion[$IndexTencent]=1
+
+IY=0
+TencentApSingapore=$((++IY))                    # Location: Singapore
 
 
 
@@ -518,7 +557,35 @@ NcpJapan=$((++IY))                        # Location: NCP Japan
 NumRegion[$IndexCloudTwin]=1
 
 IY=0
-CloudTwinRegion01=$((++IY))               # Location: Korea Daejeon (Internal)
+CloudTwinRegion01=$((++IY))                     # Location: Korea Daejeon (Internal)
+
+
+
+# Mock (Total: 1 Regions / Recommend: 1 Regions)
+NumRegion[$IndexMock]=1
+
+IY=0
+MockSeoul=$((++IY))                                     # Location: Korea Seoul (Virtual)
+
+
+
+# TestCloud01 to emulate cloud using Mock driver (1 Regions)
+NumRegion[$IndexTestCloud01]=1
+
+IY=0
+TestCloud01Seoul=$((++IY))                                      # Location: Korea (Seoul)
+
+# TestCloud02 to emulate cloud using Mock driver (1 Regions)
+NumRegion[$IndexTestCloud02]=1
+
+IY=0
+TestCloud02Canada=$((++IY))                                     # Location: Canada (Central)
+
+# TestCloud03 to emulate cloud using Mock driver (1 Regions)
+NumRegion[$IndexTestCloud03]=1
+
+IY=0
+TestCloud03Frankfurt=$((++IY))                          # Location: Europe (Frankfurt)
 
 ```
 </p>
@@ -556,9 +623,7 @@ NOTE - A Cloud Adpative Network (CLADNet) is an overlay network for multi-cloud.
 #### 2.2.1. Create a CLADNet
 
 ##### 1) Access the AdminWeb
-```
-http://[YOUR_PUBLIC_IP_ADDRESS]:[YOUR_ADMIN_WEB_PORT]
-```
+`http://localhost:9999` or `http://[YOUR_PUBLIC_IP_ADDRESS]:[YOUR_ADMIN_WEB_PORT]`
 
 ##### 2) Go to the section, `Create your CLADNet: Cloud Adaptive Network`
 <p align="center">
@@ -579,7 +644,7 @@ For example:
 
 #### 2.2.2. Prepare a script to deploy cb-network agent
 
-#### 1) Create `deploy-cb-network-agent-in-background.sh` with the content below
+#### 1) Create `deploy-cb-network-agent-with-bin.sh` with the content below
 
 <details>
 <summary>Click to expand</summary>
@@ -634,7 +699,8 @@ for row in $(echo "${VMARRAY}" | jq -r '.[] | @base64'); do
 
     getCloudIndexGeneral $cloudType
 
-    BuildAndRunCBNetworkAgentCMD="wget https://raw.githubusercontent.com/cloud-barista/cb-larva/main/poc-cb-net/scripts/build-and-run-agent-in-the-background.sh -O ~/build-and-run-agent-in-the-background.sh; chmod +x ~/build-and-run-agent-in-the-background.sh; ~/build-and-run-agent-in-the-background.sh '${ETCD_HOSTS}' ${CLADNET_ID} ${VMID}"
+#    ChangeHostCMD="sudo hostnamectl set-hostname ${GeneralINDEX}-${connectionName}-${publicIP}; sudo hostname -f"
+    BuildAndRunCBNetworkAgentCMD="wget https://raw.githubusercontent.com/cloud-barista/cb-larva/develop/poc-cb-net/scripts/get-and-run-agent.sh -O ~/get-and-run-agent.sh; chmod +x ~/get-and-run-agent.sh; ~/get-and-run-agent.sh '${ETCD_HOSTS}' ${CLADNET_ID} ${VMID}"
     echo "CMD: ${BuildAndRunCBNetworkAgentCMD}"
 
     VAR1=$(curl -H "${AUTH}" -sX POST http://$TumblebugServer/tumblebug/ns/$NSID/cmd/mcis/$MCISID/vm/$VMID -H 'Content-Type: application/json' -d @- <<EOF
@@ -660,22 +726,23 @@ echo ""
 
 ```bash
 cd ${HOME}/go/src/github.com/cloud-barista/cb-tumblebug/src/testclient/scripts/sequentialFullTest
-vim deploy-cb-network-agent-in-background.sh
+vim deploy-cb-network-agent-with-bin.sh
 ```
 
 ##### 2) Change mode
 ```
-chmod 775 deploy-cb-network-agent-in-background.sh
+chmod 775 deploy-cb-network-agent-with-bin.sh
 ```
 
 #### 2.2.3. Deploy cb-network agent to instances in an MCIS
+In below command, 
 - Assign your the endpoint of Node 2 to `xxx.xxx.xxx.xxx`
 - Assign CLADNet ID you have created in the section 2.2.1 to `xxxxxxxxxxxxxxxxxxxxx`
 
 ```bash
 cd ${HOME}/go/src/github.com/cloud-barista/cb-tumblebug/src/testclient/scripts/sequentialFullTest
 
-./deploy-cb-network-agent-in-background.sh -n kimyk01 -f ../testSetAMG.env -x '[\"xxx.xxx.xxx.xxx:2379\"]' -y xxxxxxxxxxxxxxxxxxxxx
+./deploy-cb-network-agent-with-bin.sh -n kimyk01 -f ../testSetAMG.env -x '[\"xxx.xxx.xxx.xxx:2379\"]' -y xxxxxxxxxxxxxxxxxxxxx
 ```
 
 #### 2.2.4. Check if the overlay network is configured or not on the cb-network AdminWeb
@@ -696,13 +763,11 @@ cd ${HOME}/go/src/github.com/cloud-barista/cb-tumblebug/src/testclient/scripts/s
   <img src="https://user-images.githubusercontent.com/7975459/127101689-333a1355-c01f-41a7-a879-4310cdc105bc.png" width="90%" height="90%" >
 </p>
 
-<ins>**As a user**</ins>, all scripts in `~/cb-larva/scripts/Kubernetes` directory can be run.
-<ins>1 time rebooting will be expected.</ins>
+<ins>**A user**</ins> can manually use all scripts in `~/cb-larva/scripts/Kubernetes` directory. <ins>VM should be rebooted 1 time after executing `1.setup-environment-and-tools.sh`.</ins>
 
-<ins>Currently, all steps below can be done **manually**</ins> :sweat_smile: :pray:
-
-### 3.1. Generate SSH keys of all instances by CB-Tumblebug
-##### 1) Go to the CB-Tumblebug's script directory in Node 1
+#### 3.1. Generate SSH keys by the CB-Tumblebug script in **Node 1**
+The SSH keys are needed to access all instances later.
+##### 1) Go to the CB-Tumblebug's script directory
 ```bash
 cd ${HOME}/go/src/github.com/cloud-barista/cb-tumblebug/src/testclient/scripts/sequentialFullTest
 ```
@@ -711,35 +776,57 @@ cd ${HOME}/go/src/github.com/cloud-barista/cb-tumblebug/src/testclient/scripts/s
 ```bash
 cat executionStatus
 ```
-You could see somthing like `all 1 kimyk01 ../testSetAMG.env`. It is important.
+You could see somthing like `all 1 kimyk01 ../testSetAMG.env`.   
+`kimyk01` and `../testSetAMG.env` are important to request to MCIS.
 
 ##### 3) Generates SSH keys
 ```
 ./gen-sshKey.sh -n kimyk01 -f ../testSetAMG.env
 ```
 
-### 3.2. Setup environment and tools to all nodes for Kubernetes cluster
-##### 1) Access nodes by the generated keys respectively
-##### 2) Get scripts from CB-Larva repository
+### 3.2. Create `setup-Kubernetes-env-and-tools.sh` with the content below
+
+<details>
+<summary>Click to expand</summary>
+<p>
+
+```bash
+#!/bin/bash
+
+echo "####################################################################"
+echo "## Setup Kubernetes environment and tools"
+echo "####################################################################"
+
+source ../init.sh
+
+CMD="wget https://raw.githubusercontent.com/cloud-barista/cb-larva/main/scripts/Kubernetes/1.setup-environment-and-tools.sh -O ~/1.setup-environment-and-tools.sh; chmod +x ~/1.setup-environment-and-tools.sh; ~/1.setup-environment-and-tools.sh; sleep 3; sudo reboot now"
+echo "CMD: $CMD"
+
+VAR1=$(curl -H "${AUTH}" -sX POST http://$TumblebugServer/tumblebug/ns/$NSID/cmd/mcis/$MCISID -H 'Content-Type: application/json' -d @- <<EOF
+        {
+        "command"        : "${CMD}"
+        }
+EOF
+)
+echo "${VAR1}" | jq ''
+echo ""
 ```
-cd ~
-git clone https://github.com/cloud-barista/cb-larva.git
-cd ~/cb-larva/scripts/Kubernetes
-```
-##### 3) Run a script
-```
-source 1.setup-environment-and-tools.sh
-```
-##### 4) Reboot
-```
-sudo reboot now
+</p>
+</details>  
+
+### 3.3. Setup Kubernetes environment and tools
+```bash
+cd ${HOME}/go/src/github.com/cloud-barista/cb-tumblebug/src/testclient/scripts/sequentialFullTest
+./setup-Kubernetes-env-and-tools.sh -n kimyk01 -f ../testSetAMG.env
 ```
 
-### 3.3. Configure the Kubernetes master
-##### 1) Access to the master
-##### 2) Run a script
-```
-cd ~/cb-larva/scripts/Kubernetes
+
+### 3.4. Configure the **Kubernetes master**
+##### 1) Access to the Kubernetes master
+##### 2) Get and run a script
+```bash
+cd ~
+wget https://raw.githubusercontent.com/cloud-barista/cb-larva/main/scripts/Kubernetes/2.setup-K8s-master.sh -O ~/2.setup-K8s-master.sh
 source 2.setup-K8s-master.sh
 ```
 
@@ -750,15 +837,20 @@ kubeadm join 192.168.10.2:6443 --token 10no39.n7tziepyfbsfawgz \
         --discovery-token-ca-cert-hash sha256:b56ed81714c7395cc374644415a428f4ac7ce73863530a4c1e61ff829c30b805
 ```
 
-### 3.4. Configure Kubernetes nodes
+### 3.5. Configure **Kubernetes nodes**
 ##### 1) Access to a Kubernetes node
 ##### 2) Execute the join command
 NOTE - `sudo` is required.
+As an example:
+```bash
+sudo kubeadm join 192.168.10.2:6443 --token 10no39.n7tziepyfbsfawgz --discovery-token-ca-cert-hash sha256:b56ed81714c7395cc374644415a428f4ac7ce73863530a4c1e61ff829c30b805
+```
 ##### 3) Repeat 1) - 2) on the other Kubernetes nodes
 
-### 3.5. Check the cluster status on the Kubernetes master
+### 3.6. Check the cluster status on the **Kubernetes master**
 ```
-cd ~/cb-larva/scripts/Kubernetes
+cd ~
+wget https://raw.githubusercontent.com/cloud-barista/cb-larva/main/scripts/Kubernetes/3.check-K8s-status.sh -O ~/3.check-K8s-status.sh
 source 3.check-K8s-status.sh
 ```
 
