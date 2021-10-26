@@ -274,7 +274,7 @@ Based on Node 1 and 2, a user can:
 The figure below depicts it.
 
 <p align="center">
-  <img src="https://user-images.githubusercontent.com/7975459/138690766-05d60d2b-1a2c-4bf9-84d4-48189dfc1710.png" width="90%" height="90%" >
+  <img src="https://user-images.githubusercontent.com/7975459/138792252-9b61178f-e7dc-4679-b77d-051b8512dd11.png" width="90%" height="90%" >
 </p>
 
 ### 2.1. Create instances by CB-Tumblebug
