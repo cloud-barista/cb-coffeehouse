@@ -82,6 +82,13 @@ English Coffeehouse (별칭 Penny House)는 1 Penny가격의 커피 한잔을 �
         </a>
     </td>
     <td align="center">
+        <a href="https://github.com/atg0831">
+            <img src="https://avatars.githubusercontent.com/u/44899448?v=4" width="100;" alt="atg0831"/>
+            <br />
+            <sub><b>Taegeon An</b></sub>
+        </a>
+    </td>
+    <td align="center">
         <a href="https://github.com/PARKINHYO">
             <img src="https://avatars.githubusercontent.com/u/47745785?v=4" width="100;" alt="PARKINHYO"/>
             <br />
@@ -93,13 +100,6 @@ English Coffeehouse (별칭 Penny House)는 1 Penny가격의 커피 한잔을 �
             <img src="https://avatars.githubusercontent.com/u/5966944?v=4" width="100;" alt="seokho-son"/>
             <br />
             <sub><b>Seokho Son</b></sub>
-        </a>
-    </td>
-    <td align="center">
-        <a href="https://github.com/atg0831">
-            <img src="https://avatars.githubusercontent.com/u/44899448?v=4" width="100;" alt="atg0831"/>
-            <br />
-            <sub><b>Taegeon An</b></sub>
         </a>
     </td></tr>
 <tr>
