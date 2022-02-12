@@ -61,8 +61,8 @@ English Coffeehouse (별칭 Penny House)는 1 Penny가격의 커피 한잔을 �
 <table>
 <tr>
     <td align="center">
-        <a href="https://github.com/hermitkim1">
-            <img src="https://avatars.githubusercontent.com/u/7975459?v=4" width="100;" alt="hermitkim1"/>
+        <a href="https://github.com/yunkon-kim">
+            <img src="https://avatars.githubusercontent.com/u/7975459?v=4" width="100;" alt="yunkon-kim"/>
             <br />
             <sub><b>Yunkon (Alvin) Kim </b></sub>
         </a>
