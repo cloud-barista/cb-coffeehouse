@@ -56,6 +56,9 @@ Reference: [Launching a Google Compute Instance via the API](https://github.com/
 5. Open the KEYS tab, choose ADD KEY, and choose to CREATE (The private key is automatically saved to your computer.)
 ![image](https://user-images.githubusercontent.com/7975459/113290653-e97c1780-932c-11eb-81f3-4dbf559f30b3.png)
 
+6. Enable "Compute Engine API" 
+![image](https://user-images.githubusercontent.com/7975459/157801477-f12b1ccd-3823-4cc9-9149-452df3635598.png)
+
 * * *
 
 ### Microsoft (MS) Azure
@@ -79,6 +82,13 @@ Reference: [Manage credentials in Azure Automation - Create a new credential ass
 ```
 
 #### Portal
+
+The following will be needed for API calls (Please make a note, when you see those).
+- Client ID
+- ClientSecret (i.e., Value)
+- Tenant ID
+- Subscription ID
+
 1. Sign In to the Portal
 
 2. Open Azure Active Directory
@@ -95,24 +105,16 @@ Reference: [Manage credentials in Azure Automation - Create a new credential ass
 **NOTE - Save client secrets' key and value because you won't be able to see it later**
 ![image](https://user-images.githubusercontent.com/7975459/113392272-d40bf980-93cf-11eb-9054-76537ca18694.png)
 
-6. Expose an API by adding a scope
-![image](https://user-images.githubusercontent.com/7975459/122876686-c469d480-d370-11eb-90ee-165204f54119.png)
-
-7. Open Subscriptions   
+6. Open Subscriptions   
 **NOTE - Save the subscription ID**
 ![image](https://user-images.githubusercontent.com/7975459/122875427-32ad9780-d36f-11eb-91cd-66c967d62768.png)
 
-8. Choose a subscription to allocate the app
+7. Choose a subscription to allocate the app
 ![image](https://user-images.githubusercontent.com/7975459/122875787-aea7df80-d36f-11eb-9258-1195e7937236.png)
 
-9. Add role assignment on Access control (IAM)
+8. Add role assignment on Access control (IAM)
 ![image](https://user-images.githubusercontent.com/7975459/122876035-fd557980-d36f-11eb-8a46-31d756f7da4a.png)
 
-The following will be needed for API calls.
-- Client ID
-- ClientSecret (Value)
-- Tenant ID
-- Subscription ID
 
 * * *
 
