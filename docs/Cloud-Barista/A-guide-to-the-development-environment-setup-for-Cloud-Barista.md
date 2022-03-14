@@ -38,13 +38,6 @@ Invoke-WebRequest -Uri https://aka.ms/wsl-ubuntu-1804 -OutFile Ubuntu.appx -UseB
 
 참고: [cb-coffeehouse/scripts/golang](https://github.com/cloud-barista/cb-coffeehouse/tree/main/scripts/golang)
 
-CB-Spider, CB-Tumblebug 등은 root 계정으로 구동합니다. 이에, root에 Go를 설치 합니다.
-
-root 권한 획득
-```
-sudo su
-```
-
 Golang 설치
 ```
 wget https://raw.githubusercontent.com/cloud-barista/cb-coffeehouse/master/scripts/golang/go-installation.sh
@@ -55,13 +48,7 @@ source go-installation.sh
 
 ### 2.1. Windows Terminal 실행
 ### 2.2. 탭에서 Ubuntu 18.04 선택
-### 2.3. root 권한 획득
-CB-Spider, CB-Tumblebug 등은 root 계정으로 구동 합니다.
-```
-sudo su
-```
-
-### 2.4. CB-Spider 소스 기반 실행
+### 2.3. CB-Spider 소스 기반 실행
 참고: [Quick Start Guide](https://github.com/cloud-barista/cb-spider/wiki/Quick-Start-Guide)
 
 CB-Spider Server 실행에 성공 했다면, 이제 개발을 위해 VS Code를 연동할 단계 입니다.
