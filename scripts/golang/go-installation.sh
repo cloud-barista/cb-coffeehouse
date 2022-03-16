@@ -1,5 +1,11 @@
 #!/bin/bash
 
+GOLANG_VERSION=${1:-no}
+
+if [ "${GOLANG_VERSION}" == "no" ]; then
+  GOLANG_VERSION=1.16.4
+fi
+
 echo "Go installation script"
 sleep 3
 
@@ -11,7 +17,6 @@ echo "Step 2: Package upgrade"
 sleep 3
 sudo apt dist-upgrade -y
 
-GOLANG_VERSION=1.16.4
 echo "Step 3: Install and setup Golang ${GOLANG_VERSION}"
 # Install Go
 if [ ! -d /usr/local/go ]; then
