@@ -6,7 +6,7 @@ Linux에서 Go 설치 및 삭제 그리고 이와 관련있는 환경 설정을 
 
 참고: 
 
-- **Go version: 1.16.4** (다른 버전 설치를 원하시면 스크립트 내용을 변경해주세요.)
+- **Go version: 1.16.4** (default)
 
 - **OS: Linux**
 
@@ -21,9 +21,15 @@ wget https://raw.githubusercontent.com/cloud-barista/cb-coffeehouse/master/scrip
 source go-installation.sh
 ```
 
+사용방법 2 - Go installation with version
+
+```bash
+wget https://raw.githubusercontent.com/cloud-barista/cb-coffeehouse/master/scripts/golang/go-installation.sh
+source go-installation.sh '1.17.6'
+```
 
 
-사용방법 2 - Go uninstallation
+사용방법 3 - Go uninstallation
 
 ```bash
 wget https://raw.githubusercontent.com/cloud-barista/cb-coffeehouse/master/scripts/golang/go-uninstallation.sh
