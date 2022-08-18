@@ -54,12 +54,12 @@ Filebeat가 로그 파일을 읽어 추가/변경된 부분만 Logstash로 전�
 
 Kibana를 통해 분산된 노드에서 수집한 로그를 확인해 보겠습니다. 최근 24시간 이내에 수집되었던 로그 정보를 표시하도록 하였습니다.
 
-첫 번쨰 그림은 ELK Stack의 로그 수집 흐름을 거치면서 부가 정보들이 함께 기록되어 있는 것을 확인 할 수 있습니다.
+아래 그림에서 ELK Stack의 로그 수집 과정을 거치면서 포함된 부가 정보들을 확인 할 수 있습니다.
 <p align="center">
   <img src="https://user-images.githubusercontent.com/7975459/185302612-deeb6abc-e9c1-453e-9fab-e19e51371a51.png" width="80%" height="80%" >
 </p>
 
-제가 궁금한 것은 멀티클라우드 네트워크 시스템의 각 컴포넌트의 로그만 궁금하기 때문에 message로 필터를 추가하였습니다. 두 번쨰 그림은 그 결과를 나타냅니다.
+여기서는 멀티클라우드 네트워크 시스템의 각 컴포넌트의 로그만 확인하면 되는 상황이라, 다른 로그는 보이지 않도록 `message`를 필터로 추가하였습니다. 다음 그림은 그 결과를 나타냅니다.
 <p align="center">
   <img src="https://user-images.githubusercontent.com/7975459/185302660-6e8340ad-2fb1-403f-acb1-5735b0229bc8.png" width="80%" height="80%" >
 </p>
@@ -77,12 +77,31 @@ ELK Stack 설치, 구동, 연동 등을 위해 참고할 수 있는 좋은 글�
 3. 설정 파일 위치 및 방법 참고 (제 경우 보안 미적용)
 
 기본적으로 공식 홈페이지를 참고했고, 
-분산 로깅을 위해서 Elasticsearch, Kibana, Logstash, Filebeat를 설치 및 배치했습니다(버전은 8.3.0으로 통일).
+분산 로깅을 위해서 Elasticsearch, Kibana, Logstash, Filebeat를 설치 및 활용했습니다(버전은 8.3.0으로 통일).
 
 참고: [Official website](https://www.elastic.co/downloads/)
 <p align="center">
   <img src="https://user-images.githubusercontent.com/7975459/185279871-e001e959-d5c2-4533-8c40-b394464bb3a4.png" width="80%" height="80%" >
 </p>
+
+### Prerequisites
+
+#### Install Java Development Kit (JDK) 
+Elasticsearch, Kibana, Logstash, Filebeat는 JVM 상에서 구동됩니다. 따라서 OpenJDK 1.8+을 설치해야합니다.
+
+참고 - [Support Matrix](https://www.elastic.co/support/matrix)
+
+On Ubuntu 18.04
+```
+sudo apt update
+sudo apt install openjdk-11-jdk
+```
+
+On Rocky Linux
+```
+sudo yum update
+sudo yum install java-11-openjdk
+```
 
 ### ELK server setup
 #### 1. Create a VM for ELK
@@ -119,7 +138,7 @@ VM 생성 및 접속 관련해서는 아래 글을 참고하시기 바랍니다(
 </p>
 
 ##### 2.4. 설치환경에 맞는 링크복사
-마우스 우클릭하여 `DEB X86_64`의 링크를 복사함 (Ubuntu 환경)
+마우스 우클릭하여 `DEB X86_64`의 링크를 복사함 (Debian 계열)
 
 ##### 2.5. VM에 패키지 다운로드
 ```
@@ -138,14 +157,42 @@ dpkg -i elasticsearch-8.3.0-amd64.deb
 
 #### 3. Download and install Logstash
 
-Logstash에 맞추어 위 2.1 ~ 2.6 과정 수행
+Logstash를 대상으로 위 2.1 ~ 2.6 과정 수행
 
 
 #### 4. Download and install Kibana
 
-Kibana에 맞추어 위 2.1 ~ 2.6 과정 수행
+Kibana를 대상으로 위 2.1 ~ 2.6 과정 수행
+
+#### 5. Download and install Filebeat
+
+Filebeat는 `Ubuntu 18.04`와 `Rocky Linux 8` 환경에 설치했습니다.
+참고 - cb-network agent의 실행 및 개발환경: `Ubuntu 18.04`, `Rocky Linux 8`(CentOS의 후속으로 보임)
 
 
+1. Ubuntu에 Filebeat를 설치하는 경우:
+
+Filebeat를 대상으로 위 2.1 ~ 2.6 과정 수행
+
+
+2. Rocky Linux에 Filebeat를 설치하는 경우:
+
+Filebeat를 대상으로 위 2.1 ~ 2.3 과정을 수행하고,
+
+##### 5.4. 설치환경에 맞는 링크복사
+마우스 우클릭하여 `RPM X86_64`의 링크를 복사함 (RedHat 계열)
+
+##### 5.5. 대상 노드에 패키지 다운로드
+```
+cd ~
+wget https://artifacts.elastic.co/downloads/beats/filebeat/filebeat-8.3.0-x86_64.rpm
+```
+
+##### 5.6. 패키지 설치
+```
+cd ~
+rpm -i filebeat-8.3.0-x86_64.rpm
+```
 
 [TBD]
 그 밖에 설정 정보들 (본래는 이 내용을 기록하기 위해 문서 작성을 시작함 ^^;; )
@@ -156,13 +203,28 @@ Kibana에 맞추어 위 2.1 ~ 2.6 과정 수행
 /etc/kibana/kibana.yml 에서
 server.host: "0.0.0.0" 입력
 
-Elasticsearch, Logstash, Kibana 실행
+### ELK stack configuration
+
+#### Elasticsearch configuration
+
+#### Logstash configuration
+
+#### Kibana configuration
+
+#### Filebeat configuration
+
+
+
+### Start Elasticsearch, Logstash, Kibana on the VM
+```
 sudo systemctl daemon-reload
 sudo systemctl start elasticsearch.service
 sudo systemctl start logstash.service
 sudo systemctl start kibana.service
+```
 
-Kibana 접근
+### Open Kibana interface
+
 1. 가이드를 따라 Kibana enrollment token 생성
 2. Kibana 홈페이지 접속: https://xxx.xxx.xxx.xxx/5601
 3. 토큰 입력
