@@ -104,10 +104,10 @@ sudo yum update
 sudo yum install java-11-openjdk
 ```
 
-### ELK server setup
-#### 1. Create a VM for ELK
+### Setup ELK on a server
+#### Create a virtual machine for ELK
 
-AWS의 VM에서 Elasticsearch, Logstash, Kibana를 설치 및 배치했습니다. 
+AWS의 가상머신(VM, virtual machine)에서 Elasticsearch, Logstash, Kibana를 설치 및 배치했습니다. 
 
 VM 스펙:
 - OS: Ubuntu18.04
@@ -115,81 +115,90 @@ VM 스펙:
 - RAM: 4GB
 - Storage: 100GB
 
-참고 - 위 스펙에서 ELK를 모두 돌리면 종종 버거워 하네요 ... ㅠㅠ
+위 스펙에서 ELK를 모두 돌리면 종종 버거워 하네요 ... :sob:
 
-VM 생성 및 접속 관련해서는 아래 글을 참고하시기 바랍니다(Cloud-Barista 커뮤니티 기여자께서 작성해주셨습니다).
+각 CSP에서 VM 생성 및 접속 관련해서는 아래 글을 참고하시기 바랍니다. Cloud-Barista 커뮤니티 기여자분들께서 작성해주셨습니다. :thumbsup:
 
-참고: [A guide to creating and accessing an instance in AWS](https://github.com/cloud-barista/cb-coffeehouse/blob/main/docs/Public-Cloud/Creating%20New%20AWS%20Account%20and%20setting%20new%20VPC%20and%20VM.md)
+참고: 
+- [A guide to creating and accessing an instance in AWS](https://github.com/cloud-barista/cb-coffeehouse/blob/main/docs/Public-Cloud/Creating%20New%20AWS%20Account%20and%20setting%20new%20VPC%20and%20VM.md)
+- [A guide to creating and accessing an instance in MS Azure](https://github.com/cloud-barista/cb-coffeehouse/blob/main/docs/Public-Cloud/Creating-and-accessing-an-instance-on-MS-Azure-Platform.md)
+- [A guide to creating and accessing an instance in GCP](https://github.com/cloud-barista/cb-coffeehouse/blob/main/docs/Public-Cloud/Creating-and-accessing-an-instance-on-GCP.md)
+- [A guide to creating and accessing an instance in Alibaba Cloud](https://github.com/cloud-barista/cb-coffeehouse/blob/main/docs/Public-Cloud/Creating%20and%20accessing%20an%20instance%20on%20AlibabaCloud.md)
 
-#### 2. Download and install Elasticsearch
-##### 2.1. Elasticsearch 다운로드 페이지 접속
 
+#### Download and install Elasticsearch
+##### 1. Elasticsearch 다운로드 페이지 접속
+##### 2. View past releases 이동
 <p align="center">
     <img src="https://user-images.githubusercontent.com/7975459/185281689-b4ff365e-d74f-4275-b622-46f574d32d65.png" width="80%" height="80%" >
 </p>
 
-##### 2.2. View past releases 이동
+##### 3. Elasticsearch 8.3.0 Download 클릭
 <p align="center">
     <img src="https://user-images.githubusercontent.com/7975459/185281939-4ad5dbab-6d02-4498-b023-91210cc97991.png" width="80%" height="80%" >
 </p>
 
-##### 2.3. Elasticsearch 8.3.0 Download 클릭
+##### 4. 설치환경에 맞는 링크복사
+마우스 우클릭하여 `DEB X86_64`의 링크를 복사함 (저는 Debian 계열)
+
 <p align="center">
     <img src="https://user-images.githubusercontent.com/7975459/185282148-618726c0-cf9d-490a-a97d-ffdd02df56a6.png" width="80%" height="80%" >
 </p>
 
-##### 2.4. 설치환경에 맞는 링크복사
-마우스 우클릭하여 `DEB X86_64`의 링크를 복사함 (Debian 계열)
-
-##### 2.5. VM에 패키지 다운로드
+##### 5. VM에 패키지 다운로드
 ```bash
 cd ~
 wget https://artifacts.elastic.co/downloads/elasticsearch/elasticsearch-8.3.0-amd64.deb
 ```
 
-##### 2.6. 패키지 설치
+##### 6. 패키지 설치
 ```bash
 cd ~
 dpkg -i elasticsearch-8.3.0-amd64.deb
 ```
 
-(중요) 메모해둘 것: ID, Password 및 가이드 등
+<ins>**!!!중요!!!**</ins>
+- 메모해둘 것: ID (e.g., elastic), Password (e.g., qqwieornlkjfs123), 및 가이드 등
+- Kibana interface 접속할 때 필요함
 
 
-#### 3. Download and install Logstash
+#### Download and install Logstash
 
-Logstash를 대상으로 위 2.1 ~ 2.6 과정 수행
+Logstash를 대상으로 위 Elasticsearch의 1 ~ 6 과정 수행
 
 
-#### 4. Download and install Kibana
+#### Download and install Kibana
 
-Kibana를 대상으로 위 2.1 ~ 2.6 과정 수행
+Kibana를 대상으로 위 Elasticsearch의 1 ~ 6 과정 수행
 
-#### 5. Download and install Filebeat
+### Setup Filebeat on nodes to log
+제 환경의 Nodes to log: cb-network controller(s), cb-network service, cb-network admin-web, cb-network agent(s)가 동작하는 노드
+
+#### Download and install Filebeat
 
 Filebeat는 `Ubuntu 18.04`와 `Rocky Linux 8` 환경에 설치했습니다.
+
 참고 - cb-network agent의 실행 및 개발환경: `Ubuntu 18.04`, `Rocky Linux 8`(CentOS의 후속으로 보임)
 
+1. Ubuntu(Debian 계열)에 Filebeat를 설치하는 경우:
 
-1. Ubuntu에 Filebeat를 설치하는 경우:
-
-Filebeat를 대상으로 위 2.1 ~ 2.6 과정 수행
+Filebeat를 대상으로 위 Elasticsearch의 1 ~ 6 과정 수행
 
 
-2. Rocky Linux에 Filebeat를 설치하는 경우:
+2. Rocky Linux(RedHat 계열)에 Filebeat를 설치하는 경우:
 
-Filebeat를 대상으로 위 2.1 ~ 2.3 과정을 수행하고,
+Filebeat를 대상으로 위 Elasticsearch 1 ~ 3 과정을 수행하시고,
 
-##### 5.4. 설치환경에 맞는 링크복사
+##### 4. 설치환경에 맞는 링크복사
 마우스 우클릭하여 `RPM X86_64`의 링크를 복사함 (RedHat 계열)
 
-##### 5.5. 대상 노드에 패키지 다운로드
+##### 5. 대상 노드에 패키지 다운로드
 ```bash
 cd ~
 wget https://artifacts.elastic.co/downloads/beats/filebeat/filebeat-8.3.0-x86_64.rpm
 ```
 
-##### 5.6. 패키지 설치
+##### 6. 패키지 설치
 ```bash
 cd ~
 rpm -i filebeat-8.3.0-x86_64.rpm
@@ -360,8 +369,7 @@ sudo systemctl enable logstash.service
 sudo systemctl enable kibana.service
 ```
 
-### Start Filebeat on the target nodes 
-제 환경의 Target nodes: cb-network controller(s), cb-network service, cb-network admin-web, cb-network agent(s)가 동작하는 노드
+### Start Filebeat on the nodes to log
 
 ```bash
 sudo systemctl daemon-reload
