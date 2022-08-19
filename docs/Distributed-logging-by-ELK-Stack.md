@@ -42,9 +42,9 @@ ELK Stack 관련 문서는 아래 공식 홈페이지를 참고하시기 바랍�
 
 아래 그림은 분산 로깅을 위해 ELK Stack을 멀티클라우드 네트워크 시스템(cb-network system)에 적용했을때의 구조와 흐름을 나타냅니다. 
 멀티클라우드 네트워크 시스템은 다음과 같은 독립적인 컴포넌트(cb-network controller, cb-network service, cb-network admin-web, cb-network agent)로 구성되어 있습니다. 
-각 컴포넌트는 cb-log라는 Cloud-Barista community에서 개발한 Go 패키지를 사용하여 로깅을 수행하고, 로그 정보는 파일에 기록합니다. 
+각 컴포넌트는 cb-log라는 Cloud-Barista community에서 개발한 Go 패키지를 사용하여 로깅을 수행하고, 로그 정보를 파일에 기록합니다. 
 Filebeat가 로그 파일을 읽어 추가/변경된 부분만 Logstash로 전송합니다. 
-이로서 멀티클라우드 네트워크 시스템과 ELK Stack을 통합하여 분산 로깅을 할 수 있게 되었습니다.
+이로서 멀티클라우드 네트워크 시스템과 ELK Stack을 통합하여 분산 로깅을 할 수 있게 되었습니다 :sunglasses:
 
 <p align="center">
   <img src="https://user-images.githubusercontent.com/7975459/185298611-44f1226d-9929-4bcc-933c-740e907c4091.png" width="90%" height="90%" >
@@ -56,12 +56,12 @@ Kibana를 통해 분산된 노드에서 수집한 로그를 확인해 보겠습�
 
 아래 그림에서 ELK Stack의 로그 수집 과정을 거치면서 포함된 부가 정보들을 확인 할 수 있습니다.
 <p align="center">
-  <img src="https://user-images.githubusercontent.com/7975459/185302612-deeb6abc-e9c1-453e-9fab-e19e51371a51.png" width="80%" height="80%" >
+  <img src="https://user-images.githubusercontent.com/7975459/185302612-deeb6abc-e9c1-453e-9fab-e19e51371a51.png" width="100%" height="100%" >
 </p>
 
 여기서는 멀티클라우드 네트워크 시스템의 각 컴포넌트의 로그만 확인하면 되는 상황이라, 다른 로그는 보이지 않도록 `message`를 필터로 추가하였습니다. 다음 그림은 그 결과를 나타냅니다.
 <p align="center">
-  <img src="https://user-images.githubusercontent.com/7975459/185302660-6e8340ad-2fb1-403f-acb1-5735b0229bc8.png" width="80%" height="80%" >
+  <img src="https://user-images.githubusercontent.com/7975459/185302660-6e8340ad-2fb1-403f-acb1-5735b0229bc8.png" width="100%" height="100%" >
 </p>
 
 
@@ -130,19 +130,19 @@ VM 스펙:
 ##### 1. Elasticsearch 다운로드 페이지 접속
 ##### 2. View past releases 이동
 <p align="center">
-    <img src="https://user-images.githubusercontent.com/7975459/185281689-b4ff365e-d74f-4275-b622-46f574d32d65.png" width="80%" height="80%" >
+    <img src="https://user-images.githubusercontent.com/7975459/185281689-b4ff365e-d74f-4275-b622-46f574d32d65.png" width="70%" height="70%" >
 </p>
 
 ##### 3. Elasticsearch 8.3.0 Download 클릭
 <p align="center">
-    <img src="https://user-images.githubusercontent.com/7975459/185281939-4ad5dbab-6d02-4498-b023-91210cc97991.png" width="80%" height="80%" >
+    <img src="https://user-images.githubusercontent.com/7975459/185281939-4ad5dbab-6d02-4498-b023-91210cc97991.png" width="70%" height="70%" >
 </p>
 
 ##### 4. 설치환경에 맞는 링크복사
 마우스 우클릭하여 `DEB X86_64`의 링크를 복사함 (저는 Debian 계열)
 
 <p align="center">
-    <img src="https://user-images.githubusercontent.com/7975459/185282148-618726c0-cf9d-490a-a97d-ffdd02df56a6.png" width="80%" height="80%" >
+    <img src="https://user-images.githubusercontent.com/7975459/185282148-618726c0-cf9d-490a-a97d-ffdd02df56a6.png" width="70%" height="70%" >
 </p>
 
 ##### 5. VM에 패키지 다운로드
@@ -403,3 +403,5 @@ sudo /usr/share/kibana/bin/kibana-verification-code
 ```
 
 #### 5. Input the verification code
+
+이상 적용기를 마칩니다. 필요하신 분들께 조금이나마 도움이 되기를 희망합니다.
