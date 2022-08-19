@@ -47,7 +47,7 @@ Filebeat가 로그 파일을 읽어 추가/변경된 부분만 Logstash로 전�
 이로서 멀티클라우드 네트워크 시스템과 ELK Stack을 통합하여 분산 로깅을 할 수 있게 되었습니다.
 
 <p align="center">
-  <img src="https://user-images.githubusercontent.com/7975459/185298611-44f1226d-9929-4bcc-933c-740e907c4091.png" width="80%" height="80%" >
+  <img src="https://user-images.githubusercontent.com/7975459/185298611-44f1226d-9929-4bcc-933c-740e907c4091.png" width="90%" height="90%" >
 </p>
 
 ### Logs collected from distributed nodes
@@ -67,6 +67,7 @@ Kibana를 통해 분산된 노드에서 수집한 로그를 확인해 보겠습�
 
 현재, 분산된 컴포넌트의 로그 수집에는 문제가 없으나 Logger Name이 동일하여 구분이 어려운 상태네요 ^^;; 개선해야겠습니다!
 
+---
 
 ## A guide to download and deploy ELK Stack
 
@@ -92,13 +93,13 @@ Elasticsearch, Kibana, Logstash, Filebeat는 JVM 상에서 구동됩니다. 따�
 참고 - [Support Matrix](https://www.elastic.co/support/matrix)
 
 On Ubuntu 18.04
-```
+```bash
 sudo apt update
 sudo apt install openjdk-11-jdk
 ```
 
 On Rocky Linux
-```
+```bash
 sudo yum update
 sudo yum install java-11-openjdk
 ```
@@ -141,13 +142,13 @@ VM 생성 및 접속 관련해서는 아래 글을 참고하시기 바랍니다(
 마우스 우클릭하여 `DEB X86_64`의 링크를 복사함 (Debian 계열)
 
 ##### 2.5. VM에 패키지 다운로드
-```
+```bash
 cd ~
 wget https://artifacts.elastic.co/downloads/elasticsearch/elasticsearch-8.3.0-amd64.deb
 ```
 
 ##### 2.6. 패키지 설치
-```
+```bash
 cd ~
 dpkg -i elasticsearch-8.3.0-amd64.deb
 ```
@@ -183,53 +184,214 @@ Filebeat를 대상으로 위 2.1 ~ 2.3 과정을 수행하고,
 마우스 우클릭하여 `RPM X86_64`의 링크를 복사함 (RedHat 계열)
 
 ##### 5.5. 대상 노드에 패키지 다운로드
-```
+```bash
 cd ~
 wget https://artifacts.elastic.co/downloads/beats/filebeat/filebeat-8.3.0-x86_64.rpm
 ```
 
 ##### 5.6. 패키지 설치
-```
+```bash
 cd ~
 rpm -i filebeat-8.3.0-x86_64.rpm
 ```
 
-[TBD]
-그 밖에 설정 정보들 (본래는 이 내용을 기록하기 위해 문서 작성을 시작함 ^^;; )
 
-(보안(SSL) 관련 설정 파일 및 설정 방법 추가)
+### ELK Stack configuration
 
-외부 접근을 위해
-/etc/kibana/kibana.yml 에서
-server.host: "0.0.0.0" 입력
+본래는 이 내용을 기록해 놓기 위해 문서 작성을 시작했습니다. ^^;;
 
-### ELK stack configuration
+보안(SSL) 관련 설정을 모두 Disable 하는 설정을 적용 하였습니다.
+cb-network agent는 멀티클라우드에서 동적으로 생성/삭제되는 VM 상에 설치됩니다.
+이 경우, 보안 관련 설정 활성화를 위해 각 VM에 PEM 키 배포 방안을 마련해야 합니다.
+따라서, 필요한 시점에 PEM 키 배포 방안을 마련 및 적용하고, 보안 관련 설정을 Enable 하려고 합니다.
+
+보안 설정 관련 참고자료 - [Elastic Stack - SSL, TLS, HTTPS 보안 구성하기](https://backtony.github.io/elk/2021-09-11-elk-3/)
 
 #### Elasticsearch configuration
 
+편집기로 Elasticsearch의 설정파일(`elasticsearch.yml`)을 오픈합니다.
+
+```bash
+sudo vim /etc/elasticsearch/elasticsearch.yml
+```
+
+아래와 관련된 부분을 수정합니다.
+```yaml
+# Enable security features
+xpack.security.enabled: false
+
+xpack.security.enrollment.enabled: false
+
+# Enable encryption for HTTP API client connections, such as Kibana, Logstash, and Agents
+xpack.security.http.ssl:
+  enabled: false
+  keystore.path: certs/http.p12
+
+# Enable encryption and mutual authentication between cluster nodes
+xpack.security.transport.ssl:
+  enabled: false
+  verification_mode: certificate
+  keystore.path: certs/transport.p12
+  truststore.path: certs/transport.p12
+# Create a new cluster with the current node only
+# Additional nodes can still join the cluster later
+cluster.initial_master_nodes: ["ip-172-31-1-133"]
+
+# Allow HTTP API connections from anywhere
+# Connections are encrypted and require user authentication
+http.host: 0.0.0.0
+```
+
 #### Logstash configuration
+
+Logstash의 설정파일(`logstash.yaml`)은 수정하지 않았습니다. 
+필요하시면 아래 경로에서 수정하시기 바랍니다.
+
+```bash
+sudo vim /etc/logstash/logstash.yml
+```
+
+Beats -> Logstash -> Elasticsearch 파이프라인 생성을 위한 Logstash 설정츨 추가합니다.
+(새로운 파일 생성됨)
+
+```bash
+sudo vim /etc/logstach/conf.d/logstash-filebeat.conf
+```
+
+```conf
+# Sample Logstash configuration for creating a simple
+# Beats -> Logstash -> Elasticsearch pipeline.
+
+input {
+  beats {
+    port => 5044
+    host => "0.0.0.0"
+  }
+}
+
+output {
+  elasticsearch {
+    hosts => ["http://localhost:9200"]
+    index => "%{[@metadata][beat]}-%{[@metadata][version]}-%{+YYYY.MM.dd}"
+    #user => "elastic"
+    #password => "changeme"
+  }
+}
+```
 
 #### Kibana configuration
 
+편집기로 Kibana의 설정파일(`kibana.yml`)을 오픈합니다.
+
+```bash
+sudo vim /etc/kibana/kibana.yml
+```
+
+아래와 관련된 부분을 수정합니다.
+1. 외부 접근을 위한 host 정보 변경
+```yaml
+# Specifies the address to which the Kibana server will bind. IP addresses and host names are both valid values.
+# The default is 'localhost', which usually means remote machines will not be able to connect.
+# To allow connections from remote users, set this parameter to a non-loopback address.
+#server.host: "localhost"
+server.host: "0.0.0.0"
+```
+
 #### Filebeat configuration
+
+편집기로 Filebeat의 설정파일(`filebeat.yml`)을 오픈합니다.
+
+```bash
+sudo vim /etc/filebeat/filebeat.yml
+```
+
+아래와 관련된 부분을 수정합니다.
+1. 수집할 로그 파일 관련 설정, <ins>**!!!중요!!! 응용의 로그 파일 경로와 일치해야함**</ins>
+2. Elastiicseach 주석처리
+3. Logstash 관련 설정
+
+```yaml
+# Each - is an input. Most options can be set at the input level, so
+# you can use different inputs for various configurations.
+# Below are the input specific configurations.
+
+# filestream is an input for collecting log messages from files.
+- type: log
+
+  # Unique ID among all inputs, an ID is required.
+  #id: my-filestream-id
+
+  # Change to true to enable this input configuration.
+  enabled: true
+
+  # Paths that should be crawled and fetched. Glob based paths.
+  paths:
+    - /var/log/cblogs.log
+      #- /var/log/*.log
+    #- c:\programdata\elasticsearch\logs\*
+
+
+# ---------------------------- Elasticsearch Output ----------------------------
+#output.elasticsearch:
+  # Array of hosts to connect to.
+  #hosts: ["localhost:9200"] 
+
+
+# ------------------------------ Logstash Output -------------------------------
+output.logstash:
+  # The Logstash hosts
+  hosts: ["xxx.xxx.xxx.xxx:5044"]
+```
 
 
 
 ### Start Elasticsearch, Logstash, Kibana on the VM
-```
+```bash
 sudo systemctl daemon-reload
 sudo systemctl start elasticsearch.service
 sudo systemctl start logstash.service
 sudo systemctl start kibana.service
 ```
 
+(optional) for start on boot
+```bash
+sudo systemctl enable elasticsearch.service
+sudo systemctl enable logstash.service
+sudo systemctl enable kibana.service
+```
+
+### Start Filebeat on the target nodes 
+제 환경의 Target nodes: cb-network controller(s), cb-network service, cb-network admin-web, cb-network agent(s)가 동작하는 노드
+
+```bash
+sudo systemctl daemon-reload
+sudo systemctl start filebeat.service
+```
+
+(optional) for start on boot
+```bash
+sudo systemctl enable filebeat.service
+```
+
 ### Open Kibana interface
 
-1. 가이드를 따라 Kibana enrollment token 생성
-2. Kibana 홈페이지 접속: https://xxx.xxx.xxx.xxx/5601
-3. 토큰 입력
-4. Verification code 확인 by /usr/share/kibana/bin/kibana-verification-code
-5. Verification code 입력
+캡쳐하지 못했습니다 :sob:
 
-끝.
+#### 1. Create an enrollment token
+```bash
+sudo /usr/share/elasticsearch/bin/elasticsearch-create-enrollment-token -s kibana
+```
 
+#### 2. Open Kibana interface
+```
+http://xxx.xxx.xxx.xxx/5601
+```
+
+#### 3. Input the token
+
+#### 4. Get a verification code
+```bash
+sudo /usr/share/kibana/bin/kibana-verification-code
+```
+
+#### 5. Input the verification code
