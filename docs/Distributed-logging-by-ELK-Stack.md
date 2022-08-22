@@ -110,7 +110,7 @@ sudo yum install java-11-openjdk
 AWS의 가상머신(VM, virtual machine)에서 Elasticsearch, Logstash, Kibana를 설치 및 배치했습니다. 
 
 VM 스펙:
-- OS: Ubuntu18.04
+- OS: Ubuntu 18.04
 - vCPU: 2
 - RAM: 4GB
 - Storage: 100GB
@@ -124,6 +124,14 @@ VM 스펙:
 - [A guide to creating and accessing an instance in MS Azure](https://github.com/cloud-barista/cb-coffeehouse/blob/main/docs/Public-Cloud/Creating-and-accessing-an-instance-on-MS-Azure-Platform.md)
 - [A guide to creating and accessing an instance in GCP](https://github.com/cloud-barista/cb-coffeehouse/blob/main/docs/Public-Cloud/Creating-and-accessing-an-instance-on-GCP.md)
 - [A guide to creating and accessing an instance in Alibaba Cloud](https://github.com/cloud-barista/cb-coffeehouse/blob/main/docs/Public-Cloud/Creating%20and%20accessing%20an%20instance%20on%20AlibabaCloud.md)
+
+Mini PC에 재 구축 했습니다.
+
+Mini PC 스펙:
+- OS: Ubuntu 20.04.4 LTS
+- Processor: Intel(R) Core(TM) i5-4670 CPU @ 3.40GHz
+- RAM: 12GB
+- Storage: 128GB - SAMSUNG SSD 830, 500GB - Seagate ST500LM021-1KJ15
 
 
 #### Download and install Elasticsearch
@@ -158,9 +166,39 @@ dpkg -i elasticsearch-8.3.0-amd64.deb
 ```
 
 <ins>**!!!중요!!!**</ins>
-- 메모해둘 것: ID (e.g., elastic), Password (e.g., qqwieornlkjfs123), 및 가이드 등
+- 메모해둘 것: ID (e.g., elastic), Password (e.g., PASSPASSPASSPASS), 및 가이드 등
 - Kibana interface 접속할 때 필요함
 
+```bash
+--------------------------- Security autoconfiguration information ------------------------------
+
+Authentication and authorization are enabled.
+TLS for the transport and HTTP layers is enabled and configured.
+
+The generated password for the elastic built-in superuser is : PASSPASSPASSPASS
+
+If this node should join an existing cluster, you can reconfigure this with
+'/usr/share/elasticsearch/bin/elasticsearch-reconfigure-node --enrollment-token <token-here>'
+after creating an enrollment token on your existing cluster.
+
+You can complete the following actions at any time:
+
+Reset the password of the elastic built-in superuser with
+'/usr/share/elasticsearch/bin/elasticsearch-reset-password -u elastic'.
+
+Generate an enrollment token for Kibana instances with
+ '/usr/share/elasticsearch/bin/elasticsearch-create-enrollment-token -s kibana'.
+
+Generate an enrollment token for Elasticsearch nodes with
+'/usr/share/elasticsearch/bin/elasticsearch-create-enrollment-token -s node'.
+
+-------------------------------------------------------------------------------------------------
+### NOT starting on installation, please execute the following statements to configure elasticsearch service to start automatically using systemd
+ sudo systemctl daemon-reload
+ sudo systemctl enable elasticsearch.service
+### You can start elasticsearch service by executing
+ sudo systemctl start elasticsearch.service
+```
 
 #### Download and install Logstash
 
@@ -264,7 +302,7 @@ Beats -> Logstash -> Elasticsearch 파이프라인 생성을 위한 Logstash 설
 (새로운 파일 생성됨)
 
 ```bash
-sudo vim /etc/logstach/conf.d/logstash-filebeat.conf
+sudo vim /etc/logstash/conf.d/logstash-filebeat.conf
 ```
 
 ```conf
@@ -383,25 +421,58 @@ sudo systemctl enable filebeat.service
 
 ### Open Kibana interface
 
-캡쳐하지 못했습니다 :sob:
+#### 1. Visit Kibana interface
 
-#### 1. Create an enrollment token
-```bash
-sudo /usr/share/elasticsearch/bin/elasticsearch-create-enrollment-token -s kibana
-```
+아래와 같은 주소로 Kibana interface에 처음 접속하면 Enrollment token 입력 창이 뜹니다.
 
-#### 2. Open Kibana interface
 ```
 http://xxx.xxx.xxx.xxx/5601
 ```
 
-#### 3. Input the token
+<p align="center">
+    <img src="https://user-images.githubusercontent.com/7975459/185854269-cd96ee13-a171-4aaf-87b8-252418ad2739.png" width="40%" height="40%" >
+</p>
 
-#### 4. Get a verification code
+#### 2. Create and input an enrollment token
+
+아래 명령어로 Kibana 등록 토큰을 생성하여 입력한 후 "Configure Elastic"을 클릭합니다.
+
+```bash
+sudo /usr/share/elasticsearch/bin/elasticsearch-create-enrollment-token -s kibana
+```
+
+#### 3. Get and input a verification code
+
+이번에는 "Verification code"를 물어 봅니다.
+
+<p align="center">
+    <img src="https://user-images.githubusercontent.com/7975459/185855063-d035bbef-3c93-4ea5-b48c-6d244b344030.png" width="40%" height="40%" >
+</p>
+
+
+아래 명령어를 실행하여 얻은 "Verification code"를 입력하고, "Verify"를 클릭합니다.
+
 ```bash
 sudo /usr/share/kibana/bin/kibana-verification-code
 ```
 
-#### 5. Input the verification code
+#### 4. Input ID and password
+
+마지막으로, Elasticsearch 설치 후 메모해 놓은 ID와 Password를 입력합니다.
+
+<p align="center">
+    <img src="https://user-images.githubusercontent.com/7975459/185855654-79898477-42cb-47cb-8a8c-8eb06763e0cc.png" width="40%" height="40%" >
+</p>
+
+만약 메모해 놓지 못하셨다면, 아래 명령어로 `reset`후 입력하시면 됩니다 ^^
+
+```bash
+/usr/share/elasticsearch/bin/elasticsearch-reset-password -u elastic
+```
+
+#### 5. Explore the Kibana interface
+<p align="center">
+    <img src="https://user-images.githubusercontent.com/7975459/185856456-8aefaa2f-3a02-471b-abbd-ccc80f6f56c2.png" width="80%" height="80%" >
+</p>
 
 이상 적용기를 마칩니다. 필요하신 분들께 조금이나마 도움이 되기를 희망합니다.
