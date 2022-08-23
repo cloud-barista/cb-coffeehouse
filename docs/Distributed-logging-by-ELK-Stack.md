@@ -86,7 +86,6 @@ ELK Stack 설치, 구동, 연동 등을 위해 참고할 수 있는 좋은 글�
 </p>
 
 ### Prerequisites
-
 #### Install Java Development Kit (JDK) 
 Elasticsearch, Kibana, Logstash, Filebeat는 JVM 상에서 구동됩니다. 따라서 OpenJDK 1.8+을 설치해야합니다.
 
@@ -336,12 +335,20 @@ sudo vim /etc/kibana/kibana.yml
 
 아래와 관련된 부분을 수정합니다.
 1. 외부 접근을 위한 host 정보 변경
+2. HTTP 접근
 ```yaml
 # Specifies the address to which the Kibana server will bind. IP addresses and host names are both valid values.
 # The default is 'localhost', which usually means remote machines will not be able to connect.
 # To allow connections from remote users, set this parameter to a non-loopback address.
 #server.host: "localhost"
 server.host: "0.0.0.0"
+
+
+# This section was automatically generated during setup.
+elasticsearch.hosts: ['http://192.168.0.12:9200']
+elasticsearch.serviceAccountToken: xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+elasticsearch.ssl.certificateAuthorities: [/var/lib/kibana/ca_1661150449391.crt]
+xpack.fleet.outputs: [{id: fleet-default-output, name: default, is_default: true, is_default_monitoring: true, type: elasticsearch, hosts: ['http://192.168.0.12:9200'], ca_trusted_fingerprint: xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx}]
 ```
 
 #### Filebeat configuration
@@ -407,6 +414,26 @@ sudo systemctl enable logstash.service
 sudo systemctl enable kibana.service
 ```
 
+#### Monitor Elasticsearch, Logstash, Kibana status
+
+정상 동작하지 않을 경우 활용하시기 바랍니다 :wink:
+
+Elasticsearch의 상태를 실시간 모니터링 합니다.
+```
+sudo tail -f /var/log/elasticsearch/elasticsearch.log
+```
+
+Logstash의 상태를 실시간 모니터링 합니다.
+```
+sudo tail -f /var/log/logstash/logstash-plain.log
+```
+
+Kibana의 상태를 실시간 모니터링 합니다.
+```
+sudo tail -f /var/log/kibana/kibana.log
+```
+
+
 ### Start Filebeat on the nodes to log
 
 ```bash
@@ -417,6 +444,20 @@ sudo systemctl start filebeat.service
 (optional) for start on boot
 ```bash
 sudo systemctl enable filebeat.service
+```
+
+#### Monitor Filebeat operation status
+
+정상 동작하지 않을 경우 활용하시기 바랍니다 :wink:
+
+로그 파일 목록을 확인합니다. (형식: filebeat-yyyyMMdd.ndjson 또는 filebeat-yyyyMMdd-number.ndjson)
+```
+sudo ls -al /var/log/filebeat/
+```
+
+Filebeat의 상태를 실시간 모니터링 합니다 (가장 최근의 로그파일 활용).
+```
+sudo sudo tail -f [YOUR_LOG_FILE]
 ```
 
 ### Open Kibana interface
@@ -467,7 +508,7 @@ sudo /usr/share/kibana/bin/kibana-verification-code
 만약 메모해 놓지 못하셨다면, 아래 명령어로 `reset`후 입력하시면 됩니다 ^^
 
 ```bash
-/usr/share/elasticsearch/bin/elasticsearch-reset-password -u elastic
+sudo /usr/share/elasticsearch/bin/elasticsearch-reset-password -u elastic
 ```
 
 #### 5. Explore the Kibana interface
