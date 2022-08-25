@@ -161,7 +161,7 @@ wget https://artifacts.elastic.co/downloads/elasticsearch/elasticsearch-8.3.0-am
 ##### 6. 패키지 설치
 ```bash
 cd ~
-dpkg -i elasticsearch-8.3.0-amd64.deb
+sudo dpkg -i elasticsearch-8.3.0-amd64.deb
 ```
 
 <ins>**!!!중요!!!**</ins>
@@ -203,10 +203,21 @@ Generate an enrollment token for Elasticsearch nodes with
 
 Logstash를 대상으로 위 Elasticsearch의 1 ~ 6 과정 수행
 
+참고 - Debian 계열을 위한 Logstash 8.3.0 설치 파일
+```
+cd ~ 
+wget https://artifacts.elastic.co/downloads/logstash/logstash-8.3.0-amd64.deb
+```
 
 #### Download and install Kibana
 
 Kibana를 대상으로 위 Elasticsearch의 1 ~ 6 과정 수행
+
+참고 - Debian 계열을 위한 Kibana 8.3.0 설치 파일
+```
+cd ~ 
+wget https://artifacts.elastic.co/downloads/kibana/kibana-8.3.0-amd64.deb
+```
 
 ### Setup Filebeat on nodes to log
 제 환경의 Nodes to log: cb-network controller(s), cb-network service, cb-network admin-web, cb-network agent(s)가 동작하는 노드
@@ -220,6 +231,12 @@ Filebeat는 `Ubuntu 18.04`와 `Rocky Linux 8` 환경에 설치했습니다.
 1. Ubuntu(Debian 계열)에 Filebeat를 설치하는 경우:
 
 Filebeat를 대상으로 위 Elasticsearch의 1 ~ 6 과정 수행
+
+참고 - Debian 계열을 위한 Filebeat 8.3.0 설치 파일
+```
+cd ~ 
+wget https://artifacts.elastic.co/downloads/beats/filebeat/filebeat-8.3.0-amd64.deb
+```
 
 
 2. Rocky Linux(RedHat 계열)에 Filebeat를 설치하는 경우:
@@ -238,7 +255,7 @@ wget https://artifacts.elastic.co/downloads/beats/filebeat/filebeat-8.3.0-x86_64
 ##### 6. 패키지 설치
 ```bash
 cd ~
-rpm -i filebeat-8.3.0-x86_64.rpm
+sudo rpm -i filebeat-8.3.0-x86_64.rpm
 ```
 
 
