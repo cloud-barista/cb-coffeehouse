@@ -3,7 +3,7 @@
 GOLANG_VERSION=${1:-no}
 
 if [ "${GOLANG_VERSION}" == "no" ]; then
-  GOLANG_VERSION=1.16.4
+  GOLANG_VERSION=1.19
 fi
 
 echo "Go installation script"
@@ -17,7 +17,7 @@ sleep 3
 # sleep 3
 # sudo apt dist-upgrade -y
 
-echo "Step 1: Install and setup Golang ${GOLANG_VERSION}"
+echo "Step 1: Download and setup Golang ${GOLANG_VERSION}"
 # Install Go
 if [ ! -d /usr/local/go ]; then
   wget https://dl.google.com/go/go${GOLANG_VERSION}.linux-amd64.tar.gz
