@@ -6,7 +6,7 @@ Linux에서 Go 설치 및 삭제 그리고 이와 관련있는 환경 설정을 
 
 참고: 
 
-- **Go version: 1.16.4** (default)
+- **Go version: 1.19** (default)
 
 - **OS: Linux**
 
