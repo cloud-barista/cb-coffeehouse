@@ -14,8 +14,8 @@ case "${OS_ID}" in
 
   echo "OS ID like: debian-like"
   # Prerequisites
-  sudo DEBIAN_FRONTEND=noninteractive apt update -qq
-  sudo DEBIAN_FRONTEND=noninteractive apt install -qq -y openjdk-11-jdk
+  sudo DEBIAN_FRONTEND=noninteractive apt-get update -qq
+  sudo DEBIAN_FRONTEND=noninteractive apt-get install -qq -y openjdk-11-jdk
 
   # Download Filebeat 8.3.0
   cd ~ 
