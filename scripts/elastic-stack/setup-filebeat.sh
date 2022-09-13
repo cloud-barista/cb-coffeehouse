@@ -14,16 +14,16 @@ case "${OS_ID}" in
 
   echo "OS ID like: debian-like"
   # Prerequisites
-  sudo apt update
-  sudo apt install -y openjdk-11-jdk
+  sudo DEBIAN_FRONTEND=noninteractive apt update
+  sudo DEBIAN_FRONTEND=noninteractive apt install -y openjdk-11-jdk
 
   # Download Filebeat 8.3.0
   cd ~ 
-  wget https://artifacts.elastic.co/downloads/beats/filebeat/filebeat-8.3.0-amd64.deb
+  sudo wget -q --no-cache https://artifacts.elastic.co/downloads/beats/filebeat/filebeat-8.3.0-amd64.deb
 
   # Install Filebeat by dpkg
   cd ~
-  sudo dpkg -i filebeat-8.3.0-amd64.deb
+  sudo dpkg -i filebeat-8.3.0-amd64.deb > /dev/null 2>&1
 
 
   # SYSTEMD_PATH="/lib/systemd/system/cb-network-agent.service"
@@ -33,16 +33,16 @@ case "${OS_ID}" in
   
   echo "OS ID like: debian-like"
   # Prerequisites
-  sudo yum update
+  sudo yum -y update
   sudo yum -y install java-11-openjdk
 
   # Download Filebeat
   cd ~
-  wget https://artifacts.elastic.co/downloads/beats/filebeat/filebeat-8.3.0-x86_64.rpm
+  sudo wget -q --no-cache https://artifacts.elastic.co/downloads/beats/filebeat/filebeat-8.3.0-x86_64.rpm
 
   # Install Filebeat by rpm
   cd ~
-  sudo rpm -i filebeat-8.3.0-x86_64.rpm  
+  sudo rpm -i filebeat-8.3.0-x86_64.rpm > /dev/null 2>&1
 
   # SYSTEMD_PATH="/usr/lib/systemd/system/cb-network-agent.service"
   ;;
