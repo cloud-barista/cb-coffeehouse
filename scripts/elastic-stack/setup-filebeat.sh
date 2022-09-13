@@ -14,8 +14,8 @@ case "${OS_ID}" in
 
   echo "OS ID like: debian-like"
   # Prerequisites
-  sudo DEBIAN_FRONTEND=noninteractive apt update
-  sudo DEBIAN_FRONTEND=noninteractive apt install -y openjdk-11-jdk
+  sudo DEBIAN_FRONTEND=noninteractive apt update -qq
+  sudo DEBIAN_FRONTEND=noninteractive apt install -qq -y openjdk-11-jdk
 
   # Download Filebeat 8.3.0
   cd ~ 
@@ -33,8 +33,8 @@ case "${OS_ID}" in
   
   echo "OS ID like: debian-like"
   # Prerequisites
-  sudo yum -y update
-  sudo yum -y install java-11-openjdk
+  sudo yum -q -y update
+  sudo yum -q -y install java-11-openjdk
 
   # Download Filebeat
   cd ~
@@ -73,3 +73,10 @@ sudo chmod 600 filebeat.yml
 ##############################################################################################
 echo "Step 3: Start Filebeat service"
 sudo systemctl start filebeat.service
+
+
+##############################################################################################
+echo "Step 4: Display Filebeat.service status"
+sleep 3
+FILEBEAT_STATUS=$(sudo systemctl status filebeat.service | grep active)
+echo "${FILEBEAT_STATUS}"
