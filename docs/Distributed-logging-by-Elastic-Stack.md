@@ -1,5 +1,5 @@
 # Distributed logging by ELK Stack
-NOTE - ELK: Elasticsearch, Logstash and Kibana (see [ELK Stack](https://www.elastic.co/kr/what-is/elk-stack))
+NOTE - ELK: Elasticsearch, Logstash and Kibana (see [Elastic Stack](https://www.elastic.co/kr/what-is/elk-stack))
 
 간단한 적용기를 남기고자 글을 작성합니다 ^^
 
@@ -17,11 +17,11 @@ CB-Larva에서는 멀티클라우드를 위한 네트워크 기술 및 시스템
 </p>
 
 
-### Introduction to ELK Stack
+### Introduction to Elastic Stack
 
-분산 로깅 시스템으로 오픈소스인 ELK Stack을 선택 및 적용했습니다(CB-Larva는 비 상용). 
+분산 로깅 시스템으로 오픈소스인 Elastic Stack을 선택 및 적용했습니다(CB-Larva는 비 상용). 
 
-아래 그림과 같은 순서로 ELK Stack은 로그를 수집합니다. 간략히는, Beats(i.e., Filebeat)가 파일에 저장된 로그를 수집하여 Logstash로 전송합니다. 
+아래 그림과 같은 순서로 Elastic Stack은 로그를 수집합니다. 간략히는, Beats(i.e., Filebeat)가 파일에 저장된 로그를 수집하여 Logstash로 전송합니다. 
 Logstash는 전송받은 로그 데이터를 처리하고 Elasticsearch에 전송합니다. 
 Elasticsearch는 전송받은 로그를 저장합니다. Kibana는 Elasticsearch에 저장된 로그를 읽어 시각화 합니다. 
 (약간 더 자세하게) 각각은 아래와 같은 작업을 수행합니다.
@@ -34,17 +34,17 @@ Elasticsearch는 전송받은 로그를 저장합니다. Kibana는 Elasticsearch
   <img src="https://user-images.githubusercontent.com/7975459/185298255-c0928cef-c5b1-47d1-8d9c-9023b3959a0a.png" width="80%" height="80%" >
 </p>
 
-ELK Stack 관련 문서는 아래 공식 홈페이지를 참고하시기 바랍니다.
-참고: [ELK Stack](https://www.elastic.co/kr/what-is/elk-stack)
+Elasic Stack 관련 문서는 아래 공식 홈페이지를 참고하시기 바랍니다.
+참고: [Elastic Stack](https://www.elastic.co/kr/what-is/elk-stack)
 
 
 ## Multi-cloud network system with distributed logging
 
-아래 그림은 분산 로깅을 위해 ELK Stack을 멀티클라우드 네트워크 시스템(cb-network system)에 적용했을때의 구조와 흐름을 나타냅니다. 
+아래 그림은 분산 로깅을 위해 Elastic Stack을 멀티클라우드 네트워크 시스템(cb-network system)에 적용했을때의 구조와 흐름을 나타냅니다. 
 멀티클라우드 네트워크 시스템은 다음과 같은 독립적인 컴포넌트(cb-network controller, cb-network service, cb-network admin-web, cb-network agent)로 구성되어 있습니다. 
 각 컴포넌트는 cb-log라는 Cloud-Barista community에서 개발한 Go 패키지를 사용하여 로깅을 수행하고, 로그 정보를 파일에 기록합니다. 
 Filebeat가 로그 파일을 읽어 추가/변경된 부분만 Logstash로 전송합니다. 
-이로서 멀티클라우드 네트워크 시스템과 ELK Stack을 통합하여 분산 로깅을 할 수 있게 되었습니다 :sunglasses:
+이로서 멀티클라우드 네트워크 시스템과 Elastic Stack을 통합하여 분산 로깅을 할 수 있게 되었습니다 :sunglasses:
 
 <p align="center">
   <img src="https://user-images.githubusercontent.com/7975459/185298611-44f1226d-9929-4bcc-933c-740e907c4091.png" width="90%" height="90%" >
@@ -54,7 +54,7 @@ Filebeat가 로그 파일을 읽어 추가/변경된 부분만 Logstash로 전�
 
 Kibana를 통해 분산된 노드에서 수집한 로그를 확인해 보겠습니다. 최근 24시간 이내에 수집되었던 로그 정보를 표시하도록 하였습니다.
 
-아래 그림에서 ELK Stack의 로그 수집 과정을 거치면서 포함된 부가 정보들을 확인 할 수 있습니다.
+아래 그림에서 Elastic Stack의 로그 수집 과정을 거치면서 포함된 부가 정보들을 확인 할 수 있습니다.
 <p align="center">
   <img src="https://user-images.githubusercontent.com/7975459/185302612-deeb6abc-e9c1-453e-9fab-e19e51371a51.png" width="100%" height="100%" >
 </p>
@@ -69,9 +69,9 @@ Kibana를 통해 분산된 노드에서 수집한 로그를 확인해 보겠습�
 
 ---
 
-## A guide to download and deploy ELK Stack
+## A guide to download and deploy Elastic Stack
 
-ELK Stack 설치, 구동, 연동 등을 위해 참고할 수 있는 좋은 글이 많이 있습니다. 
+Elastic Stack 설치, 구동, 연동 등을 위해 참고할 수 있는 좋은 글이 많이 있습니다. 
 그럼에도 불구하고 설치 및 배치 가이드를 남기는 이유는 다음과 같습니다.
 1. 버전을 선택하여 설치할 때 참고 (제 경우 8.3.0 설치)
 2. OS별로 설치 방법 참고 (제 경우 Debian, RedHat 계열에 설치)
@@ -259,7 +259,7 @@ sudo rpm -i filebeat-8.3.0-x86_64.rpm
 ```
 
 
-### ELK Stack configuration
+### Elastic Stack configuration
 
 본래는 이 내용을 기록해 놓기 위해 문서 작성을 시작했습니다. ^^;;
 
@@ -314,7 +314,7 @@ Logstash의 설정파일(`logstash.yaml`)은 수정하지 않았습니다.
 sudo vim /etc/logstash/logstash.yml
 ```
 
-Beats -> Logstash -> Elasticsearch 파이프라인 생성을 위한 Logstash 설정츨 추가합니다.
+Beats -> Logstash -> Elasticsearch 파이프라인 생성을 위한 Logstash 설정을 추가합니다.
 (새로운 파일 생성됨)
 
 ```bash
