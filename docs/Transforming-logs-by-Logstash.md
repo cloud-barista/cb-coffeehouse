@@ -54,9 +54,11 @@ Dissect와 관련한 설명과 예제를 찾아 해맨 끝에 다행히 [Test To
 
 
 
-### Pattern configuration on Logstash dissect filter
+### Filter configuration on Logstash for log transformation
 
-이전에 Beats -> Logstash -> Elasticsearch 파이프라인 생성을 위해 추가했던 설정 파일에 Dissect 패턴화를 포함하여 Tranforming 관련 설정을 추가해 주면 됩니다. 자세한 내용은 아래와 같습니다.
+이전에 Beats -> Logstash -> Elasticsearch 파이프라인 생성을 위해 추가했던 설정 파일을 수정합니다.
+Dissect 패턴화를 포함하여 Tranforming 관련 설정을 추가해 주면 됩니다. 
+자세한 내용은 아래와 같습니다.
 
 ```bash
 sudo vim /etc/logstash/conf.d/logstash-filebeat.conf
@@ -67,6 +69,8 @@ sudo vim /etc/logstash/conf.d/logstash-filebeat.conf
 - mutate: 주로 변형 관련 작업, 여기서는 두 필드를 붙여 새로운 필드를 추가함
 - date: string to date 변환 또는 시간 관련 정보 부여(e.g., timezone),  여기서는 기존 log_time에 부족한 timezone 정보 명시
 - ruby: lot_time을 date type 으로 변환
+
+**중요 - date type으로 저장해야 Kibana interface에서 시간순 정렬 가능합니다.**
 
 변경 사항:
 ```diff
