@@ -10,22 +10,23 @@
 CB-Larva에서 멀티클라우드 네트워크 시스템(cb-network system)에 Elastic Stack을 적용하여 분산된 서비스의 로그 정보를 유용하게 활용하고 있었습니다.
 그런데, 몇몇 로그의 순서가 시간 순으로 정렬 되어있지 않아 서비스 동작 순서를 파악는데 이슈가 발생했습니다. 
 Kibana interface에서 확인 결과 로그 메시지 상에 나타난 시간과 `@timestamp` 값이 상이하여 발생한 이슈였습니다. 
-추측컨데 로그 메시지를 뭉치로 저장(Filebeat to Logstash / Logstash to Elastic Search)할 때 찍히는 시간으로 보입니다.
+추측컨데 로그 메시지를 뭉치로 저장(Filebeat to Logstash / Logstash to Elasticsearch)할 때 찍히는 시간으로 보입니다.
 
-이를 Data processing에 특화된 Logstash를 통해 해결하였습니다. 로그 메시지 상에 나타난 시간을 추출하여 Field화 하는 작업 입니다.
+Logstash가 Data processing에 특화되어 있어 이를 통해 해결하였습니다. 주요 작업은 로그 메시지 상에 나타난 시간을 추출하여 Field화 하는것 이었습니다. 로그 메시지 패턴화 및 변형에 대해서는 아래에서 조금 더 자세하게 설명하겠습니다.
 
 
 ### Introduction to Logstash filter plugin
-Logstash에서 Dissect filter를 통해 로그 메시지 상에 나타난 시간을 추출하여 Field화 하는 작업을 수행할 수 있습니다. 
-(Filter plugins 중 Dissect filter와 Grok filter가 많이 언급됨)
+Logstash에서는 Data processing을 위해 다양항 filter plugin을 활용할 수 있습니다.
+Dissect를 통해 로그 메시지 상에 나타난 시간을 패턴화하는 것을 시작으로, 이를 마지막에 date type으로 Field화 하는 작업까지를 수행했습니다.
+(Filter plugins 중 Dissect와 Grok가 많이 언급됨)
 
-Grok filter는 매우 유용하고, 정규식을 활용하여 다양한 처리가 가능하다고 합니다. 하지만, 다소 복잡하며 설정이 잘못될 경우 성능 이슈가 있다는 글을 함께 찾아볼 수 있었습니다.
-이에 저는 직관성이 높고 손쉽게 활용 가능한 Dissect filter를 적용 했습니다.
+Grok은 매우 유용하고, 정규식을 활용하여 다양한 처리가 가능하다고 합니다. 하지만, 다소 복잡하며 설정이 잘못될 경우 성능 이슈가 있다는 글을 함께 찾아볼 수 있었습니다.
+이에 저는 직관성이 높고 손쉽게 활용 가능한 Dissect filter를 적용 했습니다. (우선은 직관적이고 신속하게 적용하는게 중요했습니다만.. 나중에 Grok으로 갈아탈지도 모르겠습니다 ^^;;)
 
-Dissect filter와 관련한 글과 예제를 찾아 해메다가 [Test Tokenizer Patterns for the Dissect filter](https://dissect-tester.jorgelbg.me/)를 발견하여 조금은 수월하게 Pattern을 생성할 수 있었습니다.
+Dissect와 관련한 설명과 예제를 찾아 해맨 끝에 다행히 [Test Tokenizer Patterns for the Dissect filter](https://dissect-tester.jorgelbg.me/)를 발견하여 조금은 수월하게 Pattern을 생성할 수 있었습니다.
 
 <p align="center">
-  <img src="https://user-images.githubusercontent.com/7975459/191446958-551b952d-1aa8-47b4-bd62-6ec479e837d8.png" width="80%" height="80%" >
+  <img src="https://user-images.githubusercontent.com/7975459/191446958-551b952d-1aa8-47b4-bd62-6ec479e837d8.png" width="100%" height="100%" >
 </p>
 
 
@@ -48,14 +49,14 @@ Dissect filter와 관련한 글과 예제를 찾아 해메다가 [Test Tokenizer
 ```
 
 간단 의미 설명: 
-- %{service_id}: "service_id: CB-SPIDER"와 같이 key - value 형태로 mapping 함
-- %{timestamp_nano} %{+timestamp_nano}: "timestamp-nano: 2022-09-21 10:10:00.4220"와 같이 두 값을 하나로 연결하여 key - value 형태로 mapping 함
+- %{service_id}: "service_id: CB-SPIDER"와 같이 key: value 형태로 mapping 함
+- %{timestamp_nano} %{+timestamp_nano}: "timestamp-nano: 2022-09-21 10:10:00.4220"와 같이 두 값을 하나로 연결하여 key: vlue 형태로 mapping 함
 
 
 
 ### Pattern configuration on Logstash dissect filter
 
-이전에 Beats -> Logstash -> Elasticsearch 파이프라인 생성을 위해 추가했던 설정 파일을 수정하겠습니다.
+이전에 Beats -> Logstash -> Elasticsearch 파이프라인 생성을 위해 추가했던 설정 파일에 Dissect 패턴화를 포함하여 Tranforming 관련 설정을 추가해 주면 됩니다. 자세한 내용은 아래와 같습니다.
 
 ```bash
 sudo vim /etc/logstash/conf.d/logstash-filebeat.conf
@@ -63,10 +64,11 @@ sudo vim /etc/logstash/conf.d/logstash-filebeat.conf
 
 추가한 filter 내에 있는 plugin 들을 간단히 설명하면 다음과 같습니다.
 - dissect: message를 패턴화
-- mutate: 여기서는 두 필드를 붙여 새로운 필드를 추가함
-- date: 기존 log_time에서 부족한 정보 추가
-- ruby: lot_time을 date type으로 변환
+- mutate: 주로 변형 관련 작업, 여기서는 두 필드를 붙여 새로운 필드를 추가함
+- date: string to date 변환 또는 시간 관련 정보 부여(e.g., timezone),  여기서는 기존 log_time에 부족한 timezone 정보 명시
+- ruby: lot_time을 date type 으로 변환
 
+변경 사항:
 ```diff
 # Sample Logstash configuration for creating a simple
 # Beats -> Logstash -> Elasticsearch pipeline.
