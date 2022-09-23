@@ -1,4 +1,4 @@
-# Distributed logging by ELK Stack
+# Distributed logging by Elastic Stack
 NOTE - ELK: Elasticsearch, Logstash and Kibana (see [Elastic Stack](https://www.elastic.co/kr/what-is/elk-stack))
 
 간단한 적용기를 남기고자 글을 작성합니다 ^^
