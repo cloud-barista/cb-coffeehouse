@@ -162,7 +162,7 @@ def cost(x,y,w):
         c = c + (hx-y[i])**2
     return c/len(x)
 
-# 기울기를 구하는 함수
+# 기울기를 사용한 w 평균 변화량을 구하는 함수
 def gradient(x,y,w):
     c=0
     for i in range (len(x)):
@@ -368,7 +368,7 @@ for i in range(epochs):
     gradientW = torch.sum((hx-y)*2*x)/n   # w에 대한 기울기
     gradientB = torch.sum((hx-y)*2)/n     # b에 대한 기울기
     w = w - learning_rate * gradientW     # w 조정
-    b = b - learning_rate * gradientB     # w 조정
+    b = b - learning_rate * gradientB     # b 조정
     print('cost: ', cost, 'w=', w, 'b=',b)
     
 print('최종w: ', w, '최종b: ', b)
@@ -474,7 +474,7 @@ for i in range(2000):
     cost = torch.mean((hx-y)**2)  # cost 개념 
     optimizer.zero_grad()         # 기존 미분 값 초기화 (미분 값이 합산되는 것을 방지)
     cost.backward()               # 미분 w, b (왜 미분인지 추후 설명)
-    optimizer.step()              # w = w - 0.1 * 미분 값, b = b - 0.1 * 미분 값
+    optimizer.step()              # w, b 갱신 (backward() 단계에서 수집된 변호도로 매개변수를 조정)
     print(i, 'cost=', cost.item())
 
 print('최종w: ', w, '최종b: ', b)
@@ -572,7 +572,7 @@ for step in range(1000):
     hx = linear.forward(x)    # hx = w*x+b # linear(x)로도 가능 <-- special 함수로 Overwriting 되어있어서 가능
     cost = loss_fn(hx, y)     # Cost function
     cost.backward()           # w, b 각각에 대한 미분 
-    optimizer.step()          # w, b 갱신
+    optimizer.step()          # w, b 갱신 (backward() 단계에서 수집된 변호도로 매개변수를 조정)
     print(step, cost.item())  # 결과 출력
 
 # 최종 w, b 결과를 출력해 봅니다.
@@ -654,7 +654,7 @@ for step in range(1000):
     hx = model.forward(x)     # w*x+b # hx = model(x)도 가능 (Overwriting)
     cost = loss_fn(hx, y)     # Cost function
     cost.backward()           # w, b 각각에 대한 미분 
-    optimizer.step()          # w, b 갱신
+    optimizer.step()          # w, b 갱신 (backward() 단계에서 수집된 변호도로 매개변수를 조정)
     print(step, cost.item())  # 결과 출력
 
 # 최종 결과 출력
@@ -718,7 +718,7 @@ for step in range(1000):
     hx = model.forward(x)       # matmul (x, w) + b # model(x) 가능 (Overwriting)
     cost = loss_fn(hx, y)       # Cost function
     cost.backward()             # w, b 미분 
-    optimizer.step()            # w, b 갱신
+    optimizer.step()            # w, b 갱신 (backward() 단계에서 수집된 변호도로 매개변수를 조정)
     print(step, cost.item())    # 결과 출력
 
 
