@@ -43,12 +43,12 @@ curl http://localhost:9200/_cluster/health/?level=shards
 
 
 ```bash
-curl -X DELETE localohost:9200/filebeat-8.3.0-2022.10.14
+curl -X DELETE localhost:9200/filebeat-8.3.0-2022.10.14
 ```
 
 보안이 활성화 된 경우
 ```
-curl -u ID:PASSWARD -X DELETE localohost:9200/filebeat-8.3.0-2022.10.14
+curl -u ID:PASSWARD -X DELETE localhost:9200/filebeat-8.3.0-2022.10.14
 ```
 
 ##### 4. 결과 확인 
