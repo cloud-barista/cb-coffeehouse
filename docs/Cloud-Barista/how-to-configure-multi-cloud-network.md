@@ -3,8 +3,9 @@
 
 In this article, I'd like to share a brief idea about how to configure multi-cloud network by high availability (HA) virtual private network (VPN) connections.
 
-[sample-design-for-multi-cloud-network-configuration](sample-design-for-multi-cloud-network-configuration.md)
-[resources-related-to-configure-multi-cloud-network](resources-related-to-configure-multi-cloud-network.md)
+Related articles:
+- [sample-design-for-multi-cloud-network-configuration](sample-design-for-multi-cloud-network-configuration.md)
+- [resources-related-to-configure-multi-cloud-network](resources-related-to-configure-multi-cloud-network.md)
 ### Multi-cloud network configuration
 
 I will configure multi-cloud network between Google Cloud Platform (GCP) and Amazon Web Service (AWS). This will enable direct communication between VPC networks on both cloud platforms.

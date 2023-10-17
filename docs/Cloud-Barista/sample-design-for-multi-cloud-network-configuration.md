@@ -1,7 +1,8 @@
 
 ### Sample design for multi-cloud network configuration
 
-[private-ipv4-addresses](private-ipv4-addresses.md)
+Related articles:
+- [private-ipv4-addresses](private-ipv4-addresses.md)
 #### Design global network
 I assume the most extensive network is 192.168.0.0/16 logically.
 This will be divided and used to build a multi-cloud network as shown below.
