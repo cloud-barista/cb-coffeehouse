@@ -7,10 +7,10 @@ I hope this article will be helpful to those who are having trouble creating cre
 **This article was written based on [poc-farmoni's README](https://github.com/cloud-barista/poc-farmoni), and I would like to express my gratitude to the contributors, <ins>[powerkimhub](https://github.com/powerkimhub), [seokho-son](https://github.com/seokho-son), and [jihoon-seo](https://github.com/jihoon-seo)</ins>.**
 
 ## Index
-- [Amazon Web Services (AWS)](https://github.com/cloud-barista/cb-coffeehouse/wiki/A-step-by-step-guide-to-creating-credentials-of-each-cloud-service-provider#amazon-web-services-aws) 
-- [Google Cloud Platform (GCP)](https://github.com/cloud-barista/cb-coffeehouse/wiki/A-step-by-step-guide-to-creating-credentials-of-each-cloud-service-provider#google-cloud-platform-gcp)
-- [Microsoft (MS) Azure](https://github.com/cloud-barista/cb-coffeehouse/wiki/A-step-by-step-guide-to-creating-credentials-of-each-cloud-service-provider#microsoft-ms-azure)
-- [Alibaba Cloud](https://github.com/cloud-barista/cb-coffeehouse/wiki/A-step-by-step-guide-to-creating-credentials-of-each-cloud-service-provider#alibaba-cloud)
+- [Amazon Web Services (AWS)](A-step-by-step-guide-to-creating-credentials-of-each-cloud-service-provider.md#amazon-web-services-aws) 
+- [Google Cloud Platform (GCP)](A-step-by-step-guide-to-creating-credentials-of-each-cloud-service-provider.md#google-cloud-platform-gcp)
+- [Microsoft (MS) Azure](A-step-by-step-guide-to-creating-credentials-of-each-cloud-service-provider.md#microsoft-ms-azure)
+- [Alibaba Cloud](A-step-by-step-guide-to-creating-credentials-of-each-cloud-service-provider.md#alibaba-cloud)
 
 
 ## A step-by-step guide to creating credentials of each cloud service provider

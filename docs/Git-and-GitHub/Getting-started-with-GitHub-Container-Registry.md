@@ -1,11 +1,11 @@
 # Getting started with GitHub Container Registry
 Command Line Interface (CLI)와 GitHub Actions에서 GitHub Container Registry를 사용하는 방법을 설명합니다. 순차적으로 따라할 수 있도록 구성하였습니다. GitHub Container Registry에 대한 설명은 다음 글을 참고하세요. :smile:
 
-:arrow_forward: [About GitHub Container Registry](https://github.com/cb-contributhon/cb-coffeehouse/wiki/About-GitHub-Container-Registry)
+:arrow_forward: [About GitHub Container Registry](About-GitHub-Container-Registry.md)
 
 ## Prerequisites
 ### Personal access token (PAT)
-:arrow_forward: [About GitHub secrets and personal access tokens](https://github.com/cb-contributhon/cb-coffeehouse/wiki/About-GitHub-secrets-and-personal-access-tokens)
+:arrow_forward: [About GitHub secrets and personal access tokens](About-GitHub-secrets-and-personal-access-tokens.md)
 #### Steps to create a personal access token
 1. GitHub 로그인
 

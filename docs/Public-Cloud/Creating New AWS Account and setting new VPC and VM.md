@@ -239,7 +239,7 @@ aws configure
 - AWS Secret Access Key [None]: *******************
 - Default region name [None]: 기본적으로 요청을 전송할 서버가 있는 AWS region
 - Default output format [None]: 출력 형식
-[AWS Access Key ID, Secret Access Key 찾기](https://github.com/cloud-barista/cb-coffeehouse/wiki/A-step-by-step-guide-to-creating-credentials-of-each-cloud-service-provider#amazon-web-services-aws)
+[AWS Access Key ID, Secret Access Key 찾기](A-step-by-step-guide-to-creating-credentials-of-each-cloud-service-provider.md#amazon-web-services-aws)
 
 #### 3.2.2. Create AWS Key Pair
 ```

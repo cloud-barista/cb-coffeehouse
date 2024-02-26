@@ -54,7 +54,7 @@ cd ~
 ```
 ##### 2) Install Docker
 ```
-wget https://raw.githubusercontent.com/hermitkim1/scripts4Ubuntu/master/2.Docker-installation.sh
+wget https://raw.githubusercontent.com/yunkon-kim/scripts4Ubuntu/master/2.Docker-installation.sh
 source 2.Docker-installation.sh
 ```
 
@@ -89,7 +89,7 @@ apt install make gcc git -y
 
 ##### 4) Install Go
 ```bash
-wget https://raw.githubusercontent.com/cloud-barista/cb-coffeehouse/master/scripts/golang/go-installation.sh
+wget https://raw.githubusercontent.com/cloud-barista/cb-coffeehouse/main/scripts/golang/go-installation.sh
 source go-installation.sh
 ```
 
@@ -130,7 +130,7 @@ NOTE - **Port 2379, 2380** must be opened on your firewall setting.
 
 #### 1.3.1. Install Go (You can skip this if you have Go version 1.13+)
 ```bash
-wget https://raw.githubusercontent.com/cloud-barista/cb-coffeehouse/master/scripts/golang/go-installation.sh
+wget https://raw.githubusercontent.com/cloud-barista/cb-coffeehouse/main/scripts/golang/go-installation.sh
 source go-installation.sh
 ```
 
@@ -285,7 +285,7 @@ Please refer to [(2) CB-Tumblebug 스크립트를 통한 테스트](https://gith
 
 ##### 1) Create credentials of each CSPs
 
-Please refer to ["A step by step guide to creating credentials of each cloud service provider"](https://github.com/cloud-barista/cb-coffeehouse/wiki/A-step-by-step-guide-to-creating-credentials-of-each-cloud-service-provider) provided by Cloud-Barista's coffeehouse (cb-coffeehouse). We hope it will be helpful for you :smile:
+Please refer to ["A step by step guide to creating credentials of each cloud service provider"](../Public-Cloud/A-step-by-step-guide-to-creating-credentials-of-each-cloud-service-provider.md) provided by Cloud-Barista's coffeehouse (cb-coffeehouse). We hope it will be helpful for you :smile:
 
 ##### 2) Open another terminal of Node 1
 ##### 3) Login root
@@ -306,7 +306,7 @@ vim credentials.conf
 
 #### 2.1.2. Prepare a test configuration to create an MCIS
 
-<ins>**Please, take a look [What is CB-Tumblebug's testSet ?!](https://github.com/cloud-barista/cb-coffeehouse/blob/main/docs/What%20is%20CB-Tumblebug's%20testSet.env.md)**</ins>
+<ins>**Please, take a look [What is CB-Tumblebug's testSet ?!](../Cloud-Barista/What%20is%20CB-Tumblebug's%20testSet.env.md)**</ins>
 
 From now on, I'm going to create my test configuration as follows:
 - 1 instance, ap-southeast-1 region, Amazon Web Services (AWS),

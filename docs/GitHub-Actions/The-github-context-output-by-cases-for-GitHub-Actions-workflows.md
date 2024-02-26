@@ -24,11 +24,11 @@ The values for each event are as follows.
 |   5   |   hermitkim1   |        gollum       |  refs/heads/main  |                   |                   |
 
 NOTE 1 - Cases:
-- [Case 1: on `push` to the upstream `feature` branch from the upstream `feature` branch](https://github.com/cloud-barista/cb-coffeehouse/wiki/The-github-context-output-by-cases-for-GitHub-Actions-workflows#case-1-on-push-to-the-upstream-feature-branch-from-the-upstream-feature-branch)
-- [Case 2: on `pull_request` to the upstream `main` branch from the upstream `feature` branch](https://github.com/cloud-barista/cb-coffeehouse/wiki/The-github-context-output-by-cases-for-GitHub-Actions-workflows#case-2-on-pull_request-to-the-upstream-main-branch-from-the-upstream-feature-branch)
-- [Case 3: on `pull_request_target` to the upstream `main` branch from the upstream `feature` branch](https://github.com/cloud-barista/cb-coffeehouse/wiki/The-github-context-output-by-cases-for-GitHub-Actions-workflows#case-3-on-pull_request_target-to-the-upstream-main-branch-from-the-upstream-feature-branch)
-- [Case 4: on `push` by merging to the upstream `main` branch from the upstream `main` branch](https://github.com/cloud-barista/cb-coffeehouse/wiki/The-github-context-output-by-cases-for-GitHub-Actions-workflows#case-4-on-push-by-merging-to-the-upstream-main-branch-from-the-upstream-main-branch)
-- [Case 5: on `push` to the upstream `wiki` of `main` from the upstream `wiki` of `main`](https://github.com/cloud-barista/cb-coffeehouse/wiki/The-github-context-output-by-cases-for-GitHub-Actions-workflows#case-5-on-push-to-the-upstream-wiki-of-main-from-the-upstream-wiki-of-main)
+- [Case 1: on `push` to the upstream `feature` branch from the upstream `feature` branch](The-github-context-output-by-cases-for-GitHub-Actions-workflows.md#case-1-on-push-to-the-upstream-feature-branch-from-the-upstream-feature-branch)
+- [Case 2: on `pull_request` to the upstream `main` branch from the upstream `feature` branch](The-github-context-output-by-cases-for-GitHub-Actions-workflows.md#case-2-on-pull_request-to-the-upstream-main-branch-from-the-upstream-feature-branch)
+- [Case 3: on `pull_request_target` to the upstream `main` branch from the upstream `feature` branch](The-github-context-output-by-cases-for-GitHub-Actions-workflows.md#case-3-on-pull_request_target-to-the-upstream-main-branch-from-the-upstream-feature-branch)
+- [Case 4: on `push` by merging to the upstream `main` branch from the upstream `main` branch](The-github-context-output-by-cases-for-GitHub-Actions-workflows.md#case-4-on-push-by-merging-to-the-upstream-main-branch-from-the-upstream-main-branch)
+- [Case 5: on `push` to the upstream `wiki` of `main` from the upstream `wiki` of `main`](The-github-context-output-by-cases-for-GitHub-Actions-workflows.md#case-5-on-push-to-the-upstream-wiki-of-main-from-the-upstream-wiki-of-main)
 
 
 Further tests would be needed for the objects types (i.g., `github`, `github.event`) because I could use `github.event.pull_request.author_association`.
@@ -43,7 +43,7 @@ With the help of <ins>[ppiyakk2](https://github.com/ppiyakk2), [junhyunk](https:
 
 ### The `github` context output by cases
 
-A workflow for this test: [show-context.yaml](https://github.com/hermitkim1/test-on-github-actions/blob/main/.github/workflows/show-context.yaml)
+A workflow for this test: [show-context.yaml](https://github.com/yunkon-kim/test-on-github-actions/blob/main/.github/workflows/show-context.yaml)
 
 
 #### Case 1: on `push` to the upstream `feature` branch from the upstream `feature` branch

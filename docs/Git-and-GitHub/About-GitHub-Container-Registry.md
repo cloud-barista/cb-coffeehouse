@@ -41,4 +41,4 @@ From [Domain changes](https://docs.github.com/en/free-pro-team@latest/packages/g
 
 따라서, GHCR은 Docker Hub를 이용할 때와 유사하게 저장소와 무관한 이미지 푸시가 가능합니다. 기능만 조금 추가 된다면 GHCR이 Docker Hub를 대체하는 서비스로서 자리매김 할지도 모릅니다.
 
-**<ins>다음글 :arrow_forward: [Getting started with GitHub Container Registry](https://github.com/cb-contributhon/cb-coffeehouse/wiki/Getting-started-with-GitHub-Container-Registry)</ins>**
+**<ins>다음글 :arrow_forward: [Getting started with GitHub Container Registry](Getting-started-with-GitHub-Container-Registry.md)</ins>**

@@ -1,4 +1,4 @@
-Read this in other languages: [English](https://github.com/cloud-barista/cb-coffeehouse/blob/main/README.en.md) or [한국어](https://github.com/cloud-barista/cb-coffeehouse/blob/main/README.md).
+Read this in other languages: [English](README.en.md) or [한국어](README.md).
 
 # Cloud-Barista's Coffeehouse
 
@@ -24,7 +24,7 @@ We expect lots of explanation/information, including the example below. 😊
 
 An easy explanation from a beginner's point of view will be of great help to future Cloud-Barista Contributors. 👍
 
-🎁 [Message for future contributors](https://github.com/cloud-barista/cb-coffeehouse/wiki/Interview-with-Seokho-Son) 💯 😍 ⭐ 👍
+🎁 [Message for future contributors](docs/others/Interview-with-Seokho-Son.md) 💯 😍 ⭐ 👍
 
 ## Description/information sharing guide
 
