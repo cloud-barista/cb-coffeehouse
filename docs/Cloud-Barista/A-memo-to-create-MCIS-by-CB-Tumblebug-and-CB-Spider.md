@@ -65,7 +65,7 @@ apt install jq -y
 ```
 
 #### 2. Credential 생성
-참고 - [A step by step guide to creating credentials of each cloud service provider](https://github.com/cloud-barista/cb-coffeehouse/wiki/A-step-by-step-guide-to-creating-credentials-of-each-cloud-service-provider)
+참고 - [A step by step guide to creating credentials of each cloud service provider](../Public-Cloud/A-step-by-step-guide-to-creating-credentials-of-each-cloud-service-provider.md)
 
 #### 3. Credential 설정
 `credental.conf.example`을 복사하여 위에서 생성한 정보를 입력한다.

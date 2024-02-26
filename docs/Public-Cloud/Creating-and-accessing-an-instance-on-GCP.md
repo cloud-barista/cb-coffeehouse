@@ -16,7 +16,7 @@
 
 #### 각 CSP의 웹 콘솔 또는 포털에서 가상머신(VM, Virtual Machine) 생성 및 접속 연습
 - VM 생성 과정 중 VPC, Security Group 등을 생성하시면서 의미를 파악
-- [cb-coffeehouse](https://github.com/cloud-barista/cb-coffeehouse/wiki) 에서 참고 가능
+- [cb-coffeehouse](../README.md) 에서 참고 가능
 
 ## 2. Create Project
 

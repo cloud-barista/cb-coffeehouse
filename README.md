@@ -1,4 +1,4 @@
-다른 언어로 읽기: [English](https://github.com/cloud-barista/cb-coffeehouse/blob/main/README.en.md) or [한국어](https://github.com/cloud-barista/cb-coffeehouse/blob/main/README.md).
+다른 언어로 읽기: [English](README.en.md) or [한국어](README.md).
 
 # Cloud-Barista's Coffeehouse
 
@@ -25,7 +25,7 @@ English Coffeehouse (별칭 Penny House)는 1 Penny가격의 커피 한잔을 �
 
 입문자 시각에서 쉬운 설명은 미래 Cloud-Barista Contributor에게 큰 도움이 될 것 입니다. :thumbsup:
 
-:gift: [미래 컨트리뷰터를 위한 메시지](https://github.com/cloud-barista/cb-coffeehouse/wiki/Interview-with-Seokho-Son) :100: :heart_eyes: :star: :thumbsup:
+:gift: [미래 컨트리뷰터를 위한 메시지](docs/others/Interview-with-Seokho-Son.md) :100: :heart_eyes: :star: :thumbsup:
 
 ## 설명/정보 공유 가이드
 이것은 불필요한 중복 기여를 완화하기 위한 대략적인 가이드 입니다.

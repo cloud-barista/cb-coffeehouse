@@ -4,7 +4,7 @@
 
 관련된 전반적인 시스템 구조, 설명, 설치 방법 등은 아래 글을 참고하시기 바랍니다.
 
-참고 - [Distributed logging by Elastic Stack](https://github.com/cloud-barista/cb-coffeehouse/blob/main/docs/Distributed-logging-by-Elastic-Stack.md): CB-Larva의 분산 로깅 적용기
+참고 - [Distributed logging by Elastic Stack](Distributed-logging-by-Elastic-Stack.md): CB-Larva의 분산 로깅 적용기
 
 
 ### Background

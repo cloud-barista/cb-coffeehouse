@@ -119,10 +119,10 @@ VM 스펙:
 각 CSP에서 VM 생성 및 접속 관련해서는 아래 글을 참고하시기 바랍니다. Cloud-Barista 커뮤니티 기여자분들께서 작성해주셨습니다. :thumbsup:
 
 참고: 
-- [A guide to creating and accessing an instance in AWS](https://github.com/cloud-barista/cb-coffeehouse/blob/main/docs/Public-Cloud/Creating%20New%20AWS%20Account%20and%20setting%20new%20VPC%20and%20VM.md)
-- [A guide to creating and accessing an instance in MS Azure](https://github.com/cloud-barista/cb-coffeehouse/blob/main/docs/Public-Cloud/Creating-and-accessing-an-instance-on-MS-Azure-Platform.md)
-- [A guide to creating and accessing an instance in GCP](https://github.com/cloud-barista/cb-coffeehouse/blob/main/docs/Public-Cloud/Creating-and-accessing-an-instance-on-GCP.md)
-- [A guide to creating and accessing an instance in Alibaba Cloud](https://github.com/cloud-barista/cb-coffeehouse/blob/main/docs/Public-Cloud/Creating%20and%20accessing%20an%20instance%20on%20AlibabaCloud.md)
+- [A guide to creating and accessing an instance in AWS](../Public-Cloud/Creating%20New%20AWS%20Account%20and%20setting%20new%20VPC%20and%20VM.md)
+- [A guide to creating and accessing an instance in MS Azure](../Public-Cloud/Creating-and-accessing-an-instance-on-MS-Azure-Platform.md)
+- [A guide to creating and accessing an instance in GCP](../Public-Cloud/Creating-and-accessing-an-instance-on-GCP.md)
+- [A guide to creating and accessing an instance in Alibaba Cloud](../Public-Cloud/Creating%20and%20accessing%20an%20instance%20on%20AlibabaCloud.md)
 
 Mini PC에 재 구축 했습니다.
 

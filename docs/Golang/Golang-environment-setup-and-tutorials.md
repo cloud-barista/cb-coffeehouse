@@ -10,7 +10,7 @@
 Cloud-Barista의 각 Framework 개발을 위해서는 아래 가이드에 명시된 Go 버전을 설치해야합니다.
 
 - [Go 개발 환경 구성 및 Test 가이드](https://gist.github.com/powerkimhub/d1d6b260228746e14151685bbf2cdf03)
-- [Go 개발 환경 구성 Script](https://github.com/cloud-barista/cb-coffeehouse/tree/master/scripts/golang)
+- [Go 개발 환경 구성 Script](https://github.com/cloud-barista/cb-coffeehouse/tree/main/scripts/golang)
 
 ## Go 초보자를 위한 Tutorial 추천
 Go를 처음 접하는 분들을 위해 튜토리얼을 공유 드립니다.
