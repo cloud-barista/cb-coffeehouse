@@ -12,8 +12,9 @@ In all test `nsId = default` is used.
 ## AWS test
 
 **Environment**
-: Tumblebug v0.9.15+@, Spider 0.9.6
-: AWS, ap-northeast-2
+* Tumblebug v0.9.15+@
+* Spider 0.9.6
+* AWS, ap-northeast-2
 
 ### Create vNet
 
@@ -96,6 +97,7 @@ In all test `nsId = default` is used.
 ### Add subnet 
 
 : API = `POST /ns/{nsId}/resources/vNet/{vNetId}/subnet`
+
 : vNetId = vnet00
 
 : request body
@@ -250,8 +252,10 @@ In all test `nsId = default` is used.
 : API = `DELETE /ns/{nsId}/resources/vNet/{vNetId}/subnet/{subnetId}`
 
 : vNetId = vnet00
+
 : subnetId = subnet01
-: action = 
+
+: action = ""
 
 : response body
 ```json
@@ -329,8 +333,11 @@ In all test `nsId = default` is used.
 : API = `DELETE /ns/{nsId}/resources/vNet/{vNetId}`
 
 : vNetId = vnet00
+
 : action = ""
+
 : request body = none
+
 : response body
 ```json
 {
@@ -339,7 +346,9 @@ In all test `nsId = default` is used.
 ```
 
 : vNetId = vnet00
+
 : action = "withsubnets"
+
 : request body = none
 
 : response body
@@ -544,6 +553,7 @@ In all test `nsId = default` is used.
 : API = `DELETE /ns/{nsId}/externalResources/vNet/{vNetId}`
 
 : vNetId = vnet07
+
 : withSubnets = "false"
 
 : request body = none
@@ -719,7 +729,8 @@ In all test `nsId = default` is used.
 
 : API = `POST /ns/{nsId}/resources/vNet/{vNetId}/subnet`
 
-: vNetId = vnet10
+: vNetId = vnet01
+
 : request body
 ```json
 {
@@ -771,6 +782,7 @@ In all test `nsId = default` is used.
 : API = `GET /ns/{nsId}/resources/vNet/{vNetId}`
 
 : request body = none
+
 : vNetId = vnet02
 
 : response body
