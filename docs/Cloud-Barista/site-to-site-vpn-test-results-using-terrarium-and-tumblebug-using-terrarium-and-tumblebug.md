@@ -4,11 +4,11 @@ This document shares the site-to-site VPN test results using Terrarium and Tumbl
 
 **Environment**
 
-- Tumblebug v0.9.18
-- Spider 0.9.7
-- Terrarium 0.0.8
+- Tumblebug v0.9.20
+- Spider 0.9.8
+- Terrarium 0.0.10
 
-### Create MCI
+## Create MCI
 
 : API: `POST /ns/{nsId}/mciDynamic`
 
@@ -41,7 +41,7 @@ This document shares the site-to-site VPN test results using Terrarium and Tumbl
 {
   "resourceType": "mci",
   "id": "mci01",
-  "uid": "csce6j6osgjunknm8tj0",
+  "uid": "csg4l6v53da4lnhs5kcg",
   "name": "mci01",
   "status": "Running:3 (R:3/3)",
   "statusCount": {
@@ -57,8 +57,8 @@ This document shares the site-to-site VPN test results using Terrarium and Tumbl
     "countTerminating": 0,
     "countUndefined": 0
   },
-  "targetStatus": "Running",
-  "targetAction": "Create",
+  "targetStatus": "None",
+  "targetAction": "None",
   "installMonAgent": "",
   "configureCloudAdaptiveNetwork": "",
   "label": {
@@ -68,7 +68,7 @@ This document shares the site-to-site VPN test results using Terrarium and Tumbl
     "sys.manager": "cb-tumblebug",
     "sys.name": "mci01",
     "sys.namespace": "default",
-    "sys.uid": "csce6j6osgjunknm8tj0"
+    "sys.uid": "csg4l6v53da4lnhs5kcg"
   },
   "systemLabel": "",
   "systemMessage": "",
@@ -76,12 +76,12 @@ This document shares the site-to-site VPN test results using Terrarium and Tumbl
   "vm": [
     {
       "resourceType": "vm",
-      "id": "csce5luosgjunknm8tcg-1",
-      "uid": "csce6j6osgjunknm8tk0",
-      "cspResourceName": "csce6j6osgjunknm8tk0",
-      "cspResourceId": "i-010b5e4f8b112fae3",
-      "name": "csce5luosgjunknm8tcg-1",
-      "subGroupId": "csce5luosgjunknm8tcg",
+      "id": "csg4l6v53da4lnhs5kb0-1",
+      "uid": "csg4l6v53da4lnhs5kdg",
+      "cspResourceName": "csg4l6v53da4lnhs5kdg",
+      "cspResourceId": "i-0a0f46e08b1feb673",
+      "name": "csg4l6v53da4lnhs5kb0-1",
+      "subGroupId": "csg4l6v53da4lnhs5kb0",
       "location": {
         "display": "South Korea (Seoul)",
         "latitude": 37.36,
@@ -93,31 +93,31 @@ This document shares the site-to-site VPN test results using Terrarium and Tumbl
       "monAgentStatus": "notInstalled",
       "networkAgentStatus": "notInstalled",
       "systemMessage": "",
-      "createdTime": "2024-10-23 11:52:19",
+      "createdTime": "2024-10-29 02:38:46",
       "label": {
         "sys.connectionName": "aws-ap-northeast-2",
-        "sys.createdTime": "2024-10-23 11:52:19",
-        "sys.cspResourceId": "i-010b5e4f8b112fae3",
-        "sys.cspResourceName": "csce6j6osgjunknm8tk0",
-        "sys.id": "csce5luosgjunknm8tcg-1",
+        "sys.createdTime": "2024-10-29 02:38:46",
+        "sys.cspResourceId": "i-0a0f46e08b1feb673",
+        "sys.cspResourceName": "csg4l6v53da4lnhs5kdg",
+        "sys.id": "csg4l6v53da4lnhs5kb0-1",
         "sys.labelType": "vm",
         "sys.manager": "cb-tumblebug",
         "sys.mciId": "mci01",
-        "sys.name": "csce5luosgjunknm8tcg-1",
+        "sys.name": "csg4l6v53da4lnhs5kb0-1",
         "sys.namespace": "default",
-        "sys.subGroupId": "csce5luosgjunknm8tcg",
-        "sys.uid": "csce6j6osgjunknm8tk0"
+        "sys.subGroupId": "csg4l6v53da4lnhs5kb0",
+        "sys.uid": "csg4l6v53da4lnhs5kdg"
       },
       "description": "",
       "region": {
         "Region": "ap-northeast-2",
         "Zone": "ap-northeast-2a"
       },
-      "publicIP": "13.125.7.127",
+      "publicIP": "43.203.254.142",
       "sshPort": "22",
       "publicDNS": "",
-      "privateIP": "10.4.50.42",
-      "privateDNS": "ip-10-4-50-42.ap-northeast-2.compute.internal",
+      "privateIP": "10.4.45.154",
+      "privateDNS": "ip-10-4-45-154.ap-northeast-2.compute.internal",
       "rootDiskType": "gp2",
       "rootDiskSize": "8",
       "rootDeviceName": "/dev/sda1",
@@ -160,7 +160,7 @@ This document shares the site-to-site VPN test results using Terrarium and Tumbl
       "cspVNetId": "vpc-088a447966997311a",
       "subnetId": "default-shared-aws-ap-northeast-2",
       "cspSubnetId": "subnet-0359474afc09b20e6",
-      "networkInterface": "eni-attach-0dbbb7821991c64d2",
+      "networkInterface": "eni-attach-03f6181b91a37cd8f",
       "securityGroupIds": [
         "default-shared-aws-ap-northeast-2"
       ],
@@ -197,12 +197,12 @@ This document shares the site-to-site VPN test results using Terrarium and Tumbl
     },
     {
       "resourceType": "vm",
-      "id": "csce6cuosgjunknm8tfg-1",
-      "uid": "csce6j6osgjunknm8tl0",
-      "cspResourceName": "csce6j6osgjunknm8tl0",
-      "cspResourceId": "csce6j6osgjunknm8tl0",
-      "name": "csce6cuosgjunknm8tfg-1",
-      "subGroupId": "csce6cuosgjunknm8tfg",
+      "id": "csg4l6v53da4lnhs5kbg-1",
+      "uid": "csg4l6v53da4lnhs5keg",
+      "cspResourceName": "csg4l6v53da4lnhs5keg",
+      "cspResourceId": "csg4l6v53da4lnhs5keg",
+      "name": "csg4l6v53da4lnhs5kbg-1",
+      "subGroupId": "csg4l6v53da4lnhs5kbg",
       "location": {
         "display": "South Korea (Seoul)",
         "latitude": 37.2,
@@ -214,30 +214,30 @@ This document shares the site-to-site VPN test results using Terrarium and Tumbl
       "monAgentStatus": "notInstalled",
       "networkAgentStatus": "notInstalled",
       "systemMessage": "",
-      "createdTime": "2024-10-23 11:52:27",
+      "createdTime": "2024-10-29 02:39:19",
       "label": {
         "sys.connectionName": "gcp-asia-northeast3",
-        "sys.createdTime": "2024-10-23 11:52:27",
-        "sys.cspResourceId": "csce6j6osgjunknm8tl0",
-        "sys.cspResourceName": "csce6j6osgjunknm8tl0",
-        "sys.id": "csce6cuosgjunknm8tfg-1",
+        "sys.createdTime": "2024-10-29 02:39:19",
+        "sys.cspResourceId": "csg4l6v53da4lnhs5keg",
+        "sys.cspResourceName": "csg4l6v53da4lnhs5keg",
+        "sys.id": "csg4l6v53da4lnhs5kbg-1",
         "sys.labelType": "vm",
         "sys.manager": "cb-tumblebug",
         "sys.mciId": "mci01",
-        "sys.name": "csce6cuosgjunknm8tfg-1",
+        "sys.name": "csg4l6v53da4lnhs5kbg-1",
         "sys.namespace": "default",
-        "sys.subGroupId": "csce6cuosgjunknm8tfg",
-        "sys.uid": "csce6j6osgjunknm8tl0"
+        "sys.subGroupId": "csg4l6v53da4lnhs5kbg",
+        "sys.uid": "csg4l6v53da4lnhs5keg"
       },
       "description": "",
       "region": {
         "Region": "asia-northeast3",
         "Zone": "asia-northeast3-a"
       },
-      "publicIP": "34.64.228.16",
+      "publicIP": "34.64.60.208",
       "sshPort": "22",
       "publicDNS": "",
-      "privateIP": "10.77.0.2",
+      "privateIP": "10.77.0.4",
       "privateDNS": "",
       "rootDiskType": "pd-standard",
       "rootDiskSize": "10",
@@ -307,7 +307,7 @@ This document shares the site-to-site VPN test results using Terrarium and Tumbl
         },
         {
           "key": "DiskName",
-          "value": "https://www.googleapis.com/compute/v1/projects/ykkim-etri/zones/asia-northeast3-a/disks/csce6j6osgjunknm8tl0"
+          "value": "https://www.googleapis.com/compute/v1/projects/ykkim-etri/zones/asia-northeast3-a/disks/csg4l6v53da4lnhs5keg"
         },
         {
           "key": "Kind",
@@ -321,12 +321,12 @@ This document shares the site-to-site VPN test results using Terrarium and Tumbl
     },
     {
       "resourceType": "vm",
-      "id": "csce6j6osgjunknm8tig-1",
-      "uid": "csce6j6osgjunknm8tm0",
-      "cspResourceName": "csce6j6osgjunknm8tm0",
-      "cspResourceId": "/subscriptions/xxxxxxxxxxxxxxxxxxxxx/resourceGroups/koreacentral/providers/Microsoft.Compute/virtualMachines/csce6j6osgjunknm8tm0",
-      "name": "csce6j6osgjunknm8tig-1",
-      "subGroupId": "csce6j6osgjunknm8tig",
+      "id": "csg4l6v53da4lnhs5kc0-1",
+      "uid": "csg4l6v53da4lnhs5kfg",
+      "cspResourceName": "csg4l6v53da4lnhs5kfg",
+      "cspResourceId": "/subscriptions/a20fed83-96bd-4480-92a9-140b8e3b7c3a/resourceGroups/koreacentral/providers/Microsoft.Compute/virtualMachines/csg4l6v53da4lnhs5kfg",
+      "name": "csg4l6v53da4lnhs5kc0-1",
+      "subGroupId": "csg4l6v53da4lnhs5kc0",
       "location": {
         "display": "Korea Central",
         "latitude": 37.5665,
@@ -338,27 +338,27 @@ This document shares the site-to-site VPN test results using Terrarium and Tumbl
       "monAgentStatus": "notInstalled",
       "networkAgentStatus": "notInstalled",
       "systemMessage": "",
-      "createdTime": "2024-10-23 11:53:20",
+      "createdTime": "2024-10-29 02:39:29",
       "label": {
         "sys.connectionName": "azure-koreacentral",
-        "sys.createdTime": "2024-10-23 11:53:20",
-        "sys.cspResourceId": "/subscriptions/xxxxxxxxxxxxxxxxxxxxx/resourceGroups/koreacentral/providers/Microsoft.Compute/virtualMachines/csce6j6osgjunknm8tm0",
-        "sys.cspResourceName": "csce6j6osgjunknm8tm0",
-        "sys.id": "csce6j6osgjunknm8tig-1",
+        "sys.createdTime": "2024-10-29 02:39:29",
+        "sys.cspResourceId": "/subscriptions/a20fed83-96bd-4480-92a9-140b8e3b7c3a/resourceGroups/koreacentral/providers/Microsoft.Compute/virtualMachines/csg4l6v53da4lnhs5kfg",
+        "sys.cspResourceName": "csg4l6v53da4lnhs5kfg",
+        "sys.id": "csg4l6v53da4lnhs5kc0-1",
         "sys.labelType": "vm",
         "sys.manager": "cb-tumblebug",
         "sys.mciId": "mci01",
-        "sys.name": "csce6j6osgjunknm8tig-1",
+        "sys.name": "csg4l6v53da4lnhs5kc0-1",
         "sys.namespace": "default",
-        "sys.subGroupId": "csce6j6osgjunknm8tig",
-        "sys.uid": "csce6j6osgjunknm8tm0"
+        "sys.subGroupId": "csg4l6v53da4lnhs5kc0",
+        "sys.uid": "csg4l6v53da4lnhs5kfg"
       },
       "description": "",
       "region": {
         "Region": "koreacentral",
         "Zone": "1"
       },
-      "publicIP": "52.141.26.176",
+      "publicIP": "52.231.106.130",
       "sshPort": "22",
       "publicDNS": "",
       "privateIP": "10.48.0.4",
@@ -401,21 +401,21 @@ This document shares the site-to-site VPN test results using Terrarium and Tumbl
       "imageId": "azure+koreacentral+ubuntu22.04",
       "cspImageName": "Canonical:0001-com-ubuntu-server-jammy:22_04-lts:22.04.202404090",
       "vNetId": "default-shared-azure-koreacentral",
-      "cspVNetId": "/subscriptions/xxxxxxxxxxxxxxxxxxxxx/resourceGroups/koreacentral/providers/Microsoft.Network/virtualNetworks/csce6cuosgjunknm8tg0",
+      "cspVNetId": "/subscriptions/a20fed83-96bd-4480-92a9-140b8e3b7c3a/resourceGroups/koreacentral/providers/Microsoft.Network/virtualNetworks/csce6cuosgjunknm8tg0",
       "subnetId": "default-shared-azure-koreacentral",
-      "cspSubnetId": "/subscriptions/xxxxxxxxxxxxxxxxxxxxx/resourceGroups/koreacentral/providers/Microsoft.Network/virtualNetworks/csce6cuosgjunknm8tg0/subnets/csce6cuosgjunknm8tgg",
-      "networkInterface": "csce6j6osgjunknm8tm0-78456-VNic",
+      "cspSubnetId": "/subscriptions/a20fed83-96bd-4480-92a9-140b8e3b7c3a/resourceGroups/koreacentral/providers/Microsoft.Network/virtualNetworks/csce6cuosgjunknm8tg0/subnets/csce6cuosgjunknm8tgg",
+      "networkInterface": "csg4l6v53da4lnhs5kfg-50817-VNic",
       "securityGroupIds": [
         "default-shared-azure-koreacentral"
       ],
       "dataDiskIds": null,
       "sshKeyId": "default-shared-azure-koreacentral",
-      "cspSshKeyId": "/subscriptions/xxxxxxxxxxxxxxxxxxxxx/resourceGroups/koreacentral/providers/Microsoft.Compute/sshPublicKeys/csce6geosgjunknm8thg",
+      "cspSshKeyId": "/subscriptions/a20fed83-96bd-4480-92a9-140b8e3b7c3a/resourceGroups/koreacentral/providers/Microsoft.Compute/sshPublicKeys/csce6geosgjunknm8thg",
       "vmUserName": "cb-user",
       "addtionalDetails": [
         {
           "key": "publicip",
-          "value": "csce6j6osgjunknm8tm0-79161-PublicIP"
+          "value": "csg4l6v53da4lnhs5kfg-14791-PublicIP"
         }
       ]
     }
@@ -424,7 +424,7 @@ This document shares the site-to-site VPN test results using Terrarium and Tumbl
 }
 
 ```
-### Get sites in MCI
+## Get sites in MCI
 
 : API: `GET /ns/{nsId}/mci/{mciId}/site`
 
@@ -443,6 +443,7 @@ This document shares the site-to-site VPN test results using Terrarium and Tumbl
       {
         "csp": "aws",
         "region": "ap-northeast-2",
+        "connectionName": "aws-ap-northeast-2",
         "vnet": "vpc-088a447966997311a",
         "subnet": "subnet-0374909bdc27d1368"
       }
@@ -451,6 +452,7 @@ This document shares the site-to-site VPN test results using Terrarium and Tumbl
       {
         "csp": "azure",
         "region": "koreacentral",
+        "connectionName": "azure-koreacentral",
         "vnet": "csce6cuosgjunknm8tg0",
         "gatewaySubnetCidr": "10.48.128.0/18",
         "resourceGroup": "koreacentral"
@@ -460,6 +462,7 @@ This document shares the site-to-site VPN test results using Terrarium and Tumbl
       {
         "csp": "gcp",
         "region": "asia-northeast3",
+        "connectionName": "gcp-asia-northeast3",
         "vnet": "csce5luosgjunknm8td0"
       }
     ]
@@ -467,51 +470,216 @@ This document shares the site-to-site VPN test results using Terrarium and Tumbl
 }
 ```
 
-### Site-to-Site VPN between GCP and AWS
-#### Create VPN 
+## Site-to-Site VPN between GCP and AWS
+### Create VPN 
 
-: API: `POST /stream-response/ns/{nsId}/mci/{mciId}/vpn/{vpnId}`
+: API: `POST /ns/{nsId}/mci/{mciId}/vpn`
 
 : nsId = default
 
 : mciId = mci01
-
-: vpnId = vpn01
 
 : Request body
 
 ```json
 {
+  "name": "vpn02",
   "site1": {
-	"csp": "aws",
-	"region": "ap-northeast-2",
-	"vnet": "vpc-088a447966997311a",
-	"subnet": "subnet-0374909bdc27d1368"
-  },
+        "csp": "aws",
+        "region": "ap-northeast-2",
+        "connectionName": "aws-ap-northeast-2",
+        "vnet": "vpc-088a447966997311a",
+        "subnet": "subnet-0374909bdc27d1368"
+	},
   "site2": {
-	"csp": "gcp",
-	"region": "asia-northeast3",
-	"vnet": "csce5luosgjunknm8td0"
-  }
+        "csp": "gcp",
+        "region": "asia-northeast3",
+        "connectionName": "gcp-asia-northeast3",
+        "vnet": "csce5luosgjunknm8td0"
+	}
 }
 ```
 
-: Response body (JSONL, JSON lines)
+: Response body
 
 ```json
-can't parse JSON.  Raw result:
-
-{"message":"mc-terrarium server is ready"}
-{"message":"successully created a terrarium (trId: default-mci01-vpn01)"}
-{"message":"the infrastructure terrarium is successfully initialized"}
-{"message":"the infracode to configure GCP to AWS VPN tunnels is Successfully created"}
-{"message":"the infracode checking process is successfully completed"}
-{"message":"the request (id: 1729684656685446982) is successfully accepted and still deploying resource"}
+{
+  "resourceType": "vpn",
+  "id": "vpn02",
+  "uid": "csgfju1c6ncf42irj7bg",
+  "name": "vpn02",
+  "description": "VPN between aws and gcp",
+  "status": "Available",
+  "vpnGatewayInfo": [
+    {
+      "connectionName": "aws-ap-northeast-2",
+      "connectionConfig": {
+        "configName": "aws-ap-northeast-2",
+        "providerName": "aws",
+        "driverName": "aws-driver-v1.0.so",
+        "credentialName": "aws",
+        "credentialHolder": "admin",
+        "regionZoneInfoName": "aws-ap-northeast-2",
+        "regionZoneInfo": {
+          "assignedRegion": "ap-northeast-2",
+          "assignedZone": "ap-northeast-2a"
+        },
+        "regionDetail": {
+          "regionId": "ap-northeast-2",
+          "regionName": "ap-northeast-2",
+          "description": "Asia Pacific (Seoul)",
+          "location": {
+            "display": "South Korea (Seoul)",
+            "latitude": 37.36,
+            "longitude": 126.78
+          },
+          "zones": [
+            "ap-northeast-2a",
+            "ap-northeast-2b",
+            "ap-northeast-2c",
+            "ap-northeast-2d"
+          ]
+        },
+        "regionRepresentative": true,
+        "verified": true
+      },
+      "cspResourceName": "csgfju1c6ncf42irj7bg-vpn-gw",
+      "cspResourceId": "vgw-039070840f7ff7bb9",
+      "status": "",
+      "description": "",
+      "details": {
+        "customer_gateways": [
+          {
+            "bgp_asn": "65530",
+            "id": "cgw-03ade8dbc888600e2",
+            "ip_address": "34.64.64.90",
+            "name": "csgfju1c6ncf42irj7bg-gcp-side-gw-1",
+            "resource_type": "aws_customer_gateway"
+          },
+          {
+            "bgp_asn": "65530",
+            "id": "cgw-0a67dacda8bc41cfd",
+            "ip_address": "34.64.131.160",
+            "name": "csgfju1c6ncf42irj7bg-gcp-side-gw-2",
+            "resource_type": "aws_customer_gateway"
+          }
+        ],
+        "vpn_connections": [
+          {
+            "id": "vpn-04d6aff1c06e7ceac",
+            "name": "csgfju1c6ncf42irj7bg-cnx-1",
+            "resource_type": "aws_vpn_connection",
+            "tunnel1_address": "3.38.20.63",
+            "tunnel2_address": "3.39.63.243"
+          },
+          {
+            "id": "vpn-0cee0e6ad3a1300db",
+            "name": "csgfju1c6ncf42irj7bg-cnx-2",
+            "resource_type": "aws_vpn_connection",
+            "tunnel1_address": "3.34.88.66",
+            "tunnel2_address": "15.164.89.221"
+          }
+        ],
+        "vpn_gateway": {
+          "id": "vgw-039070840f7ff7bb9",
+          "name": "csgfju1c6ncf42irj7bg-vpn-gw",
+          "resource_type": "aws_vpn_gateway",
+          "vpc_id": "vpc-088a447966997311a"
+        }
+      }
+    },
+    {
+      "connectionName": "gcp-asia-northeast3",
+      "connectionConfig": {
+        "configName": "gcp-asia-northeast3",
+        "providerName": "gcp",
+        "driverName": "gcp-driver-v1.0.so",
+        "credentialName": "gcp",
+        "credentialHolder": "admin",
+        "regionZoneInfoName": "gcp-asia-northeast3",
+        "regionZoneInfo": {
+          "assignedRegion": "asia-northeast3",
+          "assignedZone": "asia-northeast3-a"
+        },
+        "regionDetail": {
+          "regionId": "asia-northeast3",
+          "regionName": "asia-northeast3",
+          "description": "Seoul South Korea",
+          "location": {
+            "display": "South Korea (Seoul)",
+            "latitude": 37.2,
+            "longitude": 127
+          },
+          "zones": [
+            "asia-northeast3-a",
+            "asia-northeast3-b",
+            "asia-northeast3-c"
+          ]
+        },
+        "regionRepresentative": true,
+        "verified": true
+      },
+      "cspResourceName": "csgfju1c6ncf42irj7bg-ha-vpn-gw-1",
+      "cspResourceId": "projects/ykkim-etri/regions/asia-northeast3/vpnGateways/csgfju1c6ncf42irj7bg-ha-vpn-gw-1",
+      "status": "",
+      "description": "",
+      "details": {
+        "ha_vpn_gateway": {
+          "id": "projects/ykkim-etri/regions/asia-northeast3/vpnGateways/csgfju1c6ncf42irj7bg-ha-vpn-gw-1",
+          "ip_addresses": [
+            "34.64.64.90",
+            "34.64.131.160"
+          ],
+          "name": "csgfju1c6ncf42irj7bg-ha-vpn-gw-1",
+          "network": "https://www.googleapis.com/compute/v1/projects/ykkim-etri/global/networks/csce5luosgjunknm8td0",
+          "resource_type": "google_compute_ha_vpn_gateway"
+        },
+        "router": {
+          "bgp_asn": 65530,
+          "id": "projects/ykkim-etri/regions/asia-northeast3/routers/csgfju1c6ncf42irj7bg-router-1",
+          "name": "csgfju1c6ncf42irj7bg-router-1",
+          "network": "https://www.googleapis.com/compute/v1/projects/ykkim-etri/global/networks/csce5luosgjunknm8td0",
+          "resource_type": "google_compute_router"
+        },
+        "vpn_tunnels": [
+          {
+            "id": "projects/ykkim-etri/regions/asia-northeast3/vpnTunnels/csgfju1c6ncf42irj7bg-vpn-tunnel-1",
+            "ike_version": 2,
+            "interface": 0,
+            "name": "csgfju1c6ncf42irj7bg-vpn-tunnel-1",
+            "resource_type": "google_compute_vpn_tunnel"
+          },
+          {
+            "id": "projects/ykkim-etri/regions/asia-northeast3/vpnTunnels/csgfju1c6ncf42irj7bg-vpn-tunnel-2",
+            "ike_version": 2,
+            "interface": 1,
+            "name": "csgfju1c6ncf42irj7bg-vpn-tunnel-2",
+            "resource_type": "google_compute_vpn_tunnel"
+          },
+          {
+            "id": "projects/ykkim-etri/regions/asia-northeast3/vpnTunnels/csgfju1c6ncf42irj7bg-vpn-tunnel-3",
+            "ike_version": 2,
+            "interface": 0,
+            "name": "csgfju1c6ncf42irj7bg-vpn-tunnel-3",
+            "resource_type": "google_compute_vpn_tunnel"
+          },
+          {
+            "id": "projects/ykkim-etri/regions/asia-northeast3/vpnTunnels/csgfju1c6ncf42irj7bg-vpn-tunnel-4",
+            "ike_version": 2,
+            "interface": 1,
+            "name": "csgfju1c6ncf42irj7bg-vpn-tunnel-4",
+            "resource_type": "google_compute_vpn_tunnel"
+          }
+        ]
+      }
+    }
+  ]
+}
 ```
 
-#### Delete VPN 
+### Get VPN 
 
-: API: `DELETE /stream-response/ns/{nsId}/mci/{mciId}/vpn/{vpnId}`
+: API: `GET /ns/{nsId}/mci/{mciId}/vpn/{vpnId}`
 
 : nsId = default
 
@@ -519,66 +687,186 @@ can't parse JSON.  Raw result:
 
 : vpnId = vpn01
 
-: Response body (JSONL, JSON lines)
-
-```json
-can't parse JSON.  Raw result:
-
-{"message":"mc-terrarium server is ready"}
-{"message":"successully got the terrarium (trId: default-mci01-vpn01) for the enrichment (vpn/gcp-aws)"}
-{"message":"the destroying process is successfully completed (trId: default-mci01-vpn01, enrichments: vpn/gcp-aws)"}
-{"message":"successfully remove all in the working directory"}
-{"message":"successfully erased the entire terrarium (trId: default-mci01-vpn01)"}
-```
-
-
-### Site-to-site VPN between GCP and Azure
-
-#### Create VPN
-
-: API: `POST /stream-response/ns/{nsId}/mci/{mciId}/vpn/{vpnId}`
-
-: nsId = default
-
-: mciId = mci01
-
-: vpnId = vpn02
-
-: Request body 
+: Response body
 
 ```json
 {
-  "site1": {
-	"csp": "azure",
-	"region": "koreacentral",
-	"vnet": "csce6cuosgjunknm8tg0",
-	"gatewaySubnetCidr": "10.48.128.0/18",
-	"resourceGroup": "koreacentral"
-  },
-  "site2": {
-	"csp": "gcp",
-	"region": "asia-northeast3",
-	"vnet": "csce5luosgjunknm8td0"
-  }
+  "resourceType": "vpn",
+  "id": "vpn02",
+  "uid": "csgfju1c6ncf42irj7bg",
+  "name": "vpn02",
+  "description": "VPN between aws and gcp",
+  "status": "Available",
+  "vpnGatewayInfo": [
+    {
+      "connectionName": "aws-ap-northeast-2",
+      "connectionConfig": {
+        "configName": "aws-ap-northeast-2",
+        "providerName": "aws",
+        "driverName": "aws-driver-v1.0.so",
+        "credentialName": "aws",
+        "credentialHolder": "admin",
+        "regionZoneInfoName": "aws-ap-northeast-2",
+        "regionZoneInfo": {
+          "assignedRegion": "ap-northeast-2",
+          "assignedZone": "ap-northeast-2a"
+        },
+        "regionDetail": {
+          "regionId": "ap-northeast-2",
+          "regionName": "ap-northeast-2",
+          "description": "Asia Pacific (Seoul)",
+          "location": {
+            "display": "South Korea (Seoul)",
+            "latitude": 37.36,
+            "longitude": 126.78
+          },
+          "zones": [
+            "ap-northeast-2a",
+            "ap-northeast-2b",
+            "ap-northeast-2c",
+            "ap-northeast-2d"
+          ]
+        },
+        "regionRepresentative": true,
+        "verified": true
+      },
+      "cspResourceName": "csgfju1c6ncf42irj7bg-vpn-gw",
+      "cspResourceId": "vgw-039070840f7ff7bb9",
+      "status": "",
+      "description": "",
+      "details": {
+        "customer_gateways": [
+          {
+            "bgp_asn": "65530",
+            "id": "cgw-03ade8dbc888600e2",
+            "ip_address": "34.64.64.90",
+            "name": "csgfju1c6ncf42irj7bg-gcp-side-gw-1",
+            "resource_type": "aws_customer_gateway"
+          },
+          {
+            "bgp_asn": "65530",
+            "id": "cgw-0a67dacda8bc41cfd",
+            "ip_address": "34.64.131.160",
+            "name": "csgfju1c6ncf42irj7bg-gcp-side-gw-2",
+            "resource_type": "aws_customer_gateway"
+          }
+        ],
+        "vpn_connections": [
+          {
+            "id": "vpn-04d6aff1c06e7ceac",
+            "name": "csgfju1c6ncf42irj7bg-cnx-1",
+            "resource_type": "aws_vpn_connection",
+            "tunnel1_address": "3.38.20.63",
+            "tunnel2_address": "3.39.63.243"
+          },
+          {
+            "id": "vpn-0cee0e6ad3a1300db",
+            "name": "csgfju1c6ncf42irj7bg-cnx-2",
+            "resource_type": "aws_vpn_connection",
+            "tunnel1_address": "3.34.88.66",
+            "tunnel2_address": "15.164.89.221"
+          }
+        ],
+        "vpn_gateway": {
+          "id": "vgw-039070840f7ff7bb9",
+          "name": "csgfju1c6ncf42irj7bg-vpn-gw",
+          "resource_type": "aws_vpn_gateway",
+          "vpc_id": "vpc-088a447966997311a"
+        }
+      }
+    },
+    {
+      "connectionName": "gcp-asia-northeast3",
+      "connectionConfig": {
+        "configName": "gcp-asia-northeast3",
+        "providerName": "gcp",
+        "driverName": "gcp-driver-v1.0.so",
+        "credentialName": "gcp",
+        "credentialHolder": "admin",
+        "regionZoneInfoName": "gcp-asia-northeast3",
+        "regionZoneInfo": {
+          "assignedRegion": "asia-northeast3",
+          "assignedZone": "asia-northeast3-a"
+        },
+        "regionDetail": {
+          "regionId": "asia-northeast3",
+          "regionName": "asia-northeast3",
+          "description": "Seoul South Korea",
+          "location": {
+            "display": "South Korea (Seoul)",
+            "latitude": 37.2,
+            "longitude": 127
+          },
+          "zones": [
+            "asia-northeast3-a",
+            "asia-northeast3-b",
+            "asia-northeast3-c"
+          ]
+        },
+        "regionRepresentative": true,
+        "verified": true
+      },
+      "cspResourceName": "csgfju1c6ncf42irj7bg-ha-vpn-gw-1",
+      "cspResourceId": "projects/ykkim-etri/regions/asia-northeast3/vpnGateways/csgfju1c6ncf42irj7bg-ha-vpn-gw-1",
+      "status": "",
+      "description": "",
+      "details": {
+        "ha_vpn_gateway": {
+          "id": "projects/ykkim-etri/regions/asia-northeast3/vpnGateways/csgfju1c6ncf42irj7bg-ha-vpn-gw-1",
+          "ip_addresses": [
+            "34.64.64.90",
+            "34.64.131.160"
+          ],
+          "name": "csgfju1c6ncf42irj7bg-ha-vpn-gw-1",
+          "network": "https://www.googleapis.com/compute/v1/projects/ykkim-etri/global/networks/csce5luosgjunknm8td0",
+          "resource_type": "google_compute_ha_vpn_gateway"
+        },
+        "router": {
+          "bgp_asn": 65530,
+          "id": "projects/ykkim-etri/regions/asia-northeast3/routers/csgfju1c6ncf42irj7bg-router-1",
+          "name": "csgfju1c6ncf42irj7bg-router-1",
+          "network": "https://www.googleapis.com/compute/v1/projects/ykkim-etri/global/networks/csce5luosgjunknm8td0",
+          "resource_type": "google_compute_router"
+        },
+        "vpn_tunnels": [
+          {
+            "id": "projects/ykkim-etri/regions/asia-northeast3/vpnTunnels/csgfju1c6ncf42irj7bg-vpn-tunnel-1",
+            "ike_version": 2,
+            "interface": 0,
+            "name": "csgfju1c6ncf42irj7bg-vpn-tunnel-1",
+            "resource_type": "google_compute_vpn_tunnel"
+          },
+          {
+            "id": "projects/ykkim-etri/regions/asia-northeast3/vpnTunnels/csgfju1c6ncf42irj7bg-vpn-tunnel-2",
+            "ike_version": 2,
+            "interface": 1,
+            "name": "csgfju1c6ncf42irj7bg-vpn-tunnel-2",
+            "resource_type": "google_compute_vpn_tunnel"
+          },
+          {
+            "id": "projects/ykkim-etri/regions/asia-northeast3/vpnTunnels/csgfju1c6ncf42irj7bg-vpn-tunnel-3",
+            "ike_version": 2,
+            "interface": 0,
+            "name": "csgfju1c6ncf42irj7bg-vpn-tunnel-3",
+            "resource_type": "google_compute_vpn_tunnel"
+          },
+          {
+            "id": "projects/ykkim-etri/regions/asia-northeast3/vpnTunnels/csgfju1c6ncf42irj7bg-vpn-tunnel-4",
+            "ike_version": 2,
+            "interface": 1,
+            "name": "csgfju1c6ncf42irj7bg-vpn-tunnel-4",
+            "resource_type": "google_compute_vpn_tunnel"
+          }
+        ]
+      }
+    }
+  ]
 }
 ```
 
-: Response body (JSONL, JSON lines)
+### Delete VPN 
 
-```json
-can't parse JSON.  Raw result:
-
-{"message":"mc-terrarium server is ready"}
-{"message":"successully created a terrarium (trId: default-mci01-vpn02)"}
-{"message":"the infrastructure terrarium is successfully initialized"}
-{"message":"the infracode to configure GCP to Azure VPN tunnels is Successfully created"}
-{"message":"the infracode checking process is successfully completed"}
-{"message":"the request (id: 1729686451167591219) is successfully accepted and still deploying resource"}
-```
-
-#### Delete VPN
-
-: API: `DELETE /stream-response/ns/{nsId}/mci/{mciId}/vpn/{vpnId}`
+: API: `DELETE /ns/{nsId}/mci/{mciId}/vpn/{vpnId}`
 
 : nsId = default
 
@@ -586,15 +874,460 @@ can't parse JSON.  Raw result:
 
 : vpnId = vpn02
 
-: Response body (JSONL, JSON lines)
+: Response body
 
 ```json
-can't parse JSON.  Raw result:
+{
+  "message": "successfully erased the entire terrarium (trId: csgfju1c6ncf42irj7bg)"
+}
+```
 
-{"message":"mc-terrarium server is ready"}
-{"message":"successully got the terrarium (trId: default-mci01-vpn02) for the enrichment (vpn/gcp-azure)"}
-{"message":"the destroying process is successfully completed (trId: default-mci01-vpn02, enrichments: vpn/gcp-aws)"}
-{"message":"successfully remove all in the working directory"}
-{"message":"successfully erased the entire terrarium (trId: default-mci01-vpn02)"}
+## Site-to-site VPN between GCP and Azure
+
+### Create VPN 
+
+: API: `POST /ns/{nsId}/mci/{mciId}/vpn`
+
+: nsId = default
+
+: mciId = mci01
+
+: Request body
+
+```json
+{
+  "name": "vpn01",
+  "site1": {
+        "csp": "azure",
+        "region": "koreacentral",
+        "connectionName": "azure-koreacentral",
+        "vnet": "csce6cuosgjunknm8tg0",
+        "gatewaySubnetCidr": "10.48.128.0/18",
+        "resourceGroup": "koreacentral"
+      },
+  "site2": {
+        "csp": "gcp",
+        "region": "asia-northeast3",
+        "connectionName": "gcp-asia-northeast3",
+        "vnet": "csce5luosgjunknm8td0"
+      }
+}
+```
+
+: Response body
+
+```json
+{
+  "resourceType": "vpn",
+  "id": "vpn01",
+  "uid": "csgfkv9c6ncf42irj7c0",
+  "name": "vpn01",
+  "description": "VPN between azure and gcp",
+  "status": "Available",
+  "vpnGatewayInfo": [
+    {
+      "connectionName": "azure-koreacentral",
+      "connectionConfig": {
+        "configName": "azure-koreacentral",
+        "providerName": "azure",
+        "driverName": "azure-driver-v1.0.so",
+        "credentialName": "azure",
+        "credentialHolder": "admin",
+        "regionZoneInfoName": "azure-koreacentral",
+        "regionZoneInfo": {
+          "assignedRegion": "koreacentral",
+          "assignedZone": "1"
+        },
+        "regionDetail": {
+          "regionId": "koreacentral",
+          "regionName": "koreacentral",
+          "description": "Korea Central",
+          "location": {
+            "display": "Korea Central",
+            "latitude": 37.5665,
+            "longitude": 126.978
+          },
+          "zones": [
+            "1",
+            "2",
+            "3"
+          ]
+        },
+        "regionRepresentative": true,
+        "verified": true
+      },
+      "cspResourceName": "csgfkv9c6ncf42irj7c0-vpn-gw-1",
+      "cspResourceId": "/subscriptions/a20fed83-96bd-4480-92a9-140b8e3b7c3a/resourceGroups/koreacentral/providers/Microsoft.Network/virtualNetworkGateways/csgfkv9c6ncf42irj7c0-vpn-gw-1",
+      "status": "",
+      "description": "",
+      "details": {
+        "connections": [
+          {
+            "enable_bgp": true,
+            "id": "/subscriptions/a20fed83-96bd-4480-92a9-140b8e3b7c3a/resourceGroups/koreacentral/providers/Microsoft.Network/connections/csgfkv9c6ncf42irj7c0-connection-1",
+            "name": "csgfkv9c6ncf42irj7c0-connection-1",
+            "resource_type": "azurerm_virtual_network_gateway_connection",
+            "type": "IPsec"
+          },
+          {
+            "enable_bgp": true,
+            "id": "/subscriptions/a20fed83-96bd-4480-92a9-140b8e3b7c3a/resourceGroups/koreacentral/providers/Microsoft.Network/connections/csgfkv9c6ncf42irj7c0-connection-2",
+            "name": "csgfkv9c6ncf42irj7c0-connection-2",
+            "resource_type": "azurerm_virtual_network_gateway_connection",
+            "type": "IPsec"
+          }
+        ],
+        "public_ips": {
+          "ip1": {
+            "id": "/subscriptions/a20fed83-96bd-4480-92a9-140b8e3b7c3a/resourceGroups/koreacentral/providers/Microsoft.Network/publicIPAddresses/csgfkv9c6ncf42irj7c0-vpn-gw-pub-ip-1",
+            "ip_address": "4.218.18.121",
+            "name": "csgfkv9c6ncf42irj7c0-vpn-gw-pub-ip-1",
+            "resource_type": "azurerm_public_ip"
+          },
+          "ip2": {
+            "id": "/subscriptions/a20fed83-96bd-4480-92a9-140b8e3b7c3a/resourceGroups/koreacentral/providers/Microsoft.Network/publicIPAddresses/csgfkv9c6ncf42irj7c0-vpn-gw-pub-ip-2",
+            "ip_address": "4.218.18.227",
+            "name": "csgfkv9c6ncf42irj7c0-vpn-gw-pub-ip-2",
+            "resource_type": "azurerm_public_ip"
+          }
+        },
+        "virtual_network_gateway": {
+          "bgp_settings": {
+            "asn": 65515,
+            "peering_addresses": [
+              {
+                "address": "169.254.21.1",
+                "ip_configuration": "csgfkv9c6ncf42irj7c0-vnetGatewayConfig1"
+              },
+              {
+                "address": "169.254.22.1",
+                "ip_configuration": "csgfkv9c6ncf42irj7c0-vnetGatewayConfig2"
+              }
+            ]
+          },
+          "id": "/subscriptions/a20fed83-96bd-4480-92a9-140b8e3b7c3a/resourceGroups/koreacentral/providers/Microsoft.Network/virtualNetworkGateways/csgfkv9c6ncf42irj7c0-vpn-gw-1",
+          "location": "koreacentral",
+          "name": "csgfkv9c6ncf42irj7c0-vpn-gw-1",
+          "resource_type": "azurerm_virtual_network_gateway",
+          "sku": "VpnGw1",
+          "vpn_type": "RouteBased"
+        }
+      }
+    },
+    {
+      "connectionName": "gcp-asia-northeast3",
+      "connectionConfig": {
+        "configName": "gcp-asia-northeast3",
+        "providerName": "gcp",
+        "driverName": "gcp-driver-v1.0.so",
+        "credentialName": "gcp",
+        "credentialHolder": "admin",
+        "regionZoneInfoName": "gcp-asia-northeast3",
+        "regionZoneInfo": {
+          "assignedRegion": "asia-northeast3",
+          "assignedZone": "asia-northeast3-a"
+        },
+        "regionDetail": {
+          "regionId": "asia-northeast3",
+          "regionName": "asia-northeast3",
+          "description": "Seoul South Korea",
+          "location": {
+            "display": "South Korea (Seoul)",
+            "latitude": 37.2,
+            "longitude": 127
+          },
+          "zones": [
+            "asia-northeast3-a",
+            "asia-northeast3-b",
+            "asia-northeast3-c"
+          ]
+        },
+        "regionRepresentative": true,
+        "verified": true
+      },
+      "cspResourceName": "csgfkv9c6ncf42irj7c0-ha-vpn-gw-1",
+      "cspResourceId": "projects/ykkim-etri/regions/asia-northeast3/vpnGateways/csgfkv9c6ncf42irj7c0-ha-vpn-gw-1",
+      "status": "",
+      "description": "",
+      "details": {
+        "bgp_peers": [
+          {
+            "interface_name": "csgfkv9c6ncf42irj7c0-interface-1",
+            "name": "csgfkv9c6ncf42irj7c0-peer-1",
+            "peer_asn": 65515,
+            "peer_ip": "169.254.21.1",
+            "resource_type": "google_compute_router_peer"
+          },
+          {
+            "interface_name": "csgfkv9c6ncf42irj7c0-interface-2",
+            "name": "csgfkv9c6ncf42irj7c0-peer-2",
+            "peer_asn": 65515,
+            "peer_ip": "169.254.22.1",
+            "resource_type": "google_compute_router_peer"
+          }
+        ],
+        "ha_vpn_gateway": {
+          "id": "projects/ykkim-etri/regions/asia-northeast3/vpnGateways/csgfkv9c6ncf42irj7c0-ha-vpn-gw-1",
+          "interfaces": [
+            {},
+            {}
+          ],
+          "name": "csgfkv9c6ncf42irj7c0-ha-vpn-gw-1",
+          "network": "https://www.googleapis.com/compute/v1/projects/ykkim-etri/global/networks/csce5luosgjunknm8td0",
+          "resource_type": "google_compute_ha_vpn_gateway"
+        },
+        "router": {
+          "bgp": {
+            "advertise_mode": "CUSTOM",
+            "asn": 65534
+          },
+          "id": "projects/ykkim-etri/regions/asia-northeast3/routers/csgfkv9c6ncf42irj7c0-router-1",
+          "name": "csgfkv9c6ncf42irj7c0-router-1",
+          "network": "https://www.googleapis.com/compute/v1/projects/ykkim-etri/global/networks/csce5luosgjunknm8td0",
+          "resource_type": "google_compute_router"
+        },
+        "vpn_tunnels": [
+          {
+            "id": "projects/ykkim-etri/regions/asia-northeast3/vpnTunnels/csgfkv9c6ncf42irj7c0-vpn-tunnel-1",
+            "interface": 0,
+            "name": "csgfkv9c6ncf42irj7c0-vpn-tunnel-1",
+            "resource_type": "google_compute_vpn_tunnel",
+            "router": "https://www.googleapis.com/compute/v1/projects/ykkim-etri/regions/asia-northeast3/routers/csgfkv9c6ncf42irj7c0-router-1"
+          },
+          {
+            "id": "projects/ykkim-etri/regions/asia-northeast3/vpnTunnels/csgfkv9c6ncf42irj7c0-vpn-tunnel-2",
+            "interface": 1,
+            "name": "csgfkv9c6ncf42irj7c0-vpn-tunnel-2",
+            "resource_type": "google_compute_vpn_tunnel",
+            "router": "https://www.googleapis.com/compute/v1/projects/ykkim-etri/regions/asia-northeast3/routers/csgfkv9c6ncf42irj7c0-router-1"
+          }
+        ]
+      }
+    }
+  ]
+}
+```
+
+#### Get VPN 
+
+: API: `GET /ns/{nsId}/mci/{mciId}/vpn/{vpnId}`
+
+: nsId = default
+
+: mciId = mci01
+
+: vpnId = vpn01
+
+: Response body
+
+```json
+{
+  "resourceType": "vpn",
+  "id": "vpn01",
+  "uid": "csgfkv9c6ncf42irj7c0",
+  "name": "vpn01",
+  "description": "VPN between azure and gcp",
+  "status": "Available",
+  "vpnGatewayInfo": [
+    {
+      "connectionName": "azure-koreacentral",
+      "connectionConfig": {
+        "configName": "azure-koreacentral",
+        "providerName": "azure",
+        "driverName": "azure-driver-v1.0.so",
+        "credentialName": "azure",
+        "credentialHolder": "admin",
+        "regionZoneInfoName": "azure-koreacentral",
+        "regionZoneInfo": {
+          "assignedRegion": "koreacentral",
+          "assignedZone": "1"
+        },
+        "regionDetail": {
+          "regionId": "koreacentral",
+          "regionName": "koreacentral",
+          "description": "Korea Central",
+          "location": {
+            "display": "Korea Central",
+            "latitude": 37.5665,
+            "longitude": 126.978
+          },
+          "zones": [
+            "1",
+            "2",
+            "3"
+          ]
+        },
+        "regionRepresentative": true,
+        "verified": true
+      },
+      "cspResourceName": "csgfkv9c6ncf42irj7c0-vpn-gw-1",
+      "cspResourceId": "/subscriptions/a20fed83-96bd-4480-92a9-140b8e3b7c3a/resourceGroups/koreacentral/providers/Microsoft.Network/virtualNetworkGateways/csgfkv9c6ncf42irj7c0-vpn-gw-1",
+      "status": "",
+      "description": "",
+      "details": {
+        "connections": [
+          {
+            "enable_bgp": true,
+            "id": "/subscriptions/a20fed83-96bd-4480-92a9-140b8e3b7c3a/resourceGroups/koreacentral/providers/Microsoft.Network/connections/csgfkv9c6ncf42irj7c0-connection-1",
+            "name": "csgfkv9c6ncf42irj7c0-connection-1",
+            "resource_type": "azurerm_virtual_network_gateway_connection",
+            "type": "IPsec"
+          },
+          {
+            "enable_bgp": true,
+            "id": "/subscriptions/a20fed83-96bd-4480-92a9-140b8e3b7c3a/resourceGroups/koreacentral/providers/Microsoft.Network/connections/csgfkv9c6ncf42irj7c0-connection-2",
+            "name": "csgfkv9c6ncf42irj7c0-connection-2",
+            "resource_type": "azurerm_virtual_network_gateway_connection",
+            "type": "IPsec"
+          }
+        ],
+        "public_ips": {
+          "ip1": {
+            "id": "/subscriptions/a20fed83-96bd-4480-92a9-140b8e3b7c3a/resourceGroups/koreacentral/providers/Microsoft.Network/publicIPAddresses/csgfkv9c6ncf42irj7c0-vpn-gw-pub-ip-1",
+            "ip_address": "4.218.18.121",
+            "name": "csgfkv9c6ncf42irj7c0-vpn-gw-pub-ip-1",
+            "resource_type": "azurerm_public_ip"
+          },
+          "ip2": {
+            "id": "/subscriptions/a20fed83-96bd-4480-92a9-140b8e3b7c3a/resourceGroups/koreacentral/providers/Microsoft.Network/publicIPAddresses/csgfkv9c6ncf42irj7c0-vpn-gw-pub-ip-2",
+            "ip_address": "4.218.18.227",
+            "name": "csgfkv9c6ncf42irj7c0-vpn-gw-pub-ip-2",
+            "resource_type": "azurerm_public_ip"
+          }
+        },
+        "virtual_network_gateway": {
+          "bgp_settings": {
+            "asn": 65515,
+            "peering_addresses": [
+              {
+                "address": "169.254.21.1",
+                "ip_configuration": "csgfkv9c6ncf42irj7c0-vnetGatewayConfig1"
+              },
+              {
+                "address": "169.254.22.1",
+                "ip_configuration": "csgfkv9c6ncf42irj7c0-vnetGatewayConfig2"
+              }
+            ]
+          },
+          "id": "/subscriptions/a20fed83-96bd-4480-92a9-140b8e3b7c3a/resourceGroups/koreacentral/providers/Microsoft.Network/virtualNetworkGateways/csgfkv9c6ncf42irj7c0-vpn-gw-1",
+          "location": "koreacentral",
+          "name": "csgfkv9c6ncf42irj7c0-vpn-gw-1",
+          "resource_type": "azurerm_virtual_network_gateway",
+          "sku": "VpnGw1",
+          "vpn_type": "RouteBased"
+        }
+      }
+    },
+    {
+      "connectionName": "gcp-asia-northeast3",
+      "connectionConfig": {
+        "configName": "gcp-asia-northeast3",
+        "providerName": "gcp",
+        "driverName": "gcp-driver-v1.0.so",
+        "credentialName": "gcp",
+        "credentialHolder": "admin",
+        "regionZoneInfoName": "gcp-asia-northeast3",
+        "regionZoneInfo": {
+          "assignedRegion": "asia-northeast3",
+          "assignedZone": "asia-northeast3-a"
+        },
+        "regionDetail": {
+          "regionId": "asia-northeast3",
+          "regionName": "asia-northeast3",
+          "description": "Seoul South Korea",
+          "location": {
+            "display": "South Korea (Seoul)",
+            "latitude": 37.2,
+            "longitude": 127
+          },
+          "zones": [
+            "asia-northeast3-a",
+            "asia-northeast3-b",
+            "asia-northeast3-c"
+          ]
+        },
+        "regionRepresentative": true,
+        "verified": true
+      },
+      "cspResourceName": "csgfkv9c6ncf42irj7c0-ha-vpn-gw-1",
+      "cspResourceId": "projects/ykkim-etri/regions/asia-northeast3/vpnGateways/csgfkv9c6ncf42irj7c0-ha-vpn-gw-1",
+      "status": "",
+      "description": "",
+      "details": {
+        "bgp_peers": [
+          {
+            "interface_name": "csgfkv9c6ncf42irj7c0-interface-1",
+            "name": "csgfkv9c6ncf42irj7c0-peer-1",
+            "peer_asn": 65515,
+            "peer_ip": "169.254.21.1",
+            "resource_type": "google_compute_router_peer"
+          },
+          {
+            "interface_name": "csgfkv9c6ncf42irj7c0-interface-2",
+            "name": "csgfkv9c6ncf42irj7c0-peer-2",
+            "peer_asn": 65515,
+            "peer_ip": "169.254.22.1",
+            "resource_type": "google_compute_router_peer"
+          }
+        ],
+        "ha_vpn_gateway": {
+          "id": "projects/ykkim-etri/regions/asia-northeast3/vpnGateways/csgfkv9c6ncf42irj7c0-ha-vpn-gw-1",
+          "interfaces": [
+            {},
+            {}
+          ],
+          "name": "csgfkv9c6ncf42irj7c0-ha-vpn-gw-1",
+          "network": "https://www.googleapis.com/compute/v1/projects/ykkim-etri/global/networks/csce5luosgjunknm8td0",
+          "resource_type": "google_compute_ha_vpn_gateway"
+        },
+        "router": {
+          "bgp": {
+            "advertise_mode": "CUSTOM",
+            "asn": 65534
+          },
+          "id": "projects/ykkim-etri/regions/asia-northeast3/routers/csgfkv9c6ncf42irj7c0-router-1",
+          "name": "csgfkv9c6ncf42irj7c0-router-1",
+          "network": "https://www.googleapis.com/compute/v1/projects/ykkim-etri/global/networks/csce5luosgjunknm8td0",
+          "resource_type": "google_compute_router"
+        },
+        "vpn_tunnels": [
+          {
+            "id": "projects/ykkim-etri/regions/asia-northeast3/vpnTunnels/csgfkv9c6ncf42irj7c0-vpn-tunnel-1",
+            "interface": 0,
+            "name": "csgfkv9c6ncf42irj7c0-vpn-tunnel-1",
+            "resource_type": "google_compute_vpn_tunnel",
+            "router": "https://www.googleapis.com/compute/v1/projects/ykkim-etri/regions/asia-northeast3/routers/csgfkv9c6ncf42irj7c0-router-1"
+          },
+          {
+            "id": "projects/ykkim-etri/regions/asia-northeast3/vpnTunnels/csgfkv9c6ncf42irj7c0-vpn-tunnel-2",
+            "interface": 1,
+            "name": "csgfkv9c6ncf42irj7c0-vpn-tunnel-2",
+            "resource_type": "google_compute_vpn_tunnel",
+            "router": "https://www.googleapis.com/compute/v1/projects/ykkim-etri/regions/asia-northeast3/routers/csgfkv9c6ncf42irj7c0-router-1"
+          }
+        ]
+      }
+    }
+  ]
+}
+```
+
+
+#### Delete VPN
+
+: API: `DELETE /ns/{nsId}/mci/{mciId}/vpn/{vpnId}`
+
+: nsId = default
+
+: mciId = mci01
+
+: vpnId = vpn01
+
+: Response body 
+
+```json
+{
+  "message": "successfully erased the entire terrarium (trId: csgfkv9c6ncf42irj7c0)"
+}
 ```
 
