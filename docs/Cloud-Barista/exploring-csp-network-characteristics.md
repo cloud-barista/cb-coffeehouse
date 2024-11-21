@@ -1,4 +1,4 @@
-# Exploring CSP etwork characteristics
+# Exploring CSP network characteristics
 
 > [!NOTE]
 > I'm trying to share this draft in advance and continue editing it. Help wanted 😃
