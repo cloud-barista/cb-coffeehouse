@@ -488,7 +488,222 @@ Return the TODO list in a Markdown format, grouped by priority and issue type.
 1. 채팅 뷰 입력 창에 `/`를 입력 후 프롬프트 파일이름을 입력
    - 예) `MyPrompt.prompt.md` 파일을 생성한 경우, 채팅 뷰 입력창에 `/MyPrompt` 를 입력하여 프롬프트 사용
 
-### mc-terrarium에서 instructions 적용 및 활용 경험
+### cm-model에서 `sync-tb` prompt 개발 및 사용 후기
+
+> [!NOTE] > `copied-tb-model.go` 에 있는 구조체들은 CB-Tumblebug에 맞게 동기화 되어야 합니다.
+> 지정된 CB-Tumblebug 버전으로 동기화가 진행되어야 합니다.
+> 반복되는 작업이기 때문에 스터디를 할 겸 Prompt를 개발 및 적용하였습니다. (Write Context! / Context Engineering)
+
+##### 설정 방법
+
+1. `.vscod/prompts/syc-tb.prompt.md`
+2. Prompt 작성 및 수정 with Copilot
+3. link: https://github.com/cloud-barista/cm-model/blob/main/.github/prompts/sync-tb.prompt.md
+4. (참고) VSCode 현황
+   ![](https://i.imgur.com/bqfZCpy.png)
+
+##### 사용 방법
+
+1. 채팅 뷰 입력 창에 `/`를 입력 후 프롬프트 입력
+   - 예) `/sync-tb latest`, `/sync-tb v0.11.3`, 등
+
+![](https://i.imgur.com/L0FoHEM.png)
+
+![](https://i.imgur.com/PtXYxVZ.png)
+
+2. 동기화 작업 수행 중
+
+   - 실행이 필요한 경우 사용자에게 실행할 것인지 물어봄
+   - 항상 실행하는 것으로 설정할 수 있음
+
+![](https://i.imgur.com/XYsxZ1J.png)
+
+##### 동기화 결과
+
+- 후기: 간밤에 CB-Tumblebug이 업데이트된 것을 인지하지 못한 상태로 동기화를 진행했습니다. 이후 동기화 결과를 확인하는 과정에서 업데이트 사실을 알게 되었습니다. 새로 반영된 동기화 프롬프트가 의도한 대로 잘 동작하여 만족스러웠습니다. 👍👍👍
+
+<details>
+  <summary>Click to see the result (diff) </summary>
+
+```diff
+git diff
+diff --git a/infra/cloud-model/copied-tb-model.go b/infra/cloud-model/copied-tb-model.go
+index d7cdba1..0d65643 100644
+--- a/infra/cloud-model/copied-tb-model.go
++++ b/infra/cloud-model/copied-tb-model.go
+@@ -2,7 +2,7 @@ package cloudmodel
+
+ // * To avoid circular dependencies, the following structs are copied from the cb-tumblebug framework.
+ // TODO: When the cb-tumblebug framework is updated, we should synchronize these structs.
+-// * Version: CB-Tumblebug v0.11.2 (includes Security Group firewall rule model refactor from PR #2063)
++// * Version: CB-Tumblebug v0.11.2-12-gdc1c8234 (latest - includes MCI error handling and performance optimizations)
+
+ // * Path: src/core/model/mci.go, Line: 89-109
+ // TbMciReq is struct for requirements to create MCI
+@@ -25,6 +25,12 @@ type TbMciReq struct {
+
+        // PostCommand is for the command to bootstrap the VMs
+        PostCommand MciCmdReq `json:"postCommand" validate:"omitempty"`
++
++       // PolicyOnPartialFailure determines how to handle VM creation failures
++       // - "continue": Continue with partial MCI creation (default)
++       // - "rollback": Cleanup entire MCI when any VM fails
++       // - "refine": Mark failed VMs for refinement
++       PolicyOnPartialFailure string `json:"policyOnPartialFailure" example:"continue" default:"continue" enums:"continue,rollback,refine"`
+ }
+
+ // * Path: src/core/model/mci.go, Line: 165-194
+@@ -64,49 +70,83 @@ type TbVmReq struct {
+ type TbMciDynamicReq struct {
+        Name string `json:"name" validate:"required" example:"mci01"`
+
++       // PolicyOnPartialFailure determines how to handle VM creation failures
++       // - "continue": Continue with partial MCI creation (default)
++       // - "rollback": Cleanup entire MCI when any VM fails
++       // - "refine": Mark failed VMs for refinement
++       PolicyOnPartialFailure string `json:"policyOnPartialFailure" example:"continue" default:"continue" enums:"continue,rollback,refine"`
++
+        // InstallMonAgent Option for CB-Dragonfly agent installation ([yes/no] default:no)
+        InstallMonAgent string `json:"installMonAgent" example:"no" default:"no" enums:"yes,no"` // yes or no
+
+-       // Label is for describing the object by keywords
+-       Label map[string]string `json:"label"`
++       // Vm is array of VM requests for multi-cloud infrastructure
++       // Example: Multiple VM groups across different CSPs
++       // [
++       //   {
++       //     "name": "aws-group",
++       //     "subGroupSize": "3",
++       //     "commonSpec": "aws+ap-northeast-2+t3.nano",
++       //     "commonImage": "ami-01f71f215b23ba262",
++       //     "rootDiskSize": "50",
++       //     "label": {"role": "worker", "csp": "aws"}
++       //   },
++       //   {
++       //     "name": "azure-group",
++       //     "subGroupSize": "2",
++       //     "commonSpec": "azure+koreasouth+standard_b1s",
++       //     "commonImage": "Canonical:0001-com-ubuntu-server-jammy:22_04-lts:22.04.202505210",
++       //     "rootDiskSize": "50",
++       //     "label": {"role": "head", "csp": "azure"}
++       //   },
++       //   {
++       //     "name": "gcp-group",
++       //     "subGroupSize": "1",
++       //     "commonSpec": "gcp+asia-northeast3+g1-small",
++       //     "commonImage": "https://www.googleapis.com/compute/v1/projects/ubuntu-os-cloud/global/images/ubuntu-2204-jammy-v20250712",
++       //     "rootDiskSize": "50",
++       //     "label": {"role": "test", "csp": "gcp"}
++       //   }
++       // ]
++       Vm []TbVmDynamicReq `json:"vm" validate:"required"`
++
++       // PostCommand is for the command to bootstrap the VMs
++       PostCommand MciCmdReq `json:"postCommand"`
+
+        // SystemLabel is for describing the mci in a keyword (any string can be used) for special System purpose
+        SystemLabel string `json:"systemLabel" example:"" default:""`
+
+        Description string `json:"description" example:"Made in CB-TB"`
+
+-       Vm []TbVmDynamicReq `json:"vm" validate:"required"`
+-
+-       // PostCommand is for the command to bootstrap the VMs
+-       PostCommand MciCmdReq `json:"postCommand"`
++       // Label is for describing the object by keywords
++       Label map[string]string `json:"label"`
+ }
+
+ // * Path: src/core/model/mci.go, Line: 225-250
+ // TbVmDynamicReq is struct to get requirements to create a new server instance dynamically (with default resource option)
+ type TbVmDynamicReq struct {
+        // VM name or subGroup name if is (not empty) && (> 0). If it is a group, actual VM name will be generated with -N postfix.
+-       Name string `json:"name" example:"g1-1"`
++       Name string `json:"name" example:"g1"`
+
+        // if subGroupSize is (not empty) && (> 0), subGroup will be generated. VMs will be created accordingly.
+        SubGroupSize string `json:"subGroupSize" example:"3" default:"1"`
+
+        // Label is for describing the object by keywords
+-       Label map[string]string `json:"label"`
++       Label map[string]string `json:"label" example:"{\"role\":\"worker\",\"env\":\"test\"}"`
+
+-       Description string `json:"description" example:"Description"`
++       Description string `json:"description" example:"Created via CB-Tumblebug"`
+
+        // CommonSpec is field for id of a spec in common namespace
+-       CommonSpec string `json:"commonSpec" validate:"required" example:"aws+ap-northeast-2+t2.small"`
++       CommonSpec string `json:"commonSpec" validate:"required" example:"aws+ap-northeast-2+t3.nano"`
+        // CommonImage is field for id of a image in common namespace
+-       CommonImage string `json:"commonImage" validate:"required" example:"ubuntu18.04"`
++       CommonImage string `json:"commonImage" validate:"required" example:"ami-01f71f215b23ba262"`
+
+-       RootDiskType string `json:"rootDiskType,omitempty" example:"default, TYPE1, ..." default:"default"`  // "", "default", "TYPE1", AWS: ["standard", "gp2", "gp3"], Azure: ["PremiumSSD", "StandardSSD", "StandardHDD"], GCP: ["pd-standard", "pd-balanced", "pd-ssd", "pd-extreme"], ALIBABA: ["cloud_efficiency", "cloud", "cloud_essd"], TENCENT: ["CLOUD_PREMIUM", "CLOUD_SSD"]
+-       RootDiskSize string `json:"rootDiskSize,omitempty" example:"default, 30, 42, ..." default:"default"` // "default", Integer (GB): ["50", ..., "1000"]
++       RootDiskType string `json:"rootDiskType,omitempty" example:"gp3" default:"default"` // "", "default", "TYPE1", AWS: ["standard", "gp2", "gp3"], Azure: ["PremiumSSD", "StandardSSD", "StandardHDD"], GCP: ["pd-standard", "pd-balanced", "pd-ssd", "pd-extreme"], ALIBABA: ["cloud_efficiency", "cloud", "cloud_essd"], TENCENT: ["CLOUD_PREMIUM", "CLOUD_SSD"]
++       RootDiskSize string `json:"rootDiskSize,omitempty" example:"50" default:"default"`  // "default", Integer (GB): ["50", ..., "1000"]
+
+-       VmUserPassword string `json:"vmUserPassword,omitempty" default:""`
++       VmUserPassword string `json:"vmUserPassword,omitempty" example:"" default:""`
+        // if ConnectionName is given, the VM tries to use associtated credential.
+        // if not, it will use predefined ConnectionName in Spec objects
+-       ConnectionName string `json:"connectionName,omitempty" default:""`
++       ConnectionName string `json:"connectionName,omitempty" example:"aws-ap-northeast-2" default:""`
+ }
+
+ // * Path: src/core/model/mci.go, Line: 703-707
+@@ -162,6 +202,45 @@ type TbMciInfo struct {
+
+        // PostCommandResult is the result of the command for bootstraping the VMs
+        PostCommandResult MciSshCmdResult `json:"postCommandResult"`
++
++       // CreationErrors contains information about VM creation failures (if any)
++       CreationErrors *MciCreationErrors `json:"creationErrors,omitempty"`
++}
++
++// MciCreationErrors represents errors that occurred during MCI creation
++type MciCreationErrors struct {
++       // VmObjectCreationErrors contains errors from VM object creation phase
++       VmObjectCreationErrors []VmCreationError `json:"vmObjectCreationErrors,omitempty"`
++
++       // VmCreationErrors contains errors from actual VM creation phase
++       VmCreationErrors []VmCreationError `json:"vmCreationErrors,omitempty"`
++
++       // TotalVmCount is the total number of VMs that were supposed to be created
++       TotalVmCount int `json:"totalVmCount"`
++
++       // SuccessfulVmCount is the number of VMs that were successfully created
++       SuccessfulVmCount int `json:"successfulVmCount"`
++
++       // FailedVmCount is the number of VMs that failed to be created
++       FailedVmCount int `json:"failedVmCount"`
++
++       // FailureHandlingStrategy indicates how failures were handled
++       FailureHandlingStrategy string `json:"failureHandlingStrategy,omitempty"` // "rollback", "refine", "continue"
++}
++
++// VmCreationError represents a single VM creation error
++type VmCreationError struct {
++       // VmName is the name of the VM that failed
++       VmName string `json:"vmName"`
++
++       // Error is the error message
++       Error string `json:"error"`
++
++       // Phase indicates when the error occurred
++       Phase string `json:"phase"` // "object_creation", "vm_creation"
++
++       // Timestamp when the error occurred
++       Timestamp string `json:"timestamp"`
+ }
+
+ // * Path: src/core/model/mci.go, Line: 473-508
+
+```
+
+</details>
+
+### mc-terrarium에서 prompt 적용 및 활용 경험
 
 > [!NOTE]
 > 단순히 예제를 적용하고 실행해 봄
