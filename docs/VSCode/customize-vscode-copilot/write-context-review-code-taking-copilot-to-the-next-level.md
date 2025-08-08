@@ -268,7 +268,8 @@ Example: Copilot instruction
 
 ### mc-terrarium에서 instructions 적용 및 활용 경험
 
-> [!NOTE] > `copilot-instructions.md`도 Copilot으로 만들고 개선하고 싶었어요 😄
+> [!NOTE]  
+> `copilot-instructions.md`도 Copilot으로 만들고 개선하고 싶었어요 😄
 
 #### `copilot-instructions.md`을 적용하기 전과 후
 
@@ -490,7 +491,8 @@ Return the TODO list in a Markdown format, grouped by priority and issue type.
 
 ### cm-model에서 `sync-tb` prompt 개발 및 사용 후기
 
-> [!NOTE] > `copied-tb-model.go` 에 있는 구조체들은 CB-Tumblebug에 맞게 동기화 되어야 합니다.
+> [!NOTE]  
+> `copied-tb-model.go` 에 있는 구조체들은 CB-Tumblebug에 맞게 동기화 되어야 합니다.
 > 지정된 CB-Tumblebug 버전으로 동기화가 진행되어야 합니다.
 > 반복되는 작업이기 때문에 스터디를 할 겸 Prompt를 개발 및 적용하였습니다. (Write Context! / Context Engineering)
 
@@ -705,7 +707,7 @@ index d7cdba1..0d65643 100644
 
 ### mc-terrarium에서 prompt 적용 및 활용 경험
 
-> [!NOTE]
+> [!NOTE]  
 > 단순히 예제를 적용하고 실행해 봄
 
 Review-REST-API-security 프롬프트 추가
