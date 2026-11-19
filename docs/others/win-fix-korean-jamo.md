@@ -55,20 +55,20 @@ New-Item -Path "C:\Scripts" -ItemType Directory -Force | Out-Null
 @'
 param([string]$TargetPath)
 
-if (-not $TargetPath) {$TargetPath = Get-Location }
+if (-not $TargetPath) { $TargetPath = Get-Location }
 
 if (Test-Path -LiteralPath $TargetPath -PathType Leaf) {
-    $item = Get-Item -LiteralPath$TargetPath
-    $normalized =$item.Name.Normalize([System.Text.NormalizationForm]::FormC)
-    if ($item.Name -ne$normalized) {
-        Rename-Item -LiteralPath $item.FullName -NewName$normalized
+    $item = Get-Item -LiteralPath $TargetPath
+    $normalized = $item.Name.Normalize([System.Text.NormalizationForm]::FormC)
+    if ($item.Name -ne $normalized) {
+        Rename-Item -LiteralPath $item.FullName -NewName $normalized
     }
 } else {
     Set-Location -LiteralPath $TargetPath
     Get-ChildItem -Recurse | Sort-Object { $_.FullName.Length } -Descending | ForEach-Object {
-        $normalized =$_.Name.Normalize([System.Text.NormalizationForm]::FormC)
-        if ($_.Name -ne$normalized) {
-            Rename-Item -LiteralPath $_.FullName -NewName$normalized
+        $normalized = $_.Name.Normalize([System.Text.NormalizationForm]::FormC)
+        if ($_.Name -ne $normalized) {
+            Rename-Item -LiteralPath $_.FullName -NewName $normalized
         }
     }
 }
@@ -84,7 +84,7 @@ $regPaths = @(
     "HKCU:\Software\Classes\Directory\Background\shell\FixKoreanNFC"
 )
 
-foreach ($path in$regPaths) {
+foreach ($path in $regPaths) {
     $cmdPath = "$path\command"
     $targetArg = if ($path -like "*Background*") { "%V" } else { "%1" }
     
